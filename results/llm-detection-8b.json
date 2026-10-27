@@ -1,0 +1,920 @@
+{
+  "model": "llama3.1:8b",
+  "mode": "zero-shot",
+  "surface": "EID10 ProcessAccess to lsass.exe",
+  "max_benign_per_campaign": 15,
+  "note": "precision/FPR estimated on a benign subsample; all attack events judged. Verdicts deterministic (temp 0, seed 42).",
+  "n_calls": 118,
+  "seconds": 548.8,
+  "per_campaign": {
+    "campaign_01": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_02": {
+      "tp": 3,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_03": {
+      "tp": 1,
+      "fp": 1,
+      "tn": 14,
+      "fn": 1,
+      "precision": 0.5,
+      "recall": 0.5,
+      "false_positive_rate": 0.066667
+    },
+    "campaign_04": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_05": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_06": {
+      "tp": 2,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_07": {
+      "tp": 1,
+      "fp": 0,
+      "tn": 15,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "train": {
+    "tp": 5,
+    "fp": 1,
+    "tn": 44,
+    "fn": 1,
+    "precision": 0.8333,
+    "recall": 0.8333,
+    "false_positive_rate": 0.022222
+  },
+  "holdout": {
+    "tp": 7,
+    "fp": 0,
+    "tn": 60,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0
+  },
+  "verdicts": [
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": true,
+      "source": "winx64_payload.exe",
+      "granted": "0x1410"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": true,
+      "source": "procdump.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": true,
+      "source": "procdump64.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": true,
+      "source": "procdump64.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": true,
+      "pred": true,
+      "source": "winx64_payload.exe",
+      "granted": "0x1410"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": true,
+      "pred": false,
+      "source": "rundll32.exe",
+      "granted": "0x1410"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": true,
+      "source": "winx64_payload.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": true,
+      "pred": true,
+      "source": "winx64_payload.exe",
+      "granted": "0x1f3fff"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": true,
+      "pred": true,
+      "source": "winx64_payload.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_04",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": true,
+      "pred": true,
+      "source": "sharpdump.exe",
+      "granted": "0x1f3fff"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": true,
+      "pred": true,
+      "source": "sharpdump.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_05",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": true,
+      "pred": true,
+      "source": "outflank-dumpert.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": true,
+      "pred": true,
+      "source": "outflank-dumpert.exe",
+      "granted": "0x1fffff"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_06",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": true,
+      "pred": true,
+      "source": "nanodump.x64.exe",
+      "granted": "0x1010"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "vboxservice.exe",
+      "granted": "0x1400"
+    },
+    {
+      "campaign": "campaign_07",
+      "truth": false,
+      "pred": false,
+      "source": "svchost.exe",
+      "granted": "0x1000"
+    }
+  ]
+}

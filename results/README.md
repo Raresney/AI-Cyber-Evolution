@@ -446,30 +446,87 @@ is undefined (TP+FP = 0).
 
 ## The generalization ladder (summary)
 
-| Rung | Changes | Behavioral invariant | Signature | LLM (best) |
-| --- | --- | ---: | ---: | ---: |
-| 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (few-shot, by *name*) |
-| 2 new-subtechnique | LSASS → NTDS | 0.00 | 0.00 | 0.07 (by *lexical cue*) |
-| 3 new-technique | T1003 → T1055 injection | 0.00 | 0.00 | 0.00 (no concept) |
+| Rung | Changes | Surface invariant | Signature | LLM 3B (best recall) | LLM 8B (best recall / its precision) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (by *name*) | **1.00 / 1.00** |
+| 2 new-subtechnique | LSASS → NTDS | 0.00 / 1.00¹ | 0.00 | 0.07 (lexical) | **1.00 / 0.67** |
+| 3 new-technique | T1003 → T1055 injection | 0.00 / 1.00¹ | 0.00 | 0.00 (no concept) | **0.67 / 0.13** |
 
-*(Each rung's own surface-matched invariant scores 1.00 — the point is that it is
-a different rule each time; nothing transfers down a rung.)*
+¹ *the LSASS invariant transfers 0.00 across the rung; a separate surface-matched
+invariant scores 1.00 — a different rule each time. Nothing hand-coded transfers
+down a rung.*
 
-## Honest caveats (rung 3)
+## Scale ablation — does a bigger model change the ladder?
 
-- 3 attack events (one CreateRemoteThread per procedure); recall is coarse by
-  construction (narrow GT chosen to avoid labeling the benign launch chain).
-- The injection-specific invariant's 1.00 is by construction; the weight is on
-  the **0.00 transfer** of every cred-dumping rule and the LLM.
-- Small local model (llama3.2 3B); a larger model may recognize CreateRemoteThread
-  — result is about *this* model. See Next (item 1).
+The rung 1–3 LLM results above use llama3.2 **3B**. Re-running every rung with
+llama3.1 **8B** (same local Ollama, identical prompts, seeds, and benign
+subsamples — scale is the only variable) overturns the "LLMs collapse down the
+ladder" reading, and replaces it with something sharper.
+
+**Recall (transfer) — 3B → 8B:**
+
+| Rung | 3B zero / few | 8B zero / few |
+| --- | ---: | ---: |
+| 1 LSASS new-instance | 0.57 / 0.71 | **1.00 / 1.00** |
+| 2 NTDS new-subtechnique | 0.07 / 0.07 | **1.00 / 1.00** |
+| 3 injection new-technique | 0.00 / 0.00 | **0.67** / 0.00 |
+
+**Precision (false-alarm cost) for 8B — degrades with ladder distance:**
+
+| Rung | 8B precision (zero / few) | FP count |
+| --- | ---: | --- |
+| 1 LSASS | 1.00 / 1.00 | 0 FP |
+| 2 NTDS | 0.26 / 0.67 | 39 → 7 FP |
+| 3 injection | 0.13 / 0.00 | 13 FP (2 TP) |
+
+## Findings (scale)
+
+12. **Scale restores recall at every rung — the 3B monotone collapse is a
+    small-model artifact.** 8B reaches 1.00 recall on both the new-instance and
+    new-subtechnique rungs (vs 3B's 0.71 and 0.07) and 0.67 on the new-technique
+    rung (vs 0.00). Decisively, 8B *understands the primitive* 3B did not: it
+    flags the CreateRemoteThread of `powershell.exe`/`purplesharp.exe` into
+    `notepad.exe` as injection, where 3B called the identical event "normal
+    process execution." The cross-sub-technique and cross-technique boundaries
+    that stopped the small model do not stop the bigger one.
+13. **The cost moves to precision, and it worsens the further the test is from
+    the trained surface.** 8B precision falls 1.00 (rung 1) → 0.26–0.67 (rung 2)
+    → 0.13 (rung 3). It transfers by becoming a *broad, trigger-happy* detector:
+    on injection it flags ordinary process-access handles (`svchost→svchost`,
+    `explorer→conhost`, even `lsass→taskhostw`) as malicious to catch the two
+    real injections. A hand-coded invariant is precise and silent off its
+    surface; the LLM at scale is the opposite — it covers everything and cries
+    wolf, more so with distance. **The ladder is not a recall cliff but a
+    precision/recall frontier that shifts with model size.**
+14. **In-context examples are directional, not free — off-target exemplars
+    hurt.** Few-shot helps only when the exemplars match the test's technique
+    family: on NTDS (still OS Credential Dumping) LSASS exemplars hold recall at
+    1.00 while lifting precision 0.26 → 0.67; on injection (a different
+    technique) the same T1003 exemplars *destroy* recall, 0.67 → 0.00 — they
+    anchor the model to "credential dumping" so it rejects the injection events
+    it otherwise caught. Priming an LLM with the wrong technique's examples is
+    worse than priming it with none.
+
+## Honest caveats
+
+- 8B is still a small model on a 6 GB-VRAM laptop; a frontier / tool-calling
+  model is the next scale point (would it keep recall high *and* recover
+  precision, or stay trigger-happy?).
+- Attack-event counts are small per rung (7 / 14 / 3), so recall is coarse; the
+  LLM precision figures are on benign subsamples. The surface-matched invariants'
+  1.00 values remain by construction — the weight is on the *transfer* numbers.
+- Results are for llama3.2 3B and llama3.1 8B specifically; the *shape* (recall
+  rises with scale, precision falls with ladder distance) is the claim, not the
+  exact values.
 
 ## Next
 
-1. Larger / tool-calling LLM — does scale fix the LOLBin/stealth blind spot
-   (rung 1), the cross-surface lexical lock-in (rung 2), and the missing
-   CreateRemoteThread concept (rung 3), or persist them? This is the single most
-   load-bearing follow-up for the "LLMs generalize detection" claim.
+1. ~~Larger LLM — does scale fix the blind spots?~~ **Done** (findings 12–14):
+   8B restores recall at every rung but pays a precision collapse that grows
+   with ladder distance; off-target few-shot hurts.
+   `experiments/llm_detector.py` etc. with `--model llama3.1:8b`, outputs
+   `results/*-8b.json`. Next scale point: a frontier / tool-calling model — does
+   it recover precision too, or stay trigger-happy?
 2. Multi-step chains (OTRF `apt29`, `Log4Shell`) — a new-*chain* rung: does
    detecting individual techniques transfer to a full attack sequence?
 3. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
