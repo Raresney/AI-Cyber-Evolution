@@ -224,7 +224,9 @@ of the same technique?**
 - **Split (new-instance):** train on procedures 01–03, hold out 04–07 — unseen
   tools of the *same* technique.
 - **Detectors:** `experiments/lsass_detectors.py` (signature, behavioral),
-  `experiments/llm_detector.py` (local llama3.2 via Ollama, zero-shot).
+  `experiments/llm_detector.py` (local llama3.2 via Ollama, zero-shot),
+  `experiments/llm_fewshot_detector.py` (same model, few-shot: labeled train
+  exemplars in context, excluded from the train eval).
 
 ## Result — held-out (unseen) procedures
 
@@ -233,6 +235,7 @@ of the same technique?**
 | signature | learns malicious tool image names from training | **0.29** | 1.00 |
 | behavioral | technique invariant (non-system proc reads lsass w/ VM_READ) | **1.00** | 1.00 |
 | llm (zero-shot) | llama3.2 3B judges each access event | 0.57 | 1.00 |
+| llm (few-shot, 3+3) | same model, 6 labeled train exemplars in context | 0.71 | 1.00 |
 
 Per-procedure recall (01–03 train, 04–07 holdout):
 
@@ -241,6 +244,12 @@ Per-procedure recall (01–03 train, 04–07 holdout):
 | signature | 1.0 | 1.0 | 1.0 | 1.0 | **0.0** | **0.0** | **0.0** |
 | behavioral | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
 | llm (zero-shot) | 1.0 | **0.0** | 0.5 | 1.0 | **0.0** | 0.5 | 1.0 |
+| llm (few-shot) | –¹ | **0.0** | **0.0** | 1.0 | 0.5 | 1.0 | **0.0** |
+
+¹ few-shot exemplars are drawn from the training procedures and excluded from
+the training eval, so `campaign_01`'s only remaining attack events became
+exemplars (no train-01 events left to score). Train recall is therefore
+measured on 02/03 alone, where it is **0.00** (see finding 5).
 
 ## Findings
 
@@ -262,13 +271,29 @@ Per-procedure recall (01–03 train, 04–07 holdout):
    neither reasons reliably on the access mask nor purely memorizes tool fame.
 4. **A ten-line behavioral rule beats the 3B LLM here.** This tempers the "LLMs
    solve detection" framing and sets a concrete bar for the LLM experiments.
+5. **Few-shot raises recall but does *not* teach the invariant.** Given six
+   labeled training exemplars (3 dumps + 3 benign), holdout recall rises
+   0.57 → **0.71** and precision stays 1.00 — on the face of it, in-context
+   examples help. But the *error pattern* shows why they do not help where it
+   matters. The model still catches unseen tools with *suspicious-looking
+   names* (`winx64_payload`, `outflank-dumpert`) and still **misses the
+   dangerous cases**: it judged `procdump.exe`/`procdump64.exe` at full access
+   `0x1fffff` benign *even though it was shown procdump dumps as malicious
+   exemplars*, missed the `rundll32.exe`+comsvcs LOLBin (`0x1410`), and missed
+   stealthy `nanodump` (`0x1010`). Train recall on the non-exemplar seen tools
+   (02/03) is **0.00** for exactly this reason: those are the legit-binary /
+   LOLBin cases, and the model's prior ("procdump and rundll32 are legitimate
+   signed tools") overrides the in-context examples. The few-shot gains are
+   *name semantics*, not technique reasoning — so the LLM fails precisely on
+   living-off-the-land abuse and low-footprint tooling, which is where real
+   adversaries operate and where the behavioral invariant still holds 1.00.
 
 ## Honest caveats
 
-- Zero-shot has no train/holdout meaning (the LLM is not trained on the training
-  split), so the 0.33-vs-0.57 asymmetry is tool-luck, not generalization. The
-  proper LLM generalization test is **few-shot** (give the training procedures
-  as examples), not yet run.
+- Few-shot now has a real train/holdout meaning (exemplars from training
+  procedures, excluded from the training eval). The result is reported above;
+  the headline is that few-shot improves raw recall without fixing the failure
+  mode (finding 5).
 - Only 13 attack events total (a dump is a handful of events), so recall is
   coarse; precision/FPR for the LLM are on a benign subsample.
 - llama3.2 3B is small; a larger model may well do better — this is a result
@@ -277,9 +302,12 @@ Per-procedure recall (01–03 train, 04–07 holdout):
 
 ## Next
 
-1. **Few-shot LLM** — does in-context training on 01–03 make it extract the
-   invariant (generalize) or latch onto the example tools (memorize)?
-2. Larger / tool-calling LLM for comparison; analyze its reasoning traces.
+1. ~~Few-shot LLM — does in-context training on 01–03 make it extract the
+   invariant or latch onto the example tools?~~ **Done** (finding 5): it latches
+   onto name semantics, not the invariant. Reproduce with
+   `experiments/llm_fewshot_detector.py`.
+2. Larger / tool-calling LLM for comparison; analyze its reasoning traces — does
+   scale fix the LOLBin/stealth-mask blind spot, or persist it?
 3. Extend the generalization ladder: sub-technique (T1003.003 NTDS), new
    technique, multi-step chains (OTRF `apt29`, `Log4Shell`).
 4. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
