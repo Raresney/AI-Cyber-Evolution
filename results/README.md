@@ -201,3 +201,88 @@ bands; D's wide band is the oscillation variance.*
   single-step; richer memory/forgetting would change the cycle shape.
 - The sweep covers 20 seeds at one pool size / round count; a fuller study would
   also vary pool size, round count and learning rate.
+
+---
+
+# Real-Data Detection — LSASS new-instance generalization (T1003.001)
+
+This moves the project off self-written telemetry onto real host telemetry and
+asks the question that motivates the whole thesis on real data: **does a
+detector that works on known attack procedures generalize to unseen procedures
+of the same technique?**
+
+## Setup
+
+- **Data:** Open Threat Research Forge Security-Datasets (MIT). The seven
+  `LSASS_campaign_0X` datasets each run *one tool* for OS Credential Dumping:
+  LSASS Memory (T1003.001) — mimikatz, procdump, comsvcs, out-minidump,
+  sharpdump, outflank-dumpert, nanodump. **354,229 real Windows/Sysmon events.**
+- **Ingest:** `environment/otrf_loader.py` → leakage-free contract
+  (detector-visible `events.jsonl` + evaluator-only `labels.jsonl`). Ground
+  truth is a documented derived rule (Sysmon EID10 ProcessAccess to lsass.exe
+  with a memory-read mask from a non-system source).
+- **Split (new-instance):** train on procedures 01–03, hold out 04–07 — unseen
+  tools of the *same* technique.
+- **Detectors:** `experiments/lsass_detectors.py` (signature, behavioral),
+  `experiments/llm_detector.py` (local llama3.2 via Ollama, zero-shot).
+
+## Result — held-out (unseen) procedures
+
+| Detector | Approach | Holdout recall | Holdout precision |
+| --- | --- | ---: | ---: |
+| signature | learns malicious tool image names from training | **0.29** | 1.00 |
+| behavioral | technique invariant (non-system proc reads lsass w/ VM_READ) | **1.00** | 1.00 |
+| llm (zero-shot) | llama3.2 3B judges each access event | 0.57 | 1.00 |
+
+Per-procedure recall (01–03 train, 04–07 holdout):
+
+| | 01 | 02 | 03 | 04 | 05 | 06 | 07 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| signature | 1.0 | 1.0 | 1.0 | 1.0 | **0.0** | **0.0** | **0.0** |
+| behavioral | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| llm (zero-shot) | 1.0 | **0.0** | 0.5 | 1.0 | **0.0** | 0.5 | 1.0 |
+
+## Findings
+
+1. **Signature detection memorizes, it does not generalize.** Recall falls from
+   1.00 to **0.29** on unseen tools — it catches only `campaign_04`, which
+   reuses a training payload (`winx64_payload.exe`), and misses
+   sharpdump/dumpert/nanodump entirely. It also pays a precision cost on
+   training (0.50): it learned `rundll32.exe` — a LOLBin that legitimately
+   accesses lsass — as an IOC, producing false positives.
+2. **The technique invariant generalizes.** The behavioral detector holds at
+   1.00 / 1.00 across all unseen tools. (Honest caveat: this rule encodes the
+   same invariant used to derive ground truth, so its high recall is partly by
+   construction; the scientific weight is on the signature collapse.)
+3. **A small zero-shot LLM is unreliable — and fails in a mixed way.** llama3.2
+   (3B) reaches only ~0.46 recall overall and is inconsistent: it **missed
+   procdump at GrantedAccess `0x1fffff`** — the most blatant case — yet caught
+   the obscure nanodump. It also produced a name-bias false positive (flagged a
+   benign `0x1400` query because the image was named `winx64_payload`). So it
+   neither reasons reliably on the access mask nor purely memorizes tool fame.
+4. **A ten-line behavioral rule beats the 3B LLM here.** This tempers the "LLMs
+   solve detection" framing and sets a concrete bar for the LLM experiments.
+
+## Honest caveats
+
+- Zero-shot has no train/holdout meaning (the LLM is not trained on the training
+  split), so the 0.33-vs-0.57 asymmetry is tool-luck, not generalization. The
+  proper LLM generalization test is **few-shot** (give the training procedures
+  as examples), not yet run.
+- Only 13 attack events total (a dump is a handful of events), so recall is
+  coarse; precision/FPR for the LLM are on a benign subsample.
+- llama3.2 3B is small; a larger model may well do better — this is a result
+  about *this* model, not "LLMs in general".
+- Ground truth is a derived rule, not hand annotation; mild label noise possible.
+
+## Next
+
+1. **Few-shot LLM** — does in-context training on 01–03 make it extract the
+   invariant (generalize) or latch onto the example tools (memorize)?
+2. Larger / tool-calling LLM for comparison; analyze its reasoning traces.
+3. Extend the generalization ladder: sub-technique (T1003.003 NTDS), new
+   technique, multi-step chains (OTRF `apt29`, `Log4Shell`).
+4. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
+5. Add the adaptive adversary: a Red that mutates the tool/access to evade a
+   signature Blue that keeps learning names — the co-evolution arms race on real
+   telemetry.
