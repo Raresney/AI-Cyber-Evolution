@@ -85,10 +85,40 @@ simulation.
 
 \section{Background and Related Work}
 \label{sec:related}
-\todo{Position against ACEA (LLM jailbreak co-evolution) and Beyond CAGE
-(CybORG network-level, no ladder); note OTRF Security-Datasets and the ATT\&CK
-sub-technique taxonomy. Emphasize gap: generalization \emph{across} the ATT\&CK
-hierarchy on real host telemetry is unmeasured.}
+
+\paragraph{Adversarial co-evolution.}
+A growing line treats attack and defense as co-adapting populations. ACEA~\cite{acea}
+is representative: attacker and defender are evolved against each other in the
+\emph{LLM jailbreak} domain, where the ``telemetry'' is prompts and responses.
+This captures the arms-race dynamic but not host-based intrusion detection, and
+it measures escalation, not how far a learned detector transfers to unseen
+attacks. Our co-evolution engine follows the same generative spirit---a Red that
+mutates its tool and access to evade a learning Blue---but we close it onto
+\emph{real host telemetry} and, crucially, add an external yardstick: the
+generalization ladder. \todo{add 1--2 more recent co-evolution / autonomous
+red-teaming cites.}
+
+\paragraph{Generalization of learned defenses.}
+Beyond CAGE~\cite{beyondcage} studies whether reinforcement-learned network-%
+defense policies generalize beyond the CybORG scenarios they were trained on.
+It shares our central worry---learned defenders may overfit their training
+distribution---but operates at the \emph{network} level in simulation and varies
+scenarios/topologies rather than position on the ATT\&CK technique hierarchy.
+We complement it with a host-telemetry, technique-structured notion of
+generalization distance and a detector-agnostic protocol (signature, invariant,
+LLM) rather than a single RL policy.
+
+\paragraph{Data and taxonomy.}
+We build on OTRF Security-Datasets~\cite{otrf}, openly licensed captures of real
+Windows/Sysmon telemetry recorded while executing documented ATT\&CK
+procedures; this lets us derive leakage-free slices with per-event ground truth
+instead of synthesizing attacks. MITRE ATT\&CK~\cite{attack} supplies the
+tactic/technique/sub-technique/procedure hierarchy that \emph{defines} our
+rungs: a ``new-instance'' is a sibling procedure, a ``new-subtechnique'' a
+sibling sub-technique, a ``new-technique'' a different technique. To our
+knowledge, generalization \emph{across} this hierarchy, on real host telemetry
+and with a leakage-free protocol, has not been measured; that gap is what the
+ladder fills.
 
 \section{The Generalization Ladder}
 \label{sec:ladder}
@@ -230,6 +260,18 @@ execution.'' It substitutes surface strings for technique reasoning.
 
 \section{Scale Ablation}
 \label{sec:scale}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig-ladder}
+\caption{Down the ladder. The 3B model's recall collapses with distance
+($0.71\!\rightarrow\!0.07\!\rightarrow\!0.00$); the 8B model holds recall
+($1.00\!\rightarrow\!1.00\!\rightarrow\!0.67$) but its precision falls
+($1.00\!\rightarrow\!0.67\!\rightarrow\!0.13$). Generalization is a
+precision/recall frontier that shifts with scale, not a cliff.}
+\label{fig:ladder}
+\end{figure}
+
 \begin{table}[t]
 \caption{Scale: 3B vs.\ 8B (best of zero/few recall; precision at that point).}
 \label{tab:scale}
@@ -254,8 +296,8 @@ trigger-happy detector that flags ordinary process-access handles
 Few-shot is \emph{directional}: same-family exemplars raise NTDS precision
 ($0.26\!\rightarrow\!0.67$) while holding recall, but off-target T1003 exemplars
 \emph{destroy} injection recall ($0.67\!\rightarrow\!0.00$) by anchoring the
-model to credential dumping. \todo{one figure: recall-up / precision-down vs
-rung for 3B and 8B.}
+model to credential dumping. Figure~\ref{fig:ladder} summarizes the two trends:
+recall rising with scale, precision falling with ladder distance.
 
 \section{Discussion and Limitations}
 \label{sec:discussion}

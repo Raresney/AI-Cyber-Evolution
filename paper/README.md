@@ -6,6 +6,15 @@ results (three rung tables + scale ablation), discussion, and conclusion are in
 place. Result tables hold the **real measured numbers** from `../results/*.json`;
 `\todo{...}` markers flag prose and a figure still to write.
 
+## Figure
+
+`fig-ladder.pdf` (recall-up / precision-down vs rung, 3B vs 8B) is generated
+from the results JSONs:
+
+```bash
+python ../experiments/plot_ladder.py   # writes paper/fig-ladder.{pdf,png}
+```
+
 ## Build
 
 Needs a TeX distribution with the ACM `acmart` class (TeX Live / MiKTeX ship it).
@@ -35,7 +44,8 @@ for the full findings write-up the paper condenses.
 
 ## To do before submission
 
-- Expand `\todo{}` prose (related work, signature-memorization detail, figure).
+- Expand remaining `\todo{}` prose (intro tightening, extra co-evolution cites,
+  signature-memorization detail). Related work and the figure are done.
 - Verify the arXiv IDs in `references.bib`.
 - Anonymize is on (`anonymous,review`); turn off for camera-ready and fill
   authors/affiliation.
