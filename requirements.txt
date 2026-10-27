@@ -1,0 +1,6 @@
+# CYBER-EVO dependencies.
+#
+# The simulation engine, co-evolution loop and seed sweep are pure standard
+# library -- they run with no installs. Only the plotting script needs these.
+
+matplotlib>=3.8   # experiments/plot_coevolution.py (pulls in numpy)

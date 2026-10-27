@@ -1,0 +1,42 @@
+{
+  "seed": 1337,
+  "rounds": 12,
+  "conditions": {
+    "A": {
+      "detection_first": 0.45,
+      "detection_last": 0.65,
+      "asr_first": 0.55,
+      "asr_last": 0.35,
+      "fpr_last": 0.0,
+      "tokens_minted": 0,
+      "record": "coevolution-A-20261027T003535Z.json"
+    },
+    "B": {
+      "detection_first": 0.45,
+      "detection_last": 0.0333,
+      "asr_first": 0.55,
+      "asr_last": 0.9667,
+      "fpr_last": 0.0,
+      "tokens_minted": 3,
+      "record": "coevolution-B-20261027T003535Z.json"
+    },
+    "C": {
+      "detection_first": 0.45,
+      "detection_last": 0.95,
+      "asr_first": 0.55,
+      "asr_last": 0.05,
+      "fpr_last": 0.0,
+      "tokens_minted": 0,
+      "record": "coevolution-C-20261027T003535Z.json"
+    },
+    "D": {
+      "detection_first": 0.45,
+      "detection_last": 0.9833,
+      "asr_first": 0.55,
+      "asr_last": 0.0167,
+      "fpr_last": 0.0,
+      "tokens_minted": 8,
+      "record": "coevolution-D-20261027T003535Z.json"
+    }
+  }
+}

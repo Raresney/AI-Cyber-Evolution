@@ -1,0 +1,138 @@
+{
+  "eval_version": "evaluator-v1",
+  "n_scored": 60,
+  "integrity": {
+    "cases_without_decision": [],
+    "decisions_without_truth": [],
+    "label_leakage_check": "pass"
+  },
+  "overall": {
+    "n": 60,
+    "tp": 8,
+    "fp": 0,
+    "tn": 30,
+    "fn": 22,
+    "investigate_on_attack": 22,
+    "investigate_on_benign": 12,
+    "precision": 1.0,
+    "recall_detection_rate": 0.2667,
+    "false_positive_rate": 0.0,
+    "f1": 0.4211
+  },
+  "by_split": {
+    "adaptation": {
+      "n": 36,
+      "tp": 5,
+      "fp": 0,
+      "tn": 18,
+      "fn": 13,
+      "investigate_on_attack": 13,
+      "investigate_on_benign": 7,
+      "precision": 1.0,
+      "recall_detection_rate": 0.2778,
+      "false_positive_rate": 0.0,
+      "f1": 0.4348
+    },
+    "final_test": {
+      "n": 12,
+      "tp": 1,
+      "fp": 0,
+      "tn": 6,
+      "fn": 5,
+      "investigate_on_attack": 5,
+      "investigate_on_benign": 1,
+      "precision": 1.0,
+      "recall_detection_rate": 0.1667,
+      "false_positive_rate": 0.0,
+      "f1": 0.2858
+    },
+    "validation": {
+      "n": 12,
+      "tp": 2,
+      "fp": 0,
+      "tn": 6,
+      "fn": 4,
+      "investigate_on_attack": 4,
+      "investigate_on_benign": 4,
+      "precision": 1.0,
+      "recall_detection_rate": 0.3333,
+      "false_positive_rate": 0.0,
+      "f1": 0.5
+    }
+  },
+  "by_telemetry_condition": {
+    "clean": {
+      "n": 30,
+      "tp": 6,
+      "fp": 0,
+      "tn": 15,
+      "fn": 9,
+      "investigate_on_attack": 9,
+      "investigate_on_benign": 5,
+      "precision": 1.0,
+      "recall_detection_rate": 0.4,
+      "false_positive_rate": 0.0,
+      "f1": 0.5714
+    },
+    "delayed": {
+      "n": 8,
+      "tp": 2,
+      "fp": 0,
+      "tn": 3,
+      "fn": 3,
+      "investigate_on_attack": 3,
+      "investigate_on_benign": 0,
+      "precision": 1.0,
+      "recall_detection_rate": 0.4,
+      "false_positive_rate": 0.0,
+      "f1": 0.5714
+    },
+    "missing": {
+      "n": 8,
+      "tp": 0,
+      "fp": 0,
+      "tn": 5,
+      "fn": 3,
+      "investigate_on_attack": 3,
+      "investigate_on_benign": 5,
+      "precision": null,
+      "recall_detection_rate": 0.0,
+      "false_positive_rate": 0.0,
+      "f1": null
+    },
+    "noisy": {
+      "n": 14,
+      "tp": 0,
+      "fp": 0,
+      "tn": 7,
+      "fn": 7,
+      "investigate_on_attack": 7,
+      "investigate_on_benign": 2,
+      "precision": null,
+      "recall_detection_rate": 0.0,
+      "false_positive_rate": 0.0,
+      "f1": null
+    }
+  },
+  "by_generalization": {
+    "known_technique": {
+      "n": 60,
+      "tp": 8,
+      "fp": 0,
+      "tn": 30,
+      "fn": 22,
+      "investigate_on_attack": 22,
+      "investigate_on_benign": 12,
+      "precision": 1.0,
+      "recall_detection_rate": 0.2667,
+      "false_positive_rate": 0.0,
+      "f1": 0.4211
+    }
+  },
+  "notes": [
+    "recall_detection_rate == recall; interpret with precision and FPR.",
+    "null metric = undefined (zero denominator), not zero.",
+    "strict matrix: only 'detect' is a positive; investigate tallied separately.",
+    "detection latency not modelled in v1 (no decision-time); delayed condition is evaluated on outcome only."
+  ]
+}

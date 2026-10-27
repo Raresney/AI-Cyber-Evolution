@@ -1,0 +1,23 @@
+{
+  "schema_version": "S001-v1",
+  "attack_version": "ATT&CK-unpinned",
+  "seed": 1337,
+  "generated_at": "2026-10-26T14:36:56Z",
+  "n_cases": 60,
+  "n_events": 102,
+  "class_balance": {
+    "attack": 30,
+    "benign": 30
+  },
+  "splits": {
+    "adaptation": 36,
+    "validation": 12,
+    "final_test": 12
+  },
+  "conditions": {
+    "clean": 30,
+    "missing": 8,
+    "noisy": 14,
+    "delayed": 8
+  }
+}

@@ -1,0 +1,2113 @@
+{
+  "seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "n_seeds": 20,
+  "rounds": 12,
+  "pool": {
+    "n_attack": 60,
+    "n_benign": 60
+  },
+  "timestamp": "2026-10-27T00:40:02Z",
+  "conditions": {
+    "A": {
+      "condition_meaning": {
+        "red_adaptive": false,
+        "blue_adaptive": false
+      },
+      "per_round": [
+        {
+          "round": 0,
+          "detection_rate": {
+            "mean": 0.5992,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4008,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.575,
+            "std": 0.1729,
+            "ci95": 0.0758,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 1,
+          "detection_rate": {
+            "mean": 0.6083,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.3917,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.5667,
+            "std": 0.1658,
+            "ci95": 0.0727,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 2,
+          "detection_rate": {
+            "mean": 0.6183,
+            "std": 0.0524,
+            "ci95": 0.023,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.3817,
+            "std": 0.0524,
+            "ci95": 0.023,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6542,
+            "std": 0.1694,
+            "ci95": 0.0743,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 3,
+          "detection_rate": {
+            "mean": 0.5983,
+            "std": 0.0604,
+            "ci95": 0.0265,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4017,
+            "std": 0.0604,
+            "ci95": 0.0265,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6333,
+            "std": 0.1586,
+            "ci95": 0.0695,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 4,
+          "detection_rate": {
+            "mean": 0.585,
+            "std": 0.0587,
+            "ci95": 0.0257,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.415,
+            "std": 0.0587,
+            "ci95": 0.0257,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.55,
+            "std": 0.1389,
+            "ci95": 0.0609,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 5,
+          "detection_rate": {
+            "mean": 0.5933,
+            "std": 0.0758,
+            "ci95": 0.0332,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4067,
+            "std": 0.0758,
+            "ci95": 0.0332,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6583,
+            "std": 0.1322,
+            "ci95": 0.0579,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 6,
+          "detection_rate": {
+            "mean": 0.6042,
+            "std": 0.0755,
+            "ci95": 0.0331,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.3958,
+            "std": 0.0755,
+            "ci95": 0.0331,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6125,
+            "std": 0.1438,
+            "ci95": 0.063,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 7,
+          "detection_rate": {
+            "mean": 0.58,
+            "std": 0.0553,
+            "ci95": 0.0242,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.42,
+            "std": 0.0553,
+            "ci95": 0.0242,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.625,
+            "std": 0.1098,
+            "ci95": 0.0481,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 8,
+          "detection_rate": {
+            "mean": 0.5742,
+            "std": 0.0652,
+            "ci95": 0.0286,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4258,
+            "std": 0.0652,
+            "ci95": 0.0286,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.5667,
+            "std": 0.1285,
+            "ci95": 0.0563,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 9,
+          "detection_rate": {
+            "mean": 0.5967,
+            "std": 0.0681,
+            "ci95": 0.0298,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4033,
+            "std": 0.0681,
+            "ci95": 0.0298,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.5917,
+            "std": 0.1376,
+            "ci95": 0.0603,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 10,
+          "detection_rate": {
+            "mean": 0.6067,
+            "std": 0.0601,
+            "ci95": 0.0263,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.3933,
+            "std": 0.0601,
+            "ci95": 0.0263,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6208,
+            "std": 0.1338,
+            "ci95": 0.0586,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 11,
+          "detection_rate": {
+            "mean": 0.5983,
+            "std": 0.0725,
+            "ci95": 0.0318,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4017,
+            "std": 0.0725,
+            "ci95": 0.0318,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6208,
+            "std": 0.1417,
+            "ci95": 0.0621,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        }
+      ],
+      "summary": {
+        "detection_mean_all_rounds": {
+          "mean": 0.5969,
+          "std": 0.022,
+          "ci95": 0.0096,
+          "n": 20
+        },
+        "detection_last_round": {
+          "mean": 0.5983,
+          "std": 0.0725,
+          "ci95": 0.0318,
+          "n": 20
+        },
+        "asr_last_round": {
+          "mean": 0.4017,
+          "std": 0.0725,
+          "ci95": 0.0318,
+          "n": 20
+        },
+        "oscillation_swing": {
+          "mean": 0.0684,
+          "std": 0.0196,
+          "ci95": 0.0086,
+          "n": 20
+        },
+        "tokens_minted": {
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        },
+        "blue_known_signatures_last": {
+          "mean": 4.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        },
+        "investigate_on_benign_last": {
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        }
+      }
+    },
+    "B": {
+      "condition_meaning": {
+        "red_adaptive": true,
+        "blue_adaptive": false
+      },
+      "per_round": [
+        {
+          "round": 0,
+          "detection_rate": {
+            "mean": 0.5992,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4008,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.575,
+            "std": 0.1729,
+            "ci95": 0.0758,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 1,
+          "detection_rate": {
+            "mean": 0.3167,
+            "std": 0.0791,
+            "ci95": 0.0347,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.6833,
+            "std": 0.0791,
+            "ci95": 0.0347,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.3125,
+            "std": 0.1597,
+            "ci95": 0.07,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 2,
+          "detection_rate": {
+            "mean": 0.09,
+            "std": 0.0583,
+            "ci95": 0.0256,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.91,
+            "std": 0.0583,
+            "ci95": 0.0256,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0958,
+            "std": 0.1247,
+            "ci95": 0.0547,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 3,
+          "detection_rate": {
+            "mean": 0.0217,
+            "std": 0.0188,
+            "ci95": 0.0082,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9783,
+            "std": 0.0188,
+            "ci95": 0.0082,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0167,
+            "std": 0.0342,
+            "ci95": 0.015,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 4,
+          "detection_rate": {
+            "mean": 0.0292,
+            "std": 0.0178,
+            "ci95": 0.0078,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9708,
+            "std": 0.0178,
+            "ci95": 0.0078,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0208,
+            "std": 0.037,
+            "ci95": 0.0162,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 5,
+          "detection_rate": {
+            "mean": 0.0183,
+            "std": 0.0161,
+            "ci95": 0.0071,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9817,
+            "std": 0.0161,
+            "ci95": 0.0071,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0167,
+            "std": 0.0342,
+            "ci95": 0.015,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 6,
+          "detection_rate": {
+            "mean": 0.0208,
+            "std": 0.0161,
+            "ci95": 0.0071,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9792,
+            "std": 0.0161,
+            "ci95": 0.0071,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.025,
+            "std": 0.0392,
+            "ci95": 0.0172,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 7,
+          "detection_rate": {
+            "mean": 0.0258,
+            "std": 0.0198,
+            "ci95": 0.0087,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9742,
+            "std": 0.0198,
+            "ci95": 0.0087,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.025,
+            "std": 0.0476,
+            "ci95": 0.0209,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 8,
+          "detection_rate": {
+            "mean": 0.0225,
+            "std": 0.0155,
+            "ci95": 0.0068,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9775,
+            "std": 0.0155,
+            "ci95": 0.0068,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0333,
+            "std": 0.0419,
+            "ci95": 0.0183,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 9,
+          "detection_rate": {
+            "mean": 0.0233,
+            "std": 0.0183,
+            "ci95": 0.008,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9767,
+            "std": 0.0183,
+            "ci95": 0.008,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0333,
+            "std": 0.0628,
+            "ci95": 0.0275,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 10,
+          "detection_rate": {
+            "mean": 0.0292,
+            "std": 0.0201,
+            "ci95": 0.0088,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9708,
+            "std": 0.0201,
+            "ci95": 0.0088,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.0208,
+            "std": 0.037,
+            "ci95": 0.0162,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 11,
+          "detection_rate": {
+            "mean": 0.0267,
+            "std": 0.0262,
+            "ci95": 0.0115,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.9733,
+            "std": 0.0262,
+            "ci95": 0.0115,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.05,
+            "std": 0.0829,
+            "ci95": 0.0363,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        }
+      ],
+      "summary": {
+        "detection_mean_all_rounds": {
+          "mean": 0.1019,
+          "std": 0.0134,
+          "ci95": 0.0059,
+          "n": 20
+        },
+        "detection_last_round": {
+          "mean": 0.0267,
+          "std": 0.0262,
+          "ci95": 0.0115,
+          "n": 20
+        },
+        "asr_last_round": {
+          "mean": 0.9733,
+          "std": 0.0262,
+          "ci95": 0.0115,
+          "n": 20
+        },
+        "oscillation_swing": {
+          "mean": 0.0676,
+          "std": 0.0082,
+          "ci95": 0.0036,
+          "n": 20
+        },
+        "tokens_minted": {
+          "mean": 2.25,
+          "std": 0.5501,
+          "ci95": 0.2411,
+          "n": 20
+        },
+        "blue_known_signatures_last": {
+          "mean": 4.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        },
+        "investigate_on_benign_last": {
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        }
+      }
+    },
+    "C": {
+      "condition_meaning": {
+        "red_adaptive": false,
+        "blue_adaptive": true
+      },
+      "per_round": [
+        {
+          "round": 0,
+          "detection_rate": {
+            "mean": 0.5992,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4008,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.575,
+            "std": 0.1729,
+            "ci95": 0.0758,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 1,
+          "detection_rate": {
+            "mean": 0.91,
+            "std": 0.0356,
+            "ci95": 0.0156,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.09,
+            "std": 0.0356,
+            "ci95": 0.0156,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.9208,
+            "std": 0.0955,
+            "ci95": 0.0419,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 2,
+          "detection_rate": {
+            "mean": 0.9067,
+            "std": 0.0283,
+            "ci95": 0.0124,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.0933,
+            "std": 0.0283,
+            "ci95": 0.0124,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.925,
+            "std": 0.0807,
+            "ci95": 0.0354,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 3,
+          "detection_rate": {
+            "mean": 0.8925,
+            "std": 0.0514,
+            "ci95": 0.0225,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1075,
+            "std": 0.0514,
+            "ci95": 0.0225,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.925,
+            "std": 0.0851,
+            "ci95": 0.0373,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 4,
+          "detection_rate": {
+            "mean": 0.8917,
+            "std": 0.0388,
+            "ci95": 0.017,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1083,
+            "std": 0.0388,
+            "ci95": 0.017,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.9125,
+            "std": 0.0633,
+            "ci95": 0.0277,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 5,
+          "detection_rate": {
+            "mean": 0.895,
+            "std": 0.039,
+            "ci95": 0.0171,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.105,
+            "std": 0.039,
+            "ci95": 0.0171,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.9125,
+            "std": 0.0832,
+            "ci95": 0.0365,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 6,
+          "detection_rate": {
+            "mean": 0.8983,
+            "std": 0.0291,
+            "ci95": 0.0127,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1017,
+            "std": 0.0291,
+            "ci95": 0.0127,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.8792,
+            "std": 0.0875,
+            "ci95": 0.0384,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 7,
+          "detection_rate": {
+            "mean": 0.8908,
+            "std": 0.0454,
+            "ci95": 0.0199,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1092,
+            "std": 0.0454,
+            "ci95": 0.0199,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.925,
+            "std": 0.0599,
+            "ci95": 0.0262,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 8,
+          "detection_rate": {
+            "mean": 0.8933,
+            "std": 0.0352,
+            "ci95": 0.0154,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1067,
+            "std": 0.0352,
+            "ci95": 0.0154,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.8792,
+            "std": 0.1064,
+            "ci95": 0.0466,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 9,
+          "detection_rate": {
+            "mean": 0.8958,
+            "std": 0.0319,
+            "ci95": 0.014,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1042,
+            "std": 0.0319,
+            "ci95": 0.014,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.8833,
+            "std": 0.0952,
+            "ci95": 0.0417,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 10,
+          "detection_rate": {
+            "mean": 0.8908,
+            "std": 0.0395,
+            "ci95": 0.0173,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1092,
+            "std": 0.0395,
+            "ci95": 0.0173,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.8708,
+            "std": 0.0875,
+            "ci95": 0.0384,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 11,
+          "detection_rate": {
+            "mean": 0.8908,
+            "std": 0.0497,
+            "ci95": 0.0218,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.1092,
+            "std": 0.0497,
+            "ci95": 0.0218,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.9167,
+            "std": 0.0855,
+            "ci95": 0.0375,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        }
+      ],
+      "summary": {
+        "detection_mean_all_rounds": {
+          "mean": 0.8713,
+          "std": 0.0142,
+          "ci95": 0.0062,
+          "n": 20
+        },
+        "detection_last_round": {
+          "mean": 0.8908,
+          "std": 0.0497,
+          "ci95": 0.0218,
+          "n": 20
+        },
+        "asr_last_round": {
+          "mean": 0.1092,
+          "std": 0.0497,
+          "ci95": 0.0218,
+          "n": 20
+        },
+        "oscillation_swing": {
+          "mean": 0.067,
+          "std": 0.0119,
+          "ci95": 0.0052,
+          "n": 20
+        },
+        "tokens_minted": {
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        },
+        "blue_known_signatures_last": {
+          "mean": 6.0,
+          "std": 0.0,
+          "ci95": 0.0,
+          "n": 20
+        },
+        "investigate_on_benign_last": {
+          "mean": 18.25,
+          "std": 2.7314,
+          "ci95": 1.1971,
+          "n": 20
+        }
+      }
+    },
+    "D": {
+      "condition_meaning": {
+        "red_adaptive": true,
+        "blue_adaptive": true
+      },
+      "per_round": [
+        {
+          "round": 0,
+          "detection_rate": {
+            "mean": 0.5992,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4008,
+            "std": 0.0641,
+            "ci95": 0.0281,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.575,
+            "std": 0.1729,
+            "ci95": 0.0758,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 4.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 1,
+          "detection_rate": {
+            "mean": 0.4675,
+            "std": 0.0672,
+            "ci95": 0.0295,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.5325,
+            "std": 0.0672,
+            "ci95": 0.0295,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.4458,
+            "std": 0.1673,
+            "ci95": 0.0733,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 6.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 2,
+          "detection_rate": {
+            "mean": 0.2925,
+            "std": 0.0668,
+            "ci95": 0.0293,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.7075,
+            "std": 0.0668,
+            "ci95": 0.0293,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.275,
+            "std": 0.1433,
+            "ci95": 0.0628,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 7.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 3,
+          "detection_rate": {
+            "mean": 0.1633,
+            "std": 0.0553,
+            "ci95": 0.0242,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.8367,
+            "std": 0.0553,
+            "ci95": 0.0242,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.1958,
+            "std": 0.1091,
+            "ci95": 0.0478,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 8.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 4,
+          "detection_rate": {
+            "mean": 0.1958,
+            "std": 0.2755,
+            "ci95": 0.1207,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.8042,
+            "std": 0.2755,
+            "ci95": 0.1207,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.1708,
+            "std": 0.2816,
+            "ci95": 0.1234,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 9.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          }
+        },
+        {
+          "round": 5,
+          "detection_rate": {
+            "mean": 0.3775,
+            "std": 0.4464,
+            "ci95": 0.1956,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.6225,
+            "std": 0.4464,
+            "ci95": 0.1956,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.3625,
+            "std": 0.447,
+            "ci95": 0.1959,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 9.9,
+            "std": 0.3078,
+            "ci95": 0.1349,
+            "n": 20
+          }
+        },
+        {
+          "round": 6,
+          "detection_rate": {
+            "mean": 0.2808,
+            "std": 0.4146,
+            "ci95": 0.1817,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.7192,
+            "std": 0.4146,
+            "ci95": 0.1817,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.2792,
+            "std": 0.4208,
+            "ci95": 0.1844,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 10.55,
+            "std": 0.5104,
+            "ci95": 0.2237,
+            "n": 20
+          }
+        },
+        {
+          "round": 7,
+          "detection_rate": {
+            "mean": 0.5983,
+            "std": 0.472,
+            "ci95": 0.2069,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4017,
+            "std": 0.472,
+            "ci95": 0.2069,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.6042,
+            "std": 0.4813,
+            "ci95": 0.2109,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 11.3,
+            "std": 0.5712,
+            "ci95": 0.2504,
+            "n": 20
+          }
+        },
+        {
+          "round": 8,
+          "detection_rate": {
+            "mean": 0.2833,
+            "std": 0.4112,
+            "ci95": 0.1802,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.7167,
+            "std": 0.4112,
+            "ci95": 0.1802,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.3,
+            "std": 0.4175,
+            "ci95": 0.183,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 11.7,
+            "std": 0.4702,
+            "ci95": 0.2061,
+            "n": 20
+          }
+        },
+        {
+          "round": 9,
+          "detection_rate": {
+            "mean": 0.6492,
+            "std": 0.4659,
+            "ci95": 0.2042,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.3508,
+            "std": 0.4659,
+            "ci95": 0.2042,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.65,
+            "std": 0.4811,
+            "ci95": 0.2108,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 12.45,
+            "std": 0.5104,
+            "ci95": 0.2237,
+            "n": 20
+          }
+        },
+        {
+          "round": 10,
+          "detection_rate": {
+            "mean": 0.3292,
+            "std": 0.4345,
+            "ci95": 0.1904,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.6708,
+            "std": 0.4345,
+            "ci95": 0.1904,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.3292,
+            "std": 0.4355,
+            "ci95": 0.1909,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 12.8,
+            "std": 0.6156,
+            "ci95": 0.2698,
+            "n": 20
+          }
+        },
+        {
+          "round": 11,
+          "detection_rate": {
+            "mean": 0.5592,
+            "std": 0.4766,
+            "ci95": 0.2089,
+            "n": 20
+          },
+          "asr": {
+            "mean": 0.4408,
+            "std": 0.4766,
+            "ci95": 0.2089,
+            "n": 20
+          },
+          "false_positive_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "ci95": 0.0,
+            "n": 20
+          },
+          "investigate_on_benign": {
+            "mean": 18.25,
+            "std": 2.7314,
+            "ci95": 1.1971,
+            "n": 20
+          },
+          "final_test_detection": {
+            "mean": 0.5625,
+            "std": 0.4666,
+            "ci95": 0.2045,
+            "n": 20
+          },
+          "blue_known_signatures": {
+            "mean": 13.5,
+            "std": 0.513,
+            "ci95": 0.2248,
+            "n": 20
+          }
+        }
+      ],
+      "summary": {
+        "detection_mean_all_rounds": {
+          "mean": 0.3997,
+          "std": 0.042,
+          "ci95": 0.0184,
+          "n": 20
+        },
+        "detection_last_round": {
+          "mean": 0.5592,
+          "std": 0.4766,
+          "ci95": 0.2089,
+          "n": 20
+        },
+        "asr_last_round": {
+          "mean": 0.4408,
+          "std": 0.4766,
+          "ci95": 0.2089,
+          "n": 20
+        },
+        "oscillation_swing": {
+          "mean": 0.5195,
+          "std": 0.0767,
+          "ci95": 0.0336,
+          "n": 20
+        },
+        "tokens_minted": {
+          "mean": 7.95,
+          "std": 0.6048,
+          "ci95": 0.2651,
+          "n": 20
+        },
+        "blue_known_signatures_last": {
+          "mean": 13.5,
+          "std": 0.513,
+          "ci95": 0.2248,
+          "n": 20
+        },
+        "investigate_on_benign_last": {
+          "mean": 18.25,
+          "std": 2.7314,
+          "ci95": 1.1971,
+          "n": 20
+        }
+      }
+    }
+  }
+}

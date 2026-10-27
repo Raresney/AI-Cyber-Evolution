@@ -1,0 +1,71 @@
+{
+  "runner_version": "run-slice-v1",
+  "experimental_condition": "A",
+  "timestamp": "2026-10-26T14:36:56Z",
+  "git_commit": "6c6e14c",
+  "seed": 1337,
+  "model": "baseline-heuristic-v1",
+  "agent_config": {
+    "blue_version": "baseline-heuristic-v1",
+    "suspicious_parents": [
+      "cscript.exe",
+      "excel.exe",
+      "mshta.exe",
+      "outlook.exe",
+      "winword.exe",
+      "wscript.exe"
+    ],
+    "suspicious_tokens": [
+      "-enc",
+      "-encodedcommand",
+      "frombase64string",
+      "downloadstring",
+      "invoke-webrequest",
+      "iwr ",
+      "iex",
+      "-w hidden",
+      "-windowstyle hidden",
+      "-nop",
+      "bypass",
+      "new-object net.webclient"
+    ],
+    "detect_at": 2,
+    "investigate_at": 1
+  },
+  "environment_version": "S001-v1",
+  "attack_version": "ATT&CK-unpinned",
+  "scenario_ids": [
+    "S001"
+  ],
+  "telemetry_config": {
+    "clean": 30,
+    "missing": 8,
+    "noisy": 14,
+    "delayed": 8
+  },
+  "splits": {
+    "adaptation": 36,
+    "validation": 12,
+    "final_test": 12
+  },
+  "class_balance": {
+    "attack": 30,
+    "benign": 30
+  },
+  "eval_version": "evaluator-v1",
+  "metric_summary": {
+    "overall": {
+      "precision": 1.0,
+      "recall_detection_rate": 0.2667,
+      "false_positive_rate": 0.0,
+      "f1": 0.4211
+    },
+    "final_test": {
+      "precision": 1.0,
+      "recall_detection_rate": 0.1667,
+      "false_positive_rate": 0.0,
+      "f1": 0.2858
+    }
+  },
+  "label_leakage_check": "pass"
+}

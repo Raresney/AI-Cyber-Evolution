@@ -1,0 +1,27 @@
+{
+  "blue_version": "baseline-heuristic-v1",
+  "suspicious_parents": [
+    "cscript.exe",
+    "excel.exe",
+    "mshta.exe",
+    "outlook.exe",
+    "winword.exe",
+    "wscript.exe"
+  ],
+  "suspicious_tokens": [
+    "-enc",
+    "-encodedcommand",
+    "frombase64string",
+    "downloadstring",
+    "invoke-webrequest",
+    "iwr ",
+    "iex",
+    "-w hidden",
+    "-windowstyle hidden",
+    "-nop",
+    "bypass",
+    "new-object net.webclient"
+  ],
+  "detect_at": 2,
+  "investigate_at": 1
+}

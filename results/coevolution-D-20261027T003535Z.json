@@ -1,0 +1,760 @@
+{
+  "loop_version": "coevolution-v1",
+  "condition": "D",
+  "condition_meaning": {
+    "red_adaptive": true,
+    "blue_adaptive": true
+  },
+  "seed": 1337,
+  "rounds": 12,
+  "schema_version": "coevo-S001-v1",
+  "pool": {
+    "n_attack": 60,
+    "n_benign": 60,
+    "splits": {
+      "adaptation": 72,
+      "validation": 24,
+      "final_test": 24
+    }
+  },
+  "timestamp": "2026-10-27T00:35:35Z",
+  "series": [
+    {
+      "round": 0,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.45,
+        "asr": 0.55,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 25,
+        "investigate_on_benign": 0,
+        "tp": 27,
+        "fp": 0,
+        "tn": 60,
+        "fn": 33
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.4167,
+        "asr": 0.5833,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 5,
+        "investigate_on_benign": 0,
+        "tp": 5,
+        "fp": 0,
+        "tn": 12,
+        "fn": 7
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.3,
+        "p_novel_token": 0.3,
+        "current_novel": "-obf_v1",
+        "tokens_minted": 0,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 4,
+        "learned_total": []
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.42,
+        "p_novel_token": 0.586,
+        "minted_this_round": true,
+        "current_novel": "-obf_v2"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-ep_bypass",
+          "-obf_v1"
+        ]
+      }
+    },
+    {
+      "round": 1,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.45,
+        "asr": 0.55,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 26,
+        "investigate_on_benign": 10,
+        "tp": 27,
+        "fp": 0,
+        "tn": 60,
+        "fn": 33
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.5833,
+        "asr": 0.4167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 3,
+        "investigate_on_benign": 2,
+        "tp": 7,
+        "fp": 0,
+        "tn": 12,
+        "fn": 5
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.42,
+        "p_novel_token": 0.586,
+        "current_novel": "-obf_v2",
+        "tokens_minted": 1,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 6,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.485,
+        "p_novel_token": 0.854,
+        "minted_this_round": true,
+        "current_novel": "-obf_v3"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v2"
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.35,
+        "asr": 0.65,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 26,
+        "investigate_on_benign": 10,
+        "tp": 21,
+        "fp": 0,
+        "tn": 60,
+        "fn": 39
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.5,
+        "asr": 0.5,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 5,
+        "investigate_on_benign": 2,
+        "tp": 6,
+        "fp": 0,
+        "tn": 12,
+        "fn": 6
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.485,
+        "p_novel_token": 0.854,
+        "current_novel": "-obf_v3",
+        "tokens_minted": 2,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 7,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.649,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v4"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v3"
+        ]
+      }
+    },
+    {
+      "round": 3,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.1667,
+        "asr": 0.8333,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 26,
+        "investigate_on_benign": 10,
+        "tp": 10,
+        "fp": 0,
+        "tn": 60,
+        "fn": 50
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.0833,
+        "asr": 0.9167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 5,
+        "investigate_on_benign": 2,
+        "tp": 1,
+        "fp": 0,
+        "tn": 12,
+        "fn": 11
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.649,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v4",
+        "tokens_minted": 3,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 8,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.835,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v5"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v4"
+        ]
+      }
+    },
+    {
+      "round": 4,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.0833,
+        "asr": 0.9167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 29,
+        "investigate_on_benign": 10,
+        "tp": 5,
+        "fp": 0,
+        "tn": 60,
+        "fn": 55
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.1667,
+        "asr": 0.8333,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 4,
+        "investigate_on_benign": 2,
+        "tp": 2,
+        "fp": 0,
+        "tn": 12,
+        "fn": 10
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.835,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v5",
+        "tokens_minted": 4,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 9,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v6"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v5"
+        ]
+      }
+    },
+    {
+      "round": 5,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.1,
+        "asr": 0.9,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 30,
+        "investigate_on_benign": 10,
+        "tp": 6,
+        "fp": 0,
+        "tn": 60,
+        "fn": 54
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.25,
+        "asr": 0.75,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 6,
+        "investigate_on_benign": 2,
+        "tp": 3,
+        "fp": 0,
+        "tn": 12,
+        "fn": 9
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v6",
+        "tokens_minted": 5,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 10,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v7"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v6"
+        ]
+      }
+    },
+    {
+      "round": 6,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.0167,
+        "asr": 0.9833,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 24,
+        "investigate_on_benign": 10,
+        "tp": 1,
+        "fp": 0,
+        "tn": 60,
+        "fn": 59
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.0,
+        "asr": 1.0,
+        "precision": null,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 6,
+        "investigate_on_benign": 2,
+        "tp": 0,
+        "fp": 0,
+        "tn": 12,
+        "fn": 12
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v7",
+        "tokens_minted": 6,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 11,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": false,
+        "current_novel": "-obf_v7"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v7"
+        ]
+      }
+    },
+    {
+      "round": 7,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.9667,
+        "asr": 0.0333,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 2,
+        "investigate_on_benign": 10,
+        "tp": 58,
+        "fp": 0,
+        "tn": 60,
+        "fn": 2
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 1.0,
+        "asr": 0.0,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 0,
+        "investigate_on_benign": 2,
+        "tp": 12,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v7",
+        "tokens_minted": 6,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 12,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6",
+          "-obf_v7"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v8"
+      },
+      "blue_adapt": {
+        "learned_this_round": []
+      }
+    },
+    {
+      "round": 8,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.05,
+        "asr": 0.95,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 21,
+        "investigate_on_benign": 10,
+        "tp": 3,
+        "fp": 0,
+        "tn": 60,
+        "fn": 57
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.0,
+        "asr": 1.0,
+        "precision": null,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 4,
+        "investigate_on_benign": 2,
+        "tp": 0,
+        "fp": 0,
+        "tn": 12,
+        "fn": 12
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v8",
+        "tokens_minted": 7,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 12,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6",
+          "-obf_v7"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": false,
+        "current_novel": "-obf_v8"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v8"
+        ]
+      }
+    },
+    {
+      "round": 9,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.9833,
+        "asr": 0.0167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 1,
+        "investigate_on_benign": 10,
+        "tp": 59,
+        "fp": 0,
+        "tn": 60,
+        "fn": 1
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 1.0,
+        "asr": 0.0,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 0,
+        "investigate_on_benign": 2,
+        "tp": 12,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v8",
+        "tokens_minted": 7,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 13,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6",
+          "-obf_v7",
+          "-obf_v8"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v9"
+      },
+      "blue_adapt": {
+        "learned_this_round": []
+      }
+    },
+    {
+      "round": 10,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.0833,
+        "asr": 0.9167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 21,
+        "investigate_on_benign": 10,
+        "tp": 5,
+        "fp": 0,
+        "tn": 60,
+        "fn": 55
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 0.0833,
+        "asr": 0.9167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 3,
+        "investigate_on_benign": 2,
+        "tp": 1,
+        "fp": 0,
+        "tn": 12,
+        "fn": 11
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v9",
+        "tokens_minted": 8,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 13,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6",
+          "-obf_v7",
+          "-obf_v8"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": false,
+        "current_novel": "-obf_v9"
+      },
+      "blue_adapt": {
+        "learned_this_round": [
+          "-obf_v9"
+        ]
+      }
+    },
+    {
+      "round": 11,
+      "overall": {
+        "n": 120,
+        "n_attack": 60,
+        "detection_rate": 0.9833,
+        "asr": 0.0167,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 1,
+        "investigate_on_benign": 10,
+        "tp": 59,
+        "fp": 0,
+        "tn": 60,
+        "fn": 1
+      },
+      "final_test": {
+        "n": 24,
+        "n_attack": 12,
+        "detection_rate": 1.0,
+        "asr": 0.0,
+        "precision": 1.0,
+        "false_positive_rate": 0.0,
+        "investigate_on_attack": 0,
+        "investigate_on_benign": 2,
+        "tp": 12,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0
+      },
+      "red_strategy": {
+        "red_version": "red-evasion-v1",
+        "adaptive": true,
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "current_novel": "-obf_v9",
+        "tokens_minted": 8,
+        "minted_this_round": false
+      },
+      "blue_knowledge": {
+        "known_signature_count": 14,
+        "learned_total": [
+          "-ep_bypass",
+          "-obf_v1",
+          "-obf_v2",
+          "-obf_v3",
+          "-obf_v4",
+          "-obf_v5",
+          "-obf_v6",
+          "-obf_v7",
+          "-obf_v8",
+          "-obf_v9"
+        ]
+      },
+      "red_adapt": {
+        "p_benign_parent": 0.95,
+        "p_novel_token": 0.95,
+        "minted_this_round": true,
+        "current_novel": "-obf_v10"
+      },
+      "blue_adapt": {
+        "learned_this_round": []
+      }
+    }
+  ]
+}
