@@ -1,0 +1,174 @@
+{
+  "rung": "new_technique",
+  "trained_on": "T1003.001 (credential dumping)",
+  "tested_on": "T1055 (process injection)",
+  "procedures": {
+    "campaign_01": "dll_injection_loadlibrary_crt",
+    "campaign_02": "pe_injection_purplesharp",
+    "campaign_03": "lolbin_wuauclt_crt"
+  },
+  "transfer": {
+    "signature(tool-identity)": {
+      "overall": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 14215,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 12199,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 691,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 1325,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    },
+    "behavioral(access-pattern)": {
+      "overall": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 14215,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 12199,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 691,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 1325,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    },
+    "behavioral-NTDS(file-invariant)": {
+      "overall": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 14215,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 12199,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 691,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 1325,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    }
+  },
+  "technique_specific": {
+    "behavioral-INJECTION(crt-invariant)": {
+      "overall": {
+        "tp": 3,
+        "fp": 0,
+        "tn": 14215,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 1,
+          "fp": 0,
+          "tn": 12199,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 1,
+          "fp": 0,
+          "tn": 691,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 1,
+          "fp": 0,
+          "tn": 1325,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    }
+  }
+}

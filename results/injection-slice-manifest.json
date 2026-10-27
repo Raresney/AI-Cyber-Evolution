@@ -1,0 +1,86 @@
+{
+  "schema_version": "otrf-injection-v1",
+  "source": "OTRF Security-Datasets (MIT); datasets/atomic/.../defense_evasion injection",
+  "technique_under_test": "T1055",
+  "trained_on": "T1003",
+  "generalization_level": "new_technique (a different ATT&CK technique from the trained one)",
+  "ground_truth_rule": "Sysmon CreateRemoteThread(8) from a non-system source: the decisive injection primitive. Narrow by design (labels the injection act, not the surrounding attack chain); one positive per procedure, coarse recall.",
+  "surface_note": "injection also opens EID10 ProcessAccess handles into its target (often PROCESS_ALL_ACCESS 0x1fffff), the same surface LSASS dumping uses; the LSASS invariant keys on VM_READ to lsass.exe specifically, so it does not fire here.",
+  "split": {
+    "train": [],
+    "test": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ]
+  },
+  "detector_visible_fields": [
+    "@timestamp",
+    "Channel",
+    "EventID",
+    "Hostname",
+    "Image",
+    "SourceImage",
+    "TargetImage",
+    "ParentImage",
+    "ProcessName",
+    "GrantedAccess",
+    "CallTrace",
+    "CommandLine",
+    "StartFunction",
+    "StartAddress",
+    "StartModule",
+    "NewThreadId",
+    "TargetFilename",
+    "ObjectName",
+    "User",
+    "SourceUser",
+    "TargetUser",
+    "ProcessId",
+    "SourceProcessId",
+    "TargetProcessId",
+    "Hashes"
+  ],
+  "label_fields_evaluator_only": [
+    "attack_present",
+    "technique_id",
+    "procedure",
+    "campaign"
+  ],
+  "totals": {
+    "events": 14218,
+    "attack_events": 3
+  },
+  "campaigns": [
+    {
+      "campaign": "campaign_01",
+      "procedure": "dll_injection_loadlibrary_crt",
+      "events": 12200,
+      "attack_events": 1,
+      "attack_source_images": {
+        "powershell.exe": 1
+      },
+      "split": "test"
+    },
+    {
+      "campaign": "campaign_02",
+      "procedure": "pe_injection_purplesharp",
+      "events": 692,
+      "attack_events": 1,
+      "attack_source_images": {
+        "purplesharp.exe": 1
+      },
+      "split": "test"
+    },
+    {
+      "campaign": "campaign_03",
+      "procedure": "lolbin_wuauclt_crt",
+      "events": 1326,
+      "attack_events": 1,
+      "attack_source_images": {
+        "wuauclt.exe": 1
+      },
+      "split": "test"
+    }
+  ]
+}

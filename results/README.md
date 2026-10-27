@@ -374,18 +374,105 @@ over to a sibling sub-technique it never saw?
   train split within NTDS — the whole sub-technique is held out, which is the
   point of the rung.
 
+# Ladder rung 3 — new-technique (T1003 credential dumping → T1055 injection)
+
+The last rung. Train/derive everything on credential dumping (T1003) and test
+on **process injection** (T1055) — a different ATT&CK technique. The twist that
+makes this rung sharper than NTDS: injection **shares the LSASS telemetry
+surface**. Both raise Sysmon EID10 ProcessAccess (a handle into another
+process). A dump opens `lsass.exe` for memory *read* (PROCESS_VM_READ);
+injection opens an arbitrary target (often PROCESS_ALL_ACCESS) and then fires
+Sysmon EID8 CreateRemoteThread. So the invariant does not merely face a new
+surface — it faces the *same event type* with different intent.
+
+## Setup
+
+- **Data:** three OTRF atomic datasets, one tool each — `dll_injection`
+  (Empire LoadLibrary + CreateRemoteThread), `pe_injection` (PurpleSharp),
+  `lolbin_crt` (Covenant wuauclt LOLBIN). **14,218 real events, 3 attack
+  events** (one CreateRemoteThread per procedure — the decisive injection act;
+  GT is narrow by design, so recall is coarse).
+- **Ingest:** `environment/injection_loader.py`. Ground truth: a Sysmon
+  CreateRemoteThread (EID8) from a non-system source.
+- **Detectors:** the credential-dumping rules (LSASS signature + behavioral,
+  and the NTDS invariant), evaluated unchanged on injection
+  (`experiments/ladder_technique.py`); the LLM asked a **general** "is this ANY
+  malicious technique?" question (not T1003-specific), zero-shot and few-shot
+  with T1003 exemplars (`experiments/llm_technique_detector.py`).
+
+## Result — transfer to the unseen technique
+
+| Detector | Built for | Injection recall | Injection precision |
+| --- | --- | ---: | ---: |
+| signature (LSASS) | T1003 tool names | **0.00** | n/a |
+| behavioral (LSASS invariant) | T1003.001 EID10+VM_READ→lsass | **0.00** | n/a¹ |
+| behavioral (NTDS invariant) | T1003.003 ntds.dit | **0.00** | n/a |
+| llm (zero-shot, general malice) | pretraining | **0.00** | n/a² |
+| llm (few-shot, general malice) | T1003 exemplars | **0.00** | n/a² |
+| behavioral (injection invariant) | — *(separate, surface-matched rule)* | 1.00 | 1.00 |
+
+¹ The LSASS invariant shares the EID10 surface with injection yet produces **0
+false positives** — it keys on VM_READ *to lsass.exe*, so it correctly stays
+silent on injection's handles. It discriminates; it just does not transfer.
+² The LLM flagged **no** event on the injection slice as malicious, so precision
+is undefined (TP+FP = 0).
+
+## Findings
+
+9. **Transfer is zero across the technique boundary — even on a shared
+   surface.** Every credential-dumping rule scores 0.00 on injection. The LSASS
+   behavioral invariant is the sharp case: injection raises the very EID10
+   ProcessAccess events it inspects, but because it requires VM_READ *to
+   lsass.exe* it neither fires (0 recall) nor misfires (0 FP). Generalization is
+   not just surface-local (rung 2) — it is *intent*-local within a surface.
+10. **The LLM collapses completely, and does not understand the primitive.**
+    With a general "any malicious technique?" prompt, llama3.2 reaches **0.00**
+    recall on injection, zero-shot and few-shot alike. It judged the literal
+    CreateRemoteThread of `PurpleSharp.exe` into `notepad.exe` *benign*, with the
+    reason "normal process execution event" — it does not connect EID8
+    CreateRemoteThread to injection at all. T1003 exemplars do not help; there is
+    no lexical cue (no "ntds.dit"-style string) to latch onto, and the model has
+    no behavioral concept of the technique.
+11. **The ladder is a monotone collapse for the LLM and a step function for the
+    invariant.** Across the three rungs the small LLM degrades
+    **0.71 → 0.07 → 0.00** as the test moves away from what it saw, while each
+    hand-coded invariant is binary — 1.00 on its own surface, 0.00 on every
+    other. Neither is a general detector: the invariant is a precise, narrow
+    sensor that must be rebuilt per surface/intent; the LLM is a broad,
+    shallow guesser whose apparent generality is lexical and evaporates off-
+    distribution. **Detection generalization is bounded by the telemetry surface
+    and the intent within it — that boundary, mapped rung by rung, is the
+    contribution.**
+
+## The generalization ladder (summary)
+
+| Rung | Changes | Behavioral invariant | Signature | LLM (best) |
+| --- | --- | ---: | ---: | ---: |
+| 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (few-shot, by *name*) |
+| 2 new-subtechnique | LSASS → NTDS | 0.00 | 0.00 | 0.07 (by *lexical cue*) |
+| 3 new-technique | T1003 → T1055 injection | 0.00 | 0.00 | 0.00 (no concept) |
+
+*(Each rung's own surface-matched invariant scores 1.00 — the point is that it is
+a different rule each time; nothing transfers down a rung.)*
+
+## Honest caveats (rung 3)
+
+- 3 attack events (one CreateRemoteThread per procedure); recall is coarse by
+  construction (narrow GT chosen to avoid labeling the benign launch chain).
+- The injection-specific invariant's 1.00 is by construction; the weight is on
+  the **0.00 transfer** of every cred-dumping rule and the LLM.
+- Small local model (llama3.2 3B); a larger model may recognize CreateRemoteThread
+  — result is about *this* model. See Next (item 1).
+
 ## Next
 
-1. ~~Few-shot LLM — invariant or memorize?~~ **Done** (finding 5): name
-   semantics, not the invariant. `experiments/llm_fewshot_detector.py`.
-2. ~~Extend the ladder to a new sub-technique (T1003.003 NTDS).~~ **Done**
-   (findings 6–8): nothing trained on LSASS transfers;
-   `experiments/ladder_subtechnique.py`, `llm_subtechnique_detector.py`.
-3. Larger / tool-calling LLM — does scale fix the LOLBin/stealth blind spot
-   (rung 1) and the cross-surface lexical lock-in (rung 2), or persist them?
-4. Next rungs: new-*technique* (e.g. T1055 injection), multi-step chains (OTRF
-   `apt29`, `Log4Shell`) — does the ladder keep punishing surface-bound rules?
-5. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
-6. Add the adaptive adversary: a Red that mutates the tool/access to evade a
+1. Larger / tool-calling LLM — does scale fix the LOLBin/stealth blind spot
+   (rung 1), the cross-surface lexical lock-in (rung 2), and the missing
+   CreateRemoteThread concept (rung 3), or persist them? This is the single most
+   load-bearing follow-up for the "LLMs generalize detection" claim.
+2. Multi-step chains (OTRF `apt29`, `Log4Shell`) — a new-*chain* rung: does
+   detecting individual techniques transfer to a full attack sequence?
+3. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
+4. Add the adaptive adversary: a Red that mutates the tool/access to evade a
    signature Blue that keeps learning names — the co-evolution arms race on real
-   telemetry.
+   telemetry (ties the engine back to the measured ladder).
