@@ -1,0 +1,87 @@
+{
+  "schema_version": "otrf-ntds-v1",
+  "source": "OTRF Security-Datasets (MIT); datasets/atomic/.../credential_access NTDS",
+  "technique_under_test": "T1003.003",
+  "trained_on": "T1003.001",
+  "generalization_level": "new_subtechnique (different sub-technique of the same technique T1003)",
+  "ground_truth_rule": "Sysmon FileCreate(11) or Security object-access(4663) with a file/object path basename matching ntds*.dit, actor process not lsass.exe. Derived label (not hand-annotated); mild noise possible.",
+  "split": {
+    "train": [],
+    "test": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ]
+  },
+  "detector_visible_fields": [
+    "@timestamp",
+    "Channel",
+    "EventID",
+    "Hostname",
+    "Image",
+    "SourceImage",
+    "TargetImage",
+    "ParentImage",
+    "ProcessName",
+    "GrantedAccess",
+    "CallTrace",
+    "CommandLine",
+    "TargetFilename",
+    "ObjectName",
+    "ShareName",
+    "RelativeTargetName",
+    "AccessMask",
+    "AccessList",
+    "Accesses",
+    "User",
+    "SourceUser",
+    "TargetUser",
+    "SubjectUserName",
+    "ProcessId",
+    "SourceProcessId",
+    "TargetProcessId",
+    "Hashes"
+  ],
+  "label_fields_evaluator_only": [
+    "attack_present",
+    "technique_id",
+    "procedure",
+    "campaign"
+  ],
+  "totals": {
+    "events": 41996,
+    "attack_events": 14
+  },
+  "campaigns": [
+    {
+      "campaign": "campaign_01",
+      "procedure": "ntdsutil",
+      "events": 11184,
+      "attack_events": 7,
+      "attack_source_images": {
+        "ntdsutil.exe": 7
+      },
+      "split": "test"
+    },
+    {
+      "campaign": "campaign_02",
+      "procedure": "volume_shadow_copy",
+      "events": 16843,
+      "attack_events": 6,
+      "attack_source_images": {
+        "cmd.exe": 6
+      },
+      "split": "test"
+    },
+    {
+      "campaign": "campaign_03",
+      "procedure": "ninjacopy",
+      "events": 13969,
+      "attack_events": 1,
+      "attack_source_images": {
+        "powershell.exe": 1
+      },
+      "split": "test"
+    }
+  ]
+}

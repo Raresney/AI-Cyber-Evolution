@@ -1,0 +1,525 @@
+{
+  "model": "llama3.2",
+  "mode": "zero-shot",
+  "rung": "new_subtechnique",
+  "trained_on": "T1003.001 (LSASS)",
+  "tested_on": "T1003.003 (NTDS)",
+  "exemplars": null,
+  "surface": "NTDS file/object events: Sysmon FileCreate(11) + Security object-access(4663)",
+  "max_benign_per_campaign": 15,
+  "note": "general T1003 prompt (not LSASS-specific). precision/FPR on a benign subsample; all attack events judged. Deterministic (temp 0, seed 42).",
+  "n_calls": 59,
+  "seconds": 159.6,
+  "per_campaign": {
+    "campaign_01": {
+      "tp": 1,
+      "fp": 3,
+      "tn": 12,
+      "fn": 6,
+      "precision": 0.25,
+      "recall": 0.1429,
+      "false_positive_rate": 0.2
+    },
+    "campaign_02": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 15,
+      "fn": 6,
+      "precision": null,
+      "recall": 0.0,
+      "false_positive_rate": 0.0
+    },
+    "campaign_03": {
+      "tp": 0,
+      "fp": 0,
+      "tn": 15,
+      "fn": 1,
+      "precision": null,
+      "recall": 0.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "overall": {
+    "tp": 1,
+    "fp": 3,
+    "tn": 42,
+    "fn": 13,
+    "precision": 0.25,
+    "recall": 0.0714,
+    "false_positive_rate": 0.066667
+  },
+  "verdicts": [
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "ntdsutil.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy1\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": true,
+      "pred": true,
+      "eid": 11,
+      "actor": "ntdsutil.exe",
+      "path": "C:\\Windows\\Temp\\ntds_T1003\\Active Directory\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": true,
+      "eid": 11,
+      "actor": "ntdsutil.exe",
+      "path": "C:\\Windows\\Temp\\ntds_T1003\\registry"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": true,
+      "eid": 11,
+      "actor": "ntdsutil.exe",
+      "path": "C:\\Windows\\Temp\\ntds_T1003\\registry\\SECURITY"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "powershell_ise.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft_Corporation\\PowerShell_ISE.exe_StrongName_lw2v2vm3wmtzzpebq33gybmeoxukb04w\\3.0.0.0\\AutoSaveInformation\\2776.xml~RF298c6fb.TMP"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "vssvc.exe",
+      "path": "C:\\System Volume Information\\RemoteVss"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00001.jrs"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": true,
+      "eid": 11,
+      "actor": "ntdsutil.exe",
+      "path": "C:\\Windows\\Temp\\ntds_T1003\\registry\\SYSTEM"
+    },
+    {
+      "campaign": "campaign_01",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "cmd.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy2\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "cmd.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy2\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "cmd.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy2\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "cmd.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy2\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 4663,
+      "actor": "cmd.exe",
+      "path": "\\Device\\HarddiskVolumeShadowCopy2\\Windows\\NTDS\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": true,
+      "pred": false,
+      "eid": 11,
+      "actor": "cmd.exe",
+      "path": "C:\\Windows\\Temp\\ntds.dit"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "powershell_ise.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft_Corporation\\PowerShell_ISE.exe_StrongName_lw2v2vm3wmtzzpebq33gybmeoxukb04w\\3.0.0.0\\AutoSaveInformation\\2776.xml~RF34c7778.TMP"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "dfsrs.exe",
+      "path": "C:\\System Volume Information\\DFSR\\Config\\Volume_EC127B5F-0000-0000-0000-500600000000.XML.TMP"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "reg.exe",
+      "path": "C:\\Windows\\Temp\\SYSTEM_HIVE"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00001.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "svchost.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Group Policy\\History\\{9F25FF98-5F4A-4980-87DA-560EC8471008}\\Machine\\Preferences\\Registry"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "svchost.exe",
+      "path": "C:\\Windows\\ServiceState\\EventLog\\Data\\lastalive0.dat"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00001.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_02",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": true,
+      "pred": false,
+      "eid": 11,
+      "actor": "powershell.exe",
+      "path": "C:\\Windows\\Temp\\ntds-copy.dit"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "dfsrs.exe",
+      "path": "C:\\System Volume Information\\DFSR\\Config\\Volume_EC127B5F-0000-0000-0000-500600000000.XML.TMP"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01tmp.log"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "wermgr.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\ReportQueue\\AppCrash_launcher.exe_unk_b12535cfe40e445ec7bd84b3dcac44b5a5ccc0_af1eb908_5b99acb0-5309-4115-8456-d0fd1171b33f\\Report.wer.tmp"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "svchost.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\Temp\\6e2af567-f855-4e4a-aa8b-471f22efdd76"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00001.jrs"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "wermgr.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\ReportQueue\\AppCrash_launcher.exe_unk_b12535cfe40e445ec7bd84b3dcac44b5a5ccc0_af1eb908_df9a76d7-fdfd-431c-af03-2dc27848332a\\d56e4dc3-92f3-4f01-8551-dc353e749a83"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "werfault.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\Temp\\WER.33fbc6d6-880e-4970-8436-3ff6d0c9b2fa.tmp.xml"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "wermgr.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\Temp\\5c4894d6-de7e-48ea-a98a-34baa74b1454"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00002.jrs"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "powershell.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\CustomDestinations\\590aee7bdd69b59b.customDestinations-ms~RF29e449f.TMP"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "taskhostw.exe",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\Windows\\WebCache\\V01res00001.jrs"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "svchost.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Group Policy\\History"
+    },
+    {
+      "campaign": "campaign_03",
+      "truth": false,
+      "pred": false,
+      "eid": 11,
+      "actor": "svchost.exe",
+      "path": "C:\\ProgramData\\Microsoft\\Group Policy\\History\\{9F25FF98-5F4A-4980-87DA-560EC8471008}\\Machine"
+    }
+  ]
+}

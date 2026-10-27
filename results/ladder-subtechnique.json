@@ -1,0 +1,134 @@
+{
+  "rung": "new_subtechnique",
+  "trained_on": "T1003.001",
+  "tested_on": "T1003.003",
+  "ntds_procedures": {
+    "campaign_01": "ntdsutil",
+    "campaign_02": "volume_shadow_copy",
+    "campaign_03": "ninjacopy"
+  },
+  "transfer": {
+    "signature(tool-identity)": {
+      "overall": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 41982,
+        "fn": 14,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 11177,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 16837,
+          "fn": 6,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 13968,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    },
+    "behavioral(access-pattern)": {
+      "overall": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 41982,
+        "fn": 14,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 11177,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 16837,
+          "fn": 6,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 13968,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    }
+  },
+  "ntds_specific": {
+    "behavioral-NTDS(file-invariant)": {
+      "overall": {
+        "tp": 14,
+        "fp": 0,
+        "tn": 41982,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      },
+      "per_campaign": {
+        "campaign_01": {
+          "tp": 7,
+          "fp": 0,
+          "tn": 11177,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_02": {
+          "tp": 6,
+          "fp": 0,
+          "tn": 16837,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        },
+        "campaign_03": {
+          "tp": 1,
+          "fp": 0,
+          "tn": 13968,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "false_positive_rate": 0.0
+        }
+      }
+    }
+  }
+}

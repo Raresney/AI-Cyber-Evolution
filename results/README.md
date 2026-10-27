@@ -300,17 +300,92 @@ measured on 02/03 alone, where it is **0.00** (see finding 5).
   about *this* model, not "LLMs in general".
 - Ground truth is a derived rule, not hand annotation; mild label noise possible.
 
+# Ladder rung 2 — new-subtechnique (T1003.001 LSASS → T1003.003 NTDS)
+
+The new-instance rung above changed the *tool* and kept the sub-technique. This
+rung changes the **sub-technique**: train/exemplify everything on LSASS memory
+dumping (T1003.001) and test on NTDS — stealing the Active Directory database
+`ntds.dit` (T1003.003) — a different footprint of the *same* technique family
+(OS Credential Dumping). The question: does anything that worked on LSASS carry
+over to a sibling sub-technique it never saw?
+
+## Setup
+
+- **Data:** three OTRF atomic datasets, one tool each — `ntdsutil` (IFM
+  snapshot), `volume_shadow_copy` (vssadmin + copy off the shadow), `ninjacopy`
+  (Empire Invoke-NinjaCopy). **41,996 real Windows/Sysmon/Security events, 14
+  attack events.**
+- **Ingest:** `environment/ntds_loader.py` → same leakage-free contract. Ground
+  truth: a Sysmon FileCreate(11) or Security object-access(4663) whose path
+  basename is `ntds*.dit`, from a process other than `lsass.exe` (the legit DC
+  directory-service owner).
+- **Detectors:** the LSASS-trained signature + behavioral detectors, evaluated
+  **unchanged** on NTDS (`experiments/ladder_subtechnique.py`); the LLM asked a
+  **general** T1003 question (not LSASS-specific) on the NTDS surface, zero-shot
+  and few-shot with LSASS exemplars (`experiments/llm_subtechnique_detector.py`).
+
+## Result — transfer to the unseen sub-technique
+
+| Detector | Trained / exemplified on | NTDS recall | NTDS precision |
+| --- | --- | ---: | ---: |
+| signature | LSASS tool names | **0.00** | n/a |
+| behavioral (LSASS invariant) | LSASS EID10+VM_READ | **0.00** | n/a |
+| llm (zero-shot, general T1003) | pretraining | 0.07 | 0.25 |
+| llm (few-shot, general T1003) | LSASS exemplars | 0.07 | 1.00 |
+| behavioral (NTDS invariant) | — *(separate, surface-matched rule)* | 1.00 | 1.00 |
+
+## Findings
+
+6. **The invariant that generalized across tools does NOT generalize across
+   sub-techniques.** The behavioral detector that held 1.00 on every unseen
+   LSASS tool scores **0.00** on NTDS — it is bound to the LSASS *surface*
+   (EID10 ProcessAccess to lsass.exe with a memory-read mask), and NTDS leaves a
+   file-copy footprint instead. The signature detector likewise scores 0.00.
+   Generalization across instances is real but **surface-local**: it buys
+   nothing across the sub-technique boundary. Only a *separate*, NTDS-matched
+   invariant recovers detection (1.00) — i.e. each sub-technique needs its own
+   rule.
+7. **The LLM does not transfer either — and leans on lexical cues.** Given a
+   general "is this OS Credential Dumping (T1003)?" prompt, llama3.2 reaches only
+   **0.07** recall on NTDS. Its single catch is the one event whose path is
+   literally `...\ntds.dit` being *created* (Sysmon EID11); it misses every
+   Security-log object-access (4663) read of `ntds.dit` off a shadow copy, and
+   misses VSS and NinjaCopy entirely. Few-shot LSASS exemplars change nothing on
+   recall (still 0.07) and only clean up false positives (precision 0.25 → 1.00).
+   So semantic reasoning keys on the surface string, not the technique — it does
+   not connect a raw access handle on `ntds.dit` to credential theft.
+8. **No approach dominates the ladder.** New-instance rewards the behavioral
+   invariant; new-subtechnique punishes it (surface lock-in) and the LLM alike.
+   The honest takeaway is that **detection generalization is bounded by the
+   telemetry surface**: invariants transfer across tools within a surface,
+   nothing here transfers across surfaces, and a small LLM substitutes lexical
+   recognition for technique reasoning at both rungs. This is the paper's spine —
+   a measured map of *where* each approach's generalization ends.
+
+## Honest caveats (rung 2)
+
+- Both NTDS invariants (the ground-truth rule and the NTDS-specific detector)
+  encode the same observable, so the 1.00 is by construction; the weight is on
+  the **0.00 transfer** of the LSASS detectors and the **0.07** LLM, which are
+  not by construction.
+- 14 attack events; recall is coarse. The LLM's NTDS precision is on a benign
+  subsample of same-type file/object events.
+- NTDS datasets are OTRF *atomic* (single-technique) captures, so there is no
+  train split within NTDS — the whole sub-technique is held out, which is the
+  point of the rung.
+
 ## Next
 
-1. ~~Few-shot LLM — does in-context training on 01–03 make it extract the
-   invariant or latch onto the example tools?~~ **Done** (finding 5): it latches
-   onto name semantics, not the invariant. Reproduce with
-   `experiments/llm_fewshot_detector.py`.
-2. Larger / tool-calling LLM for comparison; analyze its reasoning traces — does
-   scale fix the LOLBin/stealth-mask blind spot, or persist it?
-3. Extend the generalization ladder: sub-technique (T1003.003 NTDS), new
-   technique, multi-step chains (OTRF `apt29`, `Log4Shell`).
-4. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
-5. Add the adaptive adversary: a Red that mutates the tool/access to evade a
+1. ~~Few-shot LLM — invariant or memorize?~~ **Done** (finding 5): name
+   semantics, not the invariant. `experiments/llm_fewshot_detector.py`.
+2. ~~Extend the ladder to a new sub-technique (T1003.003 NTDS).~~ **Done**
+   (findings 6–8): nothing trained on LSASS transfers;
+   `experiments/ladder_subtechnique.py`, `llm_subtechnique_detector.py`.
+3. Larger / tool-calling LLM — does scale fix the LOLBin/stealth blind spot
+   (rung 1) and the cross-surface lexical lock-in (rung 2), or persist them?
+4. Next rungs: new-*technique* (e.g. T1055 injection), multi-step chains (OTRF
+   `apt29`, `Log4Shell`) — does the ladder keep punishing surface-bound rules?
+5. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
+6. Add the adaptive adversary: a Red that mutates the tool/access to evade a
    signature Blue that keeps learning names — the co-evolution arms race on real
    telemetry.
