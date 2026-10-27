@@ -1,0 +1,124 @@
+{
+  "schema_version": "otrf-lsass-v1",
+  "source": "OTRF Security-Datasets (MIT); datasets/compound/LSASS_campaign_01..07",
+  "technique_under_test": "T1003.001",
+  "generalization_level": "new_instance (unseen procedure of a known technique)",
+  "ground_truth_rule": "Sysmon EID10 ProcessAccess, TargetImage=lsass.exe, GrantedAccess & PROCESS_VM_READ(0x10), SourceImage not a known system accessor. Derived label (not hand-annotated); mild label noise possible.",
+  "split": {
+    "train": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ],
+    "holdout": [
+      "campaign_04",
+      "campaign_05",
+      "campaign_06",
+      "campaign_07"
+    ]
+  },
+  "detector_visible_fields": [
+    "@timestamp",
+    "Channel",
+    "EventID",
+    "Hostname",
+    "Image",
+    "SourceImage",
+    "TargetImage",
+    "ParentImage",
+    "GrantedAccess",
+    "CallTrace",
+    "CommandLine",
+    "User",
+    "SourceUser",
+    "TargetUser",
+    "ProcessId",
+    "SourceProcessId",
+    "TargetProcessId",
+    "Hashes"
+  ],
+  "label_fields_evaluator_only": [
+    "attack_present",
+    "technique_id",
+    "procedure",
+    "campaign"
+  ],
+  "totals": {
+    "events": 354229,
+    "attack_events": 13
+  },
+  "campaigns": [
+    {
+      "campaign": "campaign_01",
+      "procedure": "mimikatz_logonpasswords",
+      "events": 53698,
+      "attack_events": 1,
+      "attack_source_images": {
+        "winx64_payload.exe": 1
+      },
+      "split": "train"
+    },
+    {
+      "campaign": "campaign_02",
+      "procedure": "procdump",
+      "events": 42482,
+      "attack_events": 3,
+      "attack_source_images": {
+        "procdump.exe": 1,
+        "procdump64.exe": 2
+      },
+      "split": "train"
+    },
+    {
+      "campaign": "campaign_03",
+      "procedure": "comsvcs",
+      "events": 41954,
+      "attack_events": 2,
+      "attack_source_images": {
+        "winx64_payload.exe": 1,
+        "rundll32.exe": 1
+      },
+      "split": "train"
+    },
+    {
+      "campaign": "campaign_04",
+      "procedure": "out-minidump",
+      "events": 40568,
+      "attack_events": 2,
+      "attack_source_images": {
+        "winx64_payload.exe": 2
+      },
+      "split": "holdout"
+    },
+    {
+      "campaign": "campaign_05",
+      "procedure": "sharpdump",
+      "events": 59707,
+      "attack_events": 2,
+      "attack_source_images": {
+        "sharpdump.exe": 2
+      },
+      "split": "holdout"
+    },
+    {
+      "campaign": "campaign_06",
+      "procedure": "outflank-dumpert",
+      "events": 58096,
+      "attack_events": 2,
+      "attack_source_images": {
+        "outflank-dumpert.exe": 2
+      },
+      "split": "holdout"
+    },
+    {
+      "campaign": "campaign_07",
+      "procedure": "nanodump",
+      "events": 57724,
+      "attack_events": 1,
+      "attack_source_images": {
+        "nanodump.x64.exe": 1
+      },
+      "split": "holdout"
+    }
+  ]
+}

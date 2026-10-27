@@ -22,3 +22,7 @@ Thumbs.db
 
 # Research outputs
 *.tmp
+
+# Research data (large; re-pull/re-generate via environment/otrf_loader.py)
+data/raw/
+data/processed/
