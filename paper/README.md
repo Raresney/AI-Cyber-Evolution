@@ -44,8 +44,8 @@ for the full findings write-up the paper condenses.
 
 ## To do before submission
 
-- Expand remaining `\todo{}` prose (intro tightening, extra co-evolution cites,
-  signature-memorization detail). Related work and the figure are done.
+- Prose `\todo{}`s are resolved (intro cite, co-evolution refs, signature-%
+  memorization detail). Only the camera-ready repo URL `\todo` remains.
 - Verify the arXiv IDs in `references.bib`.
 - Anonymize is on (`anonymous,review`); turn off for camera-ready and fill
   authors/affiliation.
