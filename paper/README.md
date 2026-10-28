@@ -2,8 +2,8 @@
 
 `main.tex` is an ACM `acmart` (sigconf) skeleton for the generalization-ladder
 paper. Abstract, introduction, method (`\S The Generalization Ladder`), setup,
-results (three rung tables + scale ablation), discussion, and conclusion are in
-place. Result tables hold the **real measured numbers** from `../results/*.json`;
+results (four rung tables + scale ablation + new-chain section), discussion, and
+conclusion are in place. Result tables hold the **real measured numbers** from `../results/*.json`;
 `\todo{...}` markers flag prose and a figure still to write.
 
 ## Figure
@@ -37,6 +37,7 @@ Or `latexmk -pdf main.tex`.
 | Rung 2 | `ladder-subtechnique.json`, `llm-subtechnique-*{,-8b}.json` | `overall` / `transfer` |
 | Rung 3 | `ladder-technique.json`, `llm-technique-*{,-8b}.json` | `overall` / `transfer` |
 | Scale | all `*-8b.json` vs their 3B counterparts | best recall + precision |
+| Rung 4 (chain) | `ladder-chain.json`, `llm-chain-detection.json` | `union` / `overall` |
 
 Regenerate everything: run the loaders in `../environment/` (re-pull OTRF data,
 gitignored) then the scripts in `../experiments/`. See `../results/README.md`
