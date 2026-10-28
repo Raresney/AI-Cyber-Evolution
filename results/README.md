@@ -444,6 +444,78 @@ is undefined (TP+FP = 0).
     and the intent within it — that boundary, mapped rung by rung, is the
     contribution.**
 
+# Ladder rung 4 — new-chain (isolated techniques → a full intrusion)
+
+The last three rungs each held out a single technique in isolation. A real
+intrusion is a *chain* of many techniques on a live host. This rung runs the
+invariants---built and validated on tiny isolated atomic captures---**unchanged**
+over the **MITRE ATT\&CK Evaluations APT29 Day 1** emulation (OTRF): one
+multi-step Windows intrusion, **196,081 real host events**. It asks two things a
+per-technique benchmark cannot.
+
+## Setup
+
+- **Data:** OTRF `compound/apt29/day1` (MITRE Evals APT29 Day 1), 196,081
+  Sysmon/Security events from a full intrusion on a different host than the
+  atomic slices. **Ingest:** `environment/apt29_loader.py` tags each event with
+  the *same* three derived rules (LSASS T1003.001, NTDS T1003.003, injection
+  T1055); only those three techniques are labeled, so the labels are an
+  undercount of the chain's true malice.
+- **Detectors:** the three behavioral invariants, unchanged
+  (`experiments/ladder_chain.py`); and the general "any malicious technique?"
+  8B LLM over the same handle/thread surface (`experiments/llm_chain_detector.py`).
+
+## Result — cross-environment transfer and chain coverage
+
+| | Recall | Precision | FP (over 196k) |
+| --- | ---: | ---: | ---: |
+| LSASS invariant (T1003.001, present) | 1.00 | 1.00 | 0 |
+| injection invariant (T1055, present) | 1.00 | 1.00 | 0 |
+| NTDS invariant (T1003.003, absent in day 1) | n/a | n/a | 0 |
+| **whole invariant set (union)** | **1.00** | **1.00** | **0** |
+| 8B LLM (general malice, judged subsample) | 0.80 | 0.15 | 23 |
+
+The invariant set catches all 5 labeled attack events with **zero false
+positives across all 196,081 events**, but its three rules cover only
+**~15 % (3 of ~20)** of the techniques the APT29 Day 1 chain exercises. The 8B
+LLM, run on the 5 attacks plus a 50-event benign subsample, flags **27 of 55
+judged events** malicious (flag rate ~49 %): recall 0.80 but precision 0.15.
+
+## Findings
+
+15. **Invariants transfer across environments and stay precise at scale.** The
+    LSASS and injection invariants, derived on isolated atomic captures, fire on
+    the APT29 chain's credential-dumping and injection steps at 1.00/1.00 with
+    **0 false positives in 196k real, noisy events** — they neither miss the
+    technique in a new environment nor drown in the stream. Surface-locked does
+    not mean brittle: within its surface, an invariant is both portable and
+    quiet.
+16. **…but per-technique detection covers a sliver of the kill chain.** Three
+    rules illuminate ~15 % of the chain's techniques; the credential dump and
+    the injection light up, and the ~17 other steps (discovery, lateral
+    movement, collection, persistence, exfil, …) are dark. Precise detection of
+    a full intrusion would need a rule *per technique* — and rungs 2–3 showed
+    each is a *separate* rule that does not transfer.
+17. **The LLM buys coverage with an unusable false-alarm rate.** The 8B model
+    flags ~49 % of judged events as malicious — catching 4 of 5 attacks (it
+    missed a borderline `dwm.exe`→`csrss.exe` thread) but calling routine
+    `svchost`→`svchost` `0x1000` handles attacks. Projected to the full stream
+    that is tens of thousands of alerts; the invariants raise five. **Coverage
+    and precision are in direct tension, and the detector family chooses which
+    to sacrifice** — the narrow invariant gives precision without coverage, the
+    LLM coverage without precision. Neither is deployable alone on a real chain.
+
+## Honest caveats (rung 4)
+
+- Only the three modeled techniques are labeled, so "coverage" is measured
+  against the documented APT29 Day 1 technique count (~20), not a full per-event
+  GT of the chain. The 5 labeled events include one borderline injection
+  (`dwm.exe`→`csrss.exe`) — mild label noise; the invariant and GT agree by
+  construction, the LLM dissents.
+- The invariants' 1.00/1.00 is for the two techniques *present* in day 1; the
+  weight is on the **0 FP in 196k** (not by construction) and the **coverage
+  gap** (not by construction). LLM precision is on a benign subsample.
+
 ## The generalization ladder (summary)
 
 | Rung | Changes | Surface invariant | Signature | LLM 3B (best recall) | LLM 8B (best recall / its precision) |
@@ -451,10 +523,15 @@ is undefined (TP+FP = 0).
 | 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (by *name*) | **1.00 / 1.00** |
 | 2 new-subtechnique | LSASS → NTDS | 0.00 / 1.00¹ | 0.00 | 0.07 (lexical) | **1.00 / 0.67** |
 | 3 new-technique | T1003 → T1055 injection | 0.00 / 1.00¹ | 0.00 | 0.00 (no concept) | **0.67 / 0.13** |
+| 4 new-chain | isolated → APT29 full intrusion | **1.00 / 1.00**² | — | — | 0.80 / **0.15** |
 
 ¹ *the LSASS invariant transfers 0.00 across the rung; a separate surface-matched
 invariant scores 1.00 — a different rule each time. Nothing hand-coded transfers
 down a rung.*
+² *the invariant set transfers perfectly to the chain's own techniques (0 FP in
+196k) but covers only ~15 % of the chain; the 8B LLM covers more at precision
+0.15 (~49 % flag rate). Coverage vs. precision, not recall, is the chain-level
+axis.*
 
 ## Scale ablation — does a bigger model change the ladder?
 

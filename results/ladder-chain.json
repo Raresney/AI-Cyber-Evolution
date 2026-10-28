@@ -1,0 +1,57 @@
+{
+  "rung": "new_chain",
+  "dataset": "APT29 Day 1 (MITRE ATT&CK Evals)",
+  "events": 196081,
+  "chain_technique_count_documented": 20,
+  "techniques_with_a_detector": [
+    "T1003.001",
+    "T1003.003",
+    "T1055"
+  ],
+  "labeled_attack_events_by_technique": {
+    "T1003.001": 3,
+    "T1003.003": 0,
+    "T1055": 2
+  },
+  "per_technique_transfer": {
+    "T1003.001": {
+      "detector": "behavioral-LSASS",
+      "tp": 3,
+      "fp": 0,
+      "tn": 196078,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "T1003.003": {
+      "detector": "behavioral-NTDS",
+      "tp": 0,
+      "fp": 0,
+      "tn": 196081,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": 0.0
+    },
+    "T1055": {
+      "detector": "behavioral-INJECTION",
+      "tp": 2,
+      "fp": 0,
+      "tn": 196079,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "union": {
+    "tp": 5,
+    "fp": 0,
+    "tn": 196076,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0
+  }
+}

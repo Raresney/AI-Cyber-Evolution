@@ -1,0 +1,47 @@
+{
+  "schema_version": "otrf-apt29-day1-v1",
+  "source": "OTRF Security-Datasets (MIT); compound/apt29/day1 (MITRE ATT&CK Evals APT29 Day 1)",
+  "generalization_level": "new_chain (a full multi-step intrusion, not an isolated technique)",
+  "ground_truth_note": "union of the three per-technique derived rules (LSASS T1003.001, NTDS T1003.003, injection T1055); only these three techniques are labeled, so chain coverage is an UNDERCOUNT of true malice.",
+  "detector_visible_fields": [
+    "@timestamp",
+    "AccessList",
+    "AccessMask",
+    "Accesses",
+    "CallTrace",
+    "Channel",
+    "CommandLine",
+    "EventID",
+    "GrantedAccess",
+    "Hashes",
+    "Hostname",
+    "Image",
+    "NewThreadId",
+    "ObjectName",
+    "ParentImage",
+    "ProcessId",
+    "ProcessName",
+    "RelativeTargetName",
+    "ShareName",
+    "SourceImage",
+    "SourceProcessId",
+    "SourceUser",
+    "StartAddress",
+    "StartFunction",
+    "StartModule",
+    "SubjectUserName",
+    "TargetFilename",
+    "TargetImage",
+    "TargetProcessId",
+    "TargetUser",
+    "User"
+  ],
+  "totals": {
+    "events": 196081,
+    "labeled_attack_events": 5
+  },
+  "attack_events_by_technique": {
+    "T1003.001": 3,
+    "T1055": 2
+  }
+}
