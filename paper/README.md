@@ -1,10 +1,11 @@
 # Paper — AISec @ CCS submission (skeleton)
 
-`main.tex` is an ACM `acmart` (sigconf) skeleton for the generalization-ladder
-paper. Abstract, introduction, method (`\S The Generalization Ladder`), setup,
-results (four rung tables + scale ablation + new-chain section), discussion, and
-conclusion are in place. Result tables hold the **real measured numbers** from `../results/*.json`;
-`\todo{...}` markers flag prose and a figure still to write.
+`main.tex` is an ACM `acmart` (sigconf) full draft of the generalization-ladder
+paper. Abstract, introduction, related work, method (`\S The Generalization
+Ladder`), setup, results (four rung tables + scale ablation + new-chain section),
+discussion, threats to validity, and conclusion are all written in prose. Result
+tables hold the **real measured numbers** from `../results/*.json`. The only
+remaining `\todo{}` is the public repo URL at camera-ready.
 
 ## Figure
 
@@ -45,8 +46,8 @@ for the full findings write-up the paper condenses.
 
 ## To do before submission
 
-- Prose `\todo{}`s are resolved (intro cite, co-evolution refs, signature-%
-  memorization detail). Only the camera-ready repo URL `\todo` remains.
+- All prose is written (setup, discussion, threats to validity in full). Only the
+  camera-ready repo URL `\todo` remains.
 - Verify the arXiv IDs in `references.bib`.
 - Anonymize is on (`anonymous,review`); turn off for camera-ready and fill
   authors/affiliation.
