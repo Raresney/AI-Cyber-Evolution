@@ -1,0 +1,71 @@
+{
+  "experiment": "lsass-invariant-sensitivity-ablation",
+  "split": {
+    "train": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ],
+    "holdout": [
+      "campaign_04",
+      "campaign_05",
+      "campaign_06",
+      "campaign_07"
+    ]
+  },
+  "trained_masks": [
+    "0x1410",
+    "0x1fffff"
+  ],
+  "paper_rule": "vm_read + whitelist",
+  "variants": {
+    "none+wl": {
+      "mask_pred": "none",
+      "whitelist": true,
+      "holdout_recall": 1.0,
+      "train_recall": 1.0,
+      "full_stream_fp": 1645,
+      "fp_rate": 0.00464406
+    },
+    "none+nowl": {
+      "mask_pred": "none",
+      "whitelist": false,
+      "holdout_recall": 1.0,
+      "train_recall": 1.0,
+      "full_stream_fp": 1968,
+      "fp_rate": 0.00555593
+    },
+    "vm_read+wl": {
+      "mask_pred": "vm_read",
+      "whitelist": true,
+      "holdout_recall": 1.0,
+      "train_recall": 1.0,
+      "full_stream_fp": 0,
+      "fp_rate": 0.0
+    },
+    "vm_read+nowl": {
+      "mask_pred": "vm_read",
+      "whitelist": false,
+      "holdout_recall": 1.0,
+      "train_recall": 1.0,
+      "full_stream_fp": 5,
+      "fp_rate": 1.412e-05
+    },
+    "trained_masks+wl": {
+      "mask_pred": "trained_masks",
+      "whitelist": true,
+      "holdout_recall": 0.5714,
+      "train_recall": 1.0,
+      "full_stream_fp": 0,
+      "fp_rate": 0.0
+    },
+    "trained_masks+nowl": {
+      "mask_pred": "trained_masks",
+      "whitelist": false,
+      "holdout_recall": 0.5714,
+      "train_recall": 1.0,
+      "full_stream_fp": 4,
+      "fp_rate": 1.129e-05
+    }
+  }
+}

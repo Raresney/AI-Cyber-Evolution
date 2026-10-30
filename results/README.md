@@ -871,3 +871,45 @@ the invariant's — an honest cross-environment false alarm.*
     the layering block tier (above) inherits this zero-interference property, so
     a defender can add surface rules without each new rule inflating the others'
     false-alarm rate.
+
+# Invariant sensitivity ablation (is the recall a cherry-pick?)
+
+The behavioral invariant's recall is "partly by construction." The fair question
+is whether it is a knife-edge or a robust plateau. `experiments/invariant_ablation.py`
+sweeps the two knobs that define the LSASS rule — the access-mask predicate
+(permissive → strict) and the system-accessor whitelist — and measures each
+variant on the full 354k-event stream, new-instance split.
+
+| mask predicate | whitelist | holdout recall | train recall | full-stream FP | fp rate |
+| --- | --- | ---: | ---: | ---: | ---: |
+| none (any non-system handle) | on | **1.00** | 1.00 | **1645** | 4.6e-3 |
+| none | off | 1.00 | 1.00 | 1968 | 5.6e-3 |
+| **vm_read (paper)** | **on** | **1.00** | 1.00 | **0** | **0** |
+| vm_read | off | 1.00 | 1.00 | 5 | 1.4e-5 |
+| trained_masks (exact) | on | **0.57** | 1.00 | 0 | 0 |
+| trained_masks | off | 0.57 | 1.00 | 4 | 1.1e-5 |
+
+(trained masks seen in training: `0x1410`, `0x1fffff`.)
+
+## Findings
+
+26. **The paper's rule is the robust corner, not a knife-edge.** Of the six
+    variants, `vm_read + whitelist` is the only one with **both** 1.00 holdout
+    recall **and** 0 false positives in 354k events. Loosening the mask (any
+    non-system handle) keeps recall but leaks **1645** false positives;
+    tightening it to the exact trained masks keeps 0 FP but **collapses holdout
+    recall to 0.57** on unseen tools. The high recall is not a cherry-picked
+    threshold — it is a plateau that any rule keying on the VM_READ *bit*
+    reaches, bounded on one side by false positives and the other by
+    overfitting.
+27. **Mask granularity is itself a behavioral↔signature continuum.** Requiring
+    the exact training masks (`trained_masks`) makes the "behavioral" detector
+    behave like the *signature* detector: holdout recall 0.57, the same
+    unseen-tool collapse (signature was 0.29) for the same reason — it memorizes
+    a surface literal (a mask value) instead of the invariant (a capability
+    bit). The VM_READ *bit* is the behavioral abstraction that generalizes; the
+    exact mask *value* is a signature. "Behavioral vs signature" is not a kind of
+    detector but a choice of how much of the surface to memorize. The whitelist,
+    meanwhile, barely matters once VM_READ is required (0 → 5 FP) but removes 323
+    FP without it — the generalizing predicate already excludes almost all benign
+    access on its own.

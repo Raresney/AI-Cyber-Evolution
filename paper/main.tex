@@ -574,8 +574,18 @@ anecdote.
 marking the decisive malicious act, not an exhaustive hand annotation; it can
 miss precursor or cleanup steps, and on the chain it labels only three
 techniques. The rules are deliberately conservative, so this biases coverage
-\emph{downward} (an undercount of malice), never upward. \textbf{Statistical
-validity.} Attack-event counts per rung are small ($7/14/3$ atomic, $5$ on the
+\emph{downward} (an undercount of malice), never upward. The invariants' recall
+is ``by construction'' in that they encode the ground-truth observable, but a
+sensitivity ablation shows it is a robust plateau rather than a tuned
+threshold: of six variants of the LSASS rule (mask predicate $\times$ whitelist),
+the reported \texttt{vm\_read}$+$whitelist rule is the only one with \emph{both}
+$1.00$ holdout recall and $0$ false positives in $354$k events---loosening the
+mask keeps recall but leaks $1645$ false positives, and tightening it to the
+exact training masks collapses holdout recall to $0.57$, at which point the
+``behavioral'' rule has become a mask \emph{signature} that overfits unseen tools
+just as the image signature does. Behavioral versus signature is thus a
+continuum of how much surface the rule memorizes, not a hard kind.
+\textbf{Statistical validity.} Attack-event counts per rung are small ($7/14/3$ atomic, $5$ on the
 chain) because real captures of a single isolated technique are sparse; recall is
 therefore coarse-grained, and we report it beside the raw TP/FN counts rather
 than as a smooth rate. LLM precision is measured on seeded benign subsamples of
