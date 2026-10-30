@@ -1,0 +1,1823 @@
+{
+  "loop_version": "coevolution-real-v1",
+  "technique": "T1003.001",
+  "source": "OTRF Security-Datasets (MIT); datasets/compound/LSASS_campaign_01..07",
+  "n_tools": 7,
+  "total_attack_events": 13,
+  "seed_campaign": "campaign_02",
+  "red_mode": "rename",
+  "timestamp": "2026-10-30T17:34:15Z",
+  "conditions": {
+    "A": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "A",
+      "red_mode": "rename",
+      "condition_meaning": {
+        "red_adaptive": false,
+        "signature_blue_adaptive": false
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe"
+      ],
+      "signature_recall_series": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invariant_recall_series": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "red_minted_total": 0,
+      "series": [
+        {
+          "round": 0,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 1,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 2,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 3,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 4,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 5,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 6,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 7,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 8,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 9,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 10,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 11,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        }
+      ]
+    },
+    "B": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "B",
+      "red_mode": "rename",
+      "condition_meaning": {
+        "red_adaptive": true,
+        "signature_blue_adaptive": false
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe"
+      ],
+      "signature_recall_series": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invariant_recall_series": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "red_minted_total": 0,
+      "series": [
+        {
+          "round": 0,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 1,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 2,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 3,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 4,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 5,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 6,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 7,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 8,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 9,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 10,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 11,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        }
+      ]
+    },
+    "C": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "C",
+      "red_mode": "rename",
+      "condition_meaning": {
+        "red_adaptive": false,
+        "signature_blue_adaptive": true
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe",
+        "synth_payload_000.exe"
+      ],
+      "signature_recall_series": [
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invariant_recall_series": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "red_minted_total": 0,
+      "series": [
+        {
+          "round": 0,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_000.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 1,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 2,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 3,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 4,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 5,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 6,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 7,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 8,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 9,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 10,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 11,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        }
+      ]
+    },
+    "D": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "D",
+      "red_mode": "rename",
+      "condition_meaning": {
+        "red_adaptive": true,
+        "signature_blue_adaptive": true
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe",
+        "synth_payload_000.exe",
+        "synth_payload_001.exe",
+        "synth_payload_002.exe",
+        "synth_payload_003.exe",
+        "synth_payload_004.exe",
+        "synth_payload_005.exe"
+      ],
+      "signature_recall_series": [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "invariant_recall_series": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "red_minted_total": 6,
+      "series": [
+        {
+          "round": 0,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_000.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_000.exe",
+          "red_minted_total": 0
+        },
+        {
+          "round": 1,
+          "procedure": "rename:synth_payload_000.exe",
+          "tool_images": [
+            "synth_payload_000.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_001.exe",
+          "red_minted_total": 1
+        },
+        {
+          "round": 2,
+          "procedure": "rename:synth_payload_001.exe",
+          "tool_images": [
+            "synth_payload_001.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_001.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_001.exe",
+          "red_minted_total": 1
+        },
+        {
+          "round": 3,
+          "procedure": "rename:synth_payload_001.exe",
+          "tool_images": [
+            "synth_payload_001.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_002.exe",
+          "red_minted_total": 2
+        },
+        {
+          "round": 4,
+          "procedure": "rename:synth_payload_002.exe",
+          "tool_images": [
+            "synth_payload_002.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_002.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_002.exe",
+          "red_minted_total": 2
+        },
+        {
+          "round": 5,
+          "procedure": "rename:synth_payload_002.exe",
+          "tool_images": [
+            "synth_payload_002.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_003.exe",
+          "red_minted_total": 3
+        },
+        {
+          "round": 6,
+          "procedure": "rename:synth_payload_003.exe",
+          "tool_images": [
+            "synth_payload_003.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_003.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_003.exe",
+          "red_minted_total": 3
+        },
+        {
+          "round": 7,
+          "procedure": "rename:synth_payload_003.exe",
+          "tool_images": [
+            "synth_payload_003.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe",
+            "synth_payload_003.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_004.exe",
+          "red_minted_total": 4
+        },
+        {
+          "round": 8,
+          "procedure": "rename:synth_payload_004.exe",
+          "tool_images": [
+            "synth_payload_004.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe",
+            "synth_payload_003.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_004.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_004.exe",
+          "red_minted_total": 4
+        },
+        {
+          "round": 9,
+          "procedure": "rename:synth_payload_004.exe",
+          "tool_images": [
+            "synth_payload_004.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe",
+            "synth_payload_003.exe",
+            "synth_payload_004.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_005.exe",
+          "red_minted_total": 5
+        },
+        {
+          "round": 10,
+          "procedure": "rename:synth_payload_005.exe",
+          "tool_images": [
+            "synth_payload_005.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 3
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe",
+            "synth_payload_003.exe",
+            "synth_payload_004.exe"
+          ],
+          "signature_learned_this_round": [
+            "synth_payload_005.exe"
+          ],
+          "red_minted": false,
+          "red_next": "synth_payload_005.exe",
+          "red_minted_total": 5
+        },
+        {
+          "round": 11,
+          "procedure": "rename:synth_payload_005.exe",
+          "tool_images": [
+            "synth_payload_005.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "synth_payload_000.exe",
+            "synth_payload_001.exe",
+            "synth_payload_002.exe",
+            "synth_payload_003.exe",
+            "synth_payload_004.exe",
+            "synth_payload_005.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next": "synth_payload_006.exe",
+          "red_minted_total": 6
+        }
+      ]
+    }
+  },
+  "ladder_probe": {
+    "surface": "NTDS T1003.003 (ladder rung 2)",
+    "hardened_images": [
+      "procdump.exe",
+      "procdump64.exe",
+      "synth_payload_000.exe",
+      "synth_payload_001.exe",
+      "synth_payload_002.exe",
+      "synth_payload_003.exe",
+      "synth_payload_004.exe",
+      "synth_payload_005.exe"
+    ],
+    "campaigns": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ],
+    "recall": 0.0,
+    "precision": null,
+    "tp": 0,
+    "fp": 0,
+    "fn": 14
+  }
+}

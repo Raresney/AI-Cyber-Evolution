@@ -705,9 +705,9 @@ even *express* an NTDS detection.
     0.25 then 0.50 as it learns shared/LOLBin names like `winx64_payload`,
     repeating the rung-1 `rundll32` false-positive). The arms race here
     *terminates* only because these 7 real tools happen to share image names, so
-    Red runs out of disjoint-image escapes and gets pinned (D rounds 8–11). A
-    real attacker renames payloads freely, so outside this finite slice the
-    treadmill does not terminate — the invariant's flat 1.00 is the only stable
+    Red runs out of disjoint-image escapes and gets pinned (D rounds 8–11).
+    Remove that artificial limit (the unbounded-rename adversary below) and the
+    treadmill never terminates — the invariant's flat 1.00 is the only stable
     outcome.
 20. **The arms race and the ladder are the same axis.** Red's only escape from
     the invariant is to leave its telemetry surface — i.e. change the technique
@@ -720,14 +720,49 @@ even *express* an NTDS detection.
     nothing across a ladder boundary, the same surface-lock the hand-built
     invariants showed in rungs 2–3.
 
+## Robustness and the unbounded adversary
+
+Two follow-on runs harden the rung against the obvious objections
+(`experiments/coevolution_real.py --sweep` and `--red-mode rename`).
+
+**Seed robustness — does the story depend on which tool Blue starts from?** No.
+Condition D (tool-swap, 12 rounds) run once per possible seed tool is identical
+across all seven:
+
+| Seed tool | signature mean recall | oscillation swing | invariant min | Red minted |
+| --- | ---: | ---: | ---: | ---: |
+| every one of the 7 | 0.67 | 0.73 | **1.00** | 4 |
+
+The arms-race dynamics (oscillate, bloat, pin) and the flat invariant are
+seed-invariant — not an artefact of seeding with `procdump`.
+
+**Unbounded adversary — what if Red is not limited to 7 real tools?** The
+`rename` Red relabels the real attack events with a *fresh* image name every
+round (the surface — EID10, VM_READ, target `lsass.exe` — is untouched). Now the
+signature treadmill **never terminates** (`results/coevolution-real-rename.json`):
+
+| Cond | signature recall over 12 rounds | blocklist size | invariant |
+| --- | --- | ---: | --- |
+| B adaptive / static | **0.00 every round** (never catches up) | 2 (frozen) | **1.00 flat** |
+| D adaptive / adaptive | `0 1 0 1 0 1 …` forever, Red mints every catch | **2 → 8 and climbing** | **1.00 flat** |
+
+Unlike the finite tool pool (which pinned at round 8), the rename adversary keeps
+minting indefinitely and the blocklist grows without bound while never achieving
+stable coverage. The invariant is unmoved — a rename does not touch the access
+mask. This is the measured form of finding 19: against an attacker who can
+rename freely, a signature layer is a strictly losing arms race, and only the
+surface-bound invariant is stable.
+
 ## Honest caveats (rung 5)
 
 - 13 attack events across 7 tools, so per-round recall is coarse and binary;
   the dynamics (escape, oscillation, pinning, flat invariant) are the result,
   not the exact per-round rates.
-- Red's mutation space is the 7 real tools in the slice (a finite, image-sharing
-  set); it does not synthesize novel payload names, which is why the arms race
-  terminates here. The deterministic agents are parametric, not learned.
+- The finite `swap` adversary's mutation space is the 7 real tools (a finite,
+  image-sharing set), which is why *that* arms race terminates; the `rename`
+  adversary lifts the limit and shows the non-terminating case. Both Reds are
+  deterministic and parametric, not learned — a learned Red that generates
+  *behaviorally* novel tooling (not just a new name) is the next adversary.
 - The invariant's 1.00 is partly by construction (it encodes the GT surface);
   the weight is on the **signature collapse/oscillation** and the **0.00
   cross-ladder transfer**, neither of which is by construction.

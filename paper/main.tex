@@ -466,6 +466,13 @@ blocklist collapses permanently (B: recall $\rightarrow 0.00$ after one escape)
 and an adaptive blocklist only \emph{oscillates} (D: $1\,0\,1\,0$, Red one unseen
 tool ahead of what forensics taught Blue last round), while bloating into
 false positives as it learns shared LOLBin names (precision $0.25$ then $0.50$).
+That finite arms race terminates only because these seven real tools share image
+names, so Red exhausts its disjoint-image escapes; an unbounded adversary that
+simply \emph{renames} the payload each round (the access mask untouched) never
+terminates---the blocklist grows without bound and the signature recall
+oscillates forever, while the invariant stays $1.00$. The dynamics are
+seed-invariant: condition D seeded from each of the seven tools gives the same
+mean recall ($0.67$), oscillation swing ($0.73$), and flat invariant.
 The invariant holds $1.00/1.00$ in \emph{every} round of \emph{every}
 condition and learns nothing: a tool swap does not change the
 EID10 VM\_READ$\rightarrow$\texttt{lsass} surface, so there is nothing to evade.
