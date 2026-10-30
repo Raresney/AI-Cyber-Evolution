@@ -968,6 +968,45 @@ conservative tool-only GT does not label, so true precision on actual dumps is
 - Ground truth is documented tool identity (conservative), so the invariant's
   precision is reported low where it in fact catches additional real dumps
   (LOLBin/manual) the GT omits — the bias is downward, never upward.
-- The source log is a public LFS artifact fetched into `data/raw/` (git-ignored,
-  untrusted, parsed read-only); the parsed leakage-free slice is written to
-  `data/processed/xdataset_lsass/`.
+- The source logs are public LFS artifacts fetched into `data/raw/xdataset_*`
+  (git-ignored, untrusted, parsed read-only); full results, including the
+  injection and NTDS captures below, are in `results/cross-dataset-ladder.json`.
+
+## Extending off-OTRF: injection and NTDS (the external ladder)
+
+`experiments/cross_dataset.py` now runs all three invariants on three
+independent Splunk `attack_data` captures — a transfer matrix off OTRF (fires per
+invariant; diagonal is the matched-surface recall against independent GT).
+
+| foreign capture | lsass-inv fires | inj-inv fires | ntds-inv fires | matched recall | OTRF name signature |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| LSASS (atomic, T1003.001) | 55 | 37† | 0 | **1.00** | **0.16** |
+| injection (cobalt_strike, T1055) | 0 | 2 | 0 | **1.00** | — |
+| NTDS (atomic, T1003.003) | 1 | 0 | 0 | *surface absent* | — |
+
+†the 37 are the GUID-named direct-syscall payload issuing `CreateRemoteThread`
+*into* `lsass.exe` — the **same malicious tool** caught via a second behavioral
+surface (EID8), on top of its 38 EID10 VM_READ accesses. Not interference: two
+invariants, one tool.
+
+## Findings
+
+30. **The injection rung reproduces off-OTRF, and behavioral breadth compounds.**
+    On the Cobalt Strike capture the injection invariant catches the
+    `winword.exe`→`dllhost.exe` CreateRemoteThread (2/2) and the LSASS invariant
+    is silent — cross-technique surface-lock holds on a foreign dataset. And on
+    the LSASS capture the GUID-named payload the OTRF *name signature* misses
+    entirely is caught by **two** behavioral invariants at once (VM_READ into
+    lsass *and* CreateRemoteThread into lsass): behavioral surfaces stack on a
+    novel tool where a name blocklist sees nothing.
+31. **Surface-lock is per-procedure, not just per-technique.** The foreign NTDS
+    capture dumps the directory via `reg save` / `ntdsutil` command lines (6 EID1
+    events mention `ntds`), so the FileCreate/object-access `ntds.dit` surface
+    the OTRF invariant keys on simply does not exist in this capture — the
+    invariant has nothing to fire on (0), and detecting this procedure needs a
+    command-line rule, a *different* surface again. This sharpens the thesis: an
+    invariant is locked not to a technique or even a sub-technique but to the
+    specific observable a given *procedure* leaves, and a new procedure for the
+    same sub-technique can present a new surface. It is the same lesson as the
+    rungs, one level finer — and exactly why the ladder, not a single detector,
+    is the contribution.

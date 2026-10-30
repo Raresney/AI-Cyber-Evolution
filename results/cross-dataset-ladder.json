@@ -1,0 +1,86 @@
+{
+  "experiment": "cross-dataset-external-validity-ladder",
+  "source": "splunk/attack_data (atomic_red_team, cobalt_strike; attack_range)",
+  "gt": "tool identity (lsass) / documented CreateRemoteThread (injection); independent of the access-mask rule",
+  "otrf_signature_images": [
+    "nanodump.x64.exe",
+    "outflank-dumpert.exe",
+    "procdump.exe",
+    "procdump64.exe",
+    "rundll32.exe",
+    "sharpdump.exe",
+    "winx64_payload.exe"
+  ],
+  "captures": {
+    "LSASS (T1003.001)": {
+      "surface": "lsass",
+      "events": 7960,
+      "gt_attack_events": 49,
+      "matched_invariant": {
+        "tp": 49,
+        "fp": 6,
+        "fn": 0,
+        "precision": 0.891,
+        "recall": 1.0
+      },
+      "invariant_fires": {
+        "lsass": 55,
+        "injection": 37,
+        "ntds": 0
+      },
+      "otrf_signature": {
+        "tp": 8,
+        "fp": 2,
+        "fn": 41,
+        "precision": 0.8,
+        "recall": 0.163
+      },
+      "signature_missed_tools": [
+        "644c305e-30f4-470b-b616-d924c3206d1d.exe",
+        "notprocdump.exe",
+        "notprocdump64.exe"
+      ],
+      "signature_caught_tools": [
+        "outflank-dumpert.exe",
+        "procdump.exe",
+        "procdump64.exe"
+      ]
+    },
+    "injection (T1055)": {
+      "surface": "injection",
+      "events": 7645,
+      "gt_attack_events": 2,
+      "matched_invariant": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "invariant_fires": {
+        "lsass": 0,
+        "injection": 2,
+        "ntds": 0
+      }
+    },
+    "NTDS (T1003.003)": {
+      "surface": "ntds",
+      "events": 7010,
+      "gt_attack_events": 0,
+      "matched_invariant": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": null,
+        "recall": null
+      },
+      "invariant_fires": {
+        "lsass": 1,
+        "injection": 0,
+        "ntds": 0
+      },
+      "note": "file/object ntds.dit surface absent; capture dumps via reg/ntdsutil command lines (EID1), a different observable the OTRF invariant does not key on",
+      "eid1_cmdlines_mentioning_ntds": 6
+    }
+  }
+}

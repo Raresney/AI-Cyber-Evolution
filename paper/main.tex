@@ -606,7 +606,18 @@ novel-named ones) while the OTRF-trained signature collapses to $0.16$, catching
 only the name-overlapping tools; the invariant stays quiet on the foreign benign
 stream (\texttt{svchost} at mask \texttt{0x1400}, no VM\_READ). The rung-1 result
 thus reproduces off OTRF, with the dataset supplying a real-world instance of the
-very name evasion the argument predicts. The leakage-free protocol and released
+very name evasion the argument predicts. Two further foreign captures extend the
+ladder: on a Cobalt Strike T1055 capture the injection invariant catches the
+\texttt{winword}$\rightarrow$\texttt{dllhost} CreateRemoteThread ($2/2$) while
+the LSASS invariant stays silent (cross-technique surface-lock, off OTRF), and
+the GUID payload the name signature misses is caught by \emph{two} behavioral
+invariants at once (VM\_READ \emph{and} CreateRemoteThread into \texttt{lsass}).
+On a T1003.003 capture that dumps via \texttt{reg save}/\texttt{ntdsutil}
+command lines, the FileCreate/object \texttt{ntds.dit} surface is absent
+entirely, so the invariant has nothing to fire on---sharpening the thesis:
+surface-lock is per-\emph{procedure}, not merely per-technique, and a new
+procedure for the same sub-technique can present a new surface. The leakage-free
+protocol and released
 slices exist so the rest of the ladder can be retested the same way.
 
 \section{Conclusion and Future Work}
