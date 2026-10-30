@@ -102,6 +102,11 @@ simulation.
   signature blocklist but cannot move a surface-bound invariant off $1.00$, and
   the arms-race-hardened blocklist still scores $0.00$ across a ladder boundary
   (\S\ref{sec:adversary}).
+  \item A constructive layering result: stacking the invariant under the LLM
+  buys a zero-false-positive, auto-actionable tier exactly as wide as the rules
+  already built, collapsing to LLM-only triage at a new technique---the stack
+  never beats the frontier, and ladder distance decides which tier you get
+  (\S\ref{sec:layering}).
   \item A reproducible release: leakage-free slices, all detectors, and a
   stdlib red--blue co-evolution engine. \todo{repo URL at camera-ready.}
 \end{itemize}
@@ -484,6 +489,48 @@ the tool within a surface) is the arms race; expensive adaptation (change the
 technique across a surface) is the ladder: one axis from two ends. The blocklist
 hardened by the entire arms race, tested across the boundary on NTDS, scores
 $0.00$---within-surface hardening transfers nothing down a rung.
+
+\section{Layered Detection}
+\label{sec:layering}
+The rungs map where each family fails; the defender's question is constructive.
+If the precise surface invariant is \emph{stacked} under the broad LLM, what
+operating point results at each ladder distance? We answer it offline from the
+saved $14$B verdicts: on each rung's judged events we recompute the decision of
+the invariants a defender has \emph{already built for known techniques}---never
+a rule for the rung's own novel technique. The LSASS rule applied to an NTDS or
+injection event does not fire, so this reproduces the ladder's $0.00$ transfer
+rather than a surface-matched oracle. The invariant is the trusted \emph{block}
+tier (auto-actionable); the LLM judges only invariant-negatives as a
+\emph{triage} tier.
+
+\begin{table}[t]
+\caption{Layered detection, recall/precision on the LLM-judged subsample. Block
+tier $=$ deployed invariants; triage $=$ LLM on invariant-negatives.}
+\label{tab:layering}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Rung & deployed inv.\ & $14$B LLM & block tier \\
+\midrule
+1 new-instance     & $1.00/1.00$ & $1.00/1.00$ & rec $1.00$, $0$ FP \\
+2 new-subtechnique & $0.00$      & $1.00/0.93$ & rec $0.00$, $0$ FP \\
+3 new-technique    & $0.00$      & $0.33/0.50$ & rec $0.00$, $0$ FP \\
+4 new-chain        & $1.00/1.00$ & $0.60/1.00$ & rec $1.00$, $0$ FP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:layering} reads cleanly. Where an invariant exists for the
+technique (rung~1, and the chain's covered techniques) the block tier catches
+everything at \emph{zero} false positives and the LLM adds nothing---the
+invariant alone is the detector, safe to auto-action. At a genuinely new
+technique (rungs~2--3) the deployed invariants are silent, so the stack
+\emph{is} the LLM: it inherits the LLM's recall and its false positives, with no
+high-confidence tier to fall back on until someone writes the new surface rule.
+The union never exceeds the better of its members at any rung---stacking does
+not beat the frontier. Its entire value is the free, auto-actionable block tier,
+and that tier's reach is exactly the defender's accumulated surface rules:
+ladder distance decides whether you get a $0$-FP block tier or noisy LLM triage.
 
 \section{Discussion}
 \label{sec:discussion}

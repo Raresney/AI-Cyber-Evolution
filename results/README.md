@@ -766,3 +766,67 @@ surface-bound invariant is stable.
 - The invariant's 1.00 is partly by construction (it encodes the GT surface);
   the weight is on the **signature collapse/oscillation** and the **0.00
   cross-ladder transfer**, neither of which is by construction.
+
+# Layered detection — the constructive capstone
+
+Rungs 1–5 are a *map* of where each detector family fails. The defender's
+question is constructive: if you **stack** the precise surface invariant under
+the broad LLM, what operating point do you get at each ladder distance?
+`experiments/ensemble_ladder.py` answers it **offline** — it reuses the per-event
+verdicts the 14B LLM detectors already wrote and recomputes, on the *identical*
+judged events, the decision of the invariants the defender has **already built
+for known techniques** (never a rule for the rung's own novel technique — that
+is the ladder premise). The LSASS rule applied to an NTDS or injection event
+simply does not fire, so this reproduces the ladder's 0.00 cross-boundary
+transfer rather than cheating with a surface-matched oracle.
+
+## Result (recall/precision on the LLM-judged subsample, 14B)
+
+| Rung | deployed invariant | 14B LLM | union | block tier (rec, FP) | triage adds |
+| --- | ---: | ---: | ---: | --- | --- |
+| 1 new-instance | **1.00 / 1.00** | 1.00 / 1.00 | 1.00 / 1.00 | rec 1.00, **0 FP** | +0 TP / +0 FP |
+| 2 new-subtechnique | **0.00** | 1.00 / 0.93 | 1.00 / 0.93 | rec 0.00, 0 FP | **+14 TP / +1 FP** |
+| 3 new-technique | **0.00** | 0.33 / 0.50 | 0.33 / 0.50 | rec 0.00, 0 FP | +1 TP / +1 FP |
+| 4 new-chain | **1.00 / 1.00** | 0.60 / 1.00 | 1.00 / 1.00 | rec 1.00, **0 FP** | +0 TP / +0 FP |
+
+*block tier = the deployed invariants (trusted, auto-actionable); triage tier =
+the LLM judging only invariant-negatives (needs an analyst). "union" = inv OR llm,
+the coverage ceiling of running both.*
+
+## Findings
+
+21. **Layering buys a zero-FP high-confidence tier — but only as wide as the
+    rules you have already built.** Where a surface invariant exists for the
+    technique (rung 1, and the chain's covered techniques), the block tier
+    catches everything at **0 false positives** and the LLM adds nothing (+0/+0):
+    the invariant alone is the detector, and it is safe to auto-action. The LLM
+    layer is pure redundancy there.
+22. **At a genuinely new technique the stack collapses to LLM-only triage.** On
+    rungs 2–3 the deployed invariants are silent (0.00, the ladder transfer), so
+    the union *is* the LLM — it inherits the LLM's recall and its false positives
+    (rung 2: +14 TP but +1 FP; rung 3: a thin +1 TP/+1 FP because the LLM is itself
+    weak off-surface). There is no high-confidence tier to fall back on until a
+    defender writes the new surface rule — which rungs 2–3 showed is a *separate*
+    rule that does not transfer.
+23. **The stack never beats the frontier; it exposes which tier you get.** Union
+    recall/precision never exceeds the better of its two members at any rung —
+    stacking does not escape the coverage/precision trade. Its entire value is
+    the *free, auto-actionable block tier*, and the reach of that tier is exactly
+    the defender's accumulated surface rules. Ladder distance — how far the live
+    technique sits from the nearest rule you have written — decides whether you
+    get a 0-FP block tier or are left on noisy LLM triage. This is the
+    operational form of the whole paper: build invariants for the techniques you
+    can anticipate (precise, stackable, auto-actionable), and keep a broad model
+    as the second-stage net for the distance you have not yet covered.
+
+## Honest caveats (layering)
+
+- All three detectors are scored on the LLM's judged subsample (attacks + a
+  seeded benign subsample), not the full stream, so the invariant recall/precision
+  here is on that subsample and is not the 196k-event figure of rung 4; the
+  comparison is valid because all three see identical events.
+- The chain block tier is 1.00 because the chain's *labels* cover only the three
+  techniques the invariants encode (the rung-4 undercount caveat); the real
+  coverage gap is the unlabeled techniques, which this subsample does not measure.
+- Uses the best-recall 14B config per rung (few-shot rungs 1–2, zero-shot rung 3);
+  a different LLM or config shifts the triage-tier numbers, not the structure.

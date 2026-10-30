@@ -1,0 +1,186 @@
+{
+  "experiment": "layered-detection-ladder",
+  "model": "qwen2.5:14b",
+  "note": "inv/llm/stack on the identical LLM-judged event set (attacks + benign subsample); invariant recomputed per verdict, so values are on the subsample, not the full stream.",
+  "rungs": {
+    "1 new-instance": {
+      "deployed_invariants": [
+        "lsass"
+      ],
+      "source_file": "llm-fewshot-detection-14b.json",
+      "n_events": 67,
+      "n_attack": 7,
+      "invariant": {
+        "tp": 7,
+        "fp": 0,
+        "tn": 60,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "llm": {
+        "tp": 7,
+        "fp": 0,
+        "tn": 60,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "union": {
+        "tp": 7,
+        "fp": 0,
+        "tn": 60,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "cascade": {
+        "block_tier": {
+          "tp": 7,
+          "fp": 0,
+          "recall": 1.0
+        },
+        "triage_tier": {
+          "extra_tp": 0,
+          "extra_fp": 0
+        },
+        "still_missed": 0
+      }
+    },
+    "2 new-subtechnique": {
+      "deployed_invariants": [
+        "lsass"
+      ],
+      "source_file": "llm-subtechnique-fewshot-14b.json",
+      "n_events": 59,
+      "n_attack": 14,
+      "invariant": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 45,
+        "fn": 14,
+        "precision": null,
+        "recall": 0.0
+      },
+      "llm": {
+        "tp": 14,
+        "fp": 1,
+        "tn": 44,
+        "fn": 0,
+        "precision": 0.933,
+        "recall": 1.0
+      },
+      "union": {
+        "tp": 14,
+        "fp": 1,
+        "tn": 44,
+        "fn": 0,
+        "precision": 0.933,
+        "recall": 1.0
+      },
+      "cascade": {
+        "block_tier": {
+          "tp": 0,
+          "fp": 0,
+          "recall": 0.0
+        },
+        "triage_tier": {
+          "extra_tp": 14,
+          "extra_fp": 1
+        },
+        "still_missed": 0
+      }
+    },
+    "3 new-technique": {
+      "deployed_invariants": [
+        "lsass",
+        "ntds"
+      ],
+      "source_file": "llm-technique-zeroshot-14b.json",
+      "n_events": 63,
+      "n_attack": 3,
+      "invariant": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 60,
+        "fn": 3,
+        "precision": null,
+        "recall": 0.0
+      },
+      "llm": {
+        "tp": 1,
+        "fp": 1,
+        "tn": 59,
+        "fn": 2,
+        "precision": 0.5,
+        "recall": 0.333
+      },
+      "union": {
+        "tp": 1,
+        "fp": 1,
+        "tn": 59,
+        "fn": 2,
+        "precision": 0.5,
+        "recall": 0.333
+      },
+      "cascade": {
+        "block_tier": {
+          "tp": 0,
+          "fp": 0,
+          "recall": 0.0
+        },
+        "triage_tier": {
+          "extra_tp": 1,
+          "extra_fp": 1
+        },
+        "still_missed": 2
+      }
+    },
+    "4 new-chain": {
+      "deployed_invariants": [
+        "lsass",
+        "ntds",
+        "injection"
+      ],
+      "source_file": "llm-chain-detection-14b.json",
+      "n_events": 55,
+      "n_attack": 5,
+      "invariant": {
+        "tp": 5,
+        "fp": 0,
+        "tn": 50,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "llm": {
+        "tp": 3,
+        "fp": 0,
+        "tn": 50,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.6
+      },
+      "union": {
+        "tp": 5,
+        "fp": 0,
+        "tn": 50,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "cascade": {
+        "block_tier": {
+          "tp": 5,
+          "fp": 0,
+          "recall": 1.0
+        },
+        "triage_tier": {
+          "extra_tp": 0,
+          "extra_fp": 0
+        },
+        "still_missed": 0
+      }
+    }
+  }
+}
