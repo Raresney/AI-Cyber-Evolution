@@ -50,7 +50,10 @@ transfer with zero false positives yet cover only $\sim\!15\%$ of the chain's
 techniques, while a broad LLM recovers coverage at $0.15$ precision---the same
 trade at chain scale. Detection generalization is thus not a cliff but a
 precision/recall frontier that shifts with model scale and is bounded by the
-telemetry surface and the intent within it. We release the slices, detectors,
+telemetry surface and the intent within it. Finally, an adaptive adversary that
+mutates its tool collapses or oscillates a signature blocklist but cannot move a
+surface-bound invariant off $1.00$---the arms race and the ladder are one axis,
+mutating within a surface versus crossing one. We release the slices, detectors,
 and a stdlib co-evolution engine as a reproducible benchmark.
 \end{abstract}
 
@@ -94,6 +97,11 @@ simulation.
   coverage/precision trade at scale: surface-locked invariants transfer with
   zero false positives but cover $\sim\!15\%$ of the chain, while a broad LLM
   recovers coverage at $0.15$ precision (\S\ref{sec:chain}).
+  \item An adaptive-adversary rung on the real slice showing the arms race and
+  the ladder are one axis: a tool-mutating Red collapses or oscillates a
+  signature blocklist but cannot move a surface-bound invariant off $1.00$, and
+  the arms-race-hardened blocklist still scores $0.00$ across a ladder boundary
+  (\S\ref{sec:adversary}).
   \item A reproducible release: leakage-free slices, all detectors, and a
   stdlib red--blue co-evolution engine. \todo{repo URL at camera-ready.}
 \end{itemize}
@@ -423,6 +431,53 @@ scale the axis is explicit: narrow rules buy precision and lose coverage; a broa
 LLM buys coverage and loses precision, and scaling it slides along the same axis
 toward precision rather than off it. None reads the chain.
 
+\section{Adaptive Adversary}
+\label{sec:adversary}
+Rungs 1--4 hold the attacker fixed and move the test. The obvious objection is
+that the invariants win only because the adversary never adapts. This rung lets
+Red adapt: it \emph{mutates its tool} to evade the defender, played out over the
+real LSASS slice (the $7$ campaigns are $7$ real credential-dumping tools). The
+defender runs two detectors side by side---a signature IOC blocklist of
+malicious image names, seeded with the one tool the SOC already blocks, and the
+behavioral invariant. When adaptive, the signature learns the current tool's
+image post-incident (always one round behind); the invariant never learns.
+Adaptive Red, when its current tool is caught, \emph{mints}: it switches to a
+real slice tool whose image the signature has not yet learned.
+
+\begin{table}[t]
+\caption{Arms race on the real LSASS slice ($12$ rounds). Red adaptive $\times$
+signature-Blue adaptive; the behavioral invariant never adapts.}
+\label{tab:adversary}
+\small
+\begin{tabular}{@{}llc@{}}
+\toprule
+Cond.\ (Red / sig-Blue) & signature recall & invariant \\
+\midrule
+A static / static    & $1.00$ flat                 & \textbf{$1.00$ flat} \\
+B adaptive / static  & $1.00\!\rightarrow\!0.00$   & \textbf{$1.00$ flat} \\
+C static / adaptive  & $1.00$ flat                 & \textbf{$1.00$ flat} \\
+D adaptive / adaptive & $1\,0\,1\,0\ldots$ (osc.)  & \textbf{$1.00$ flat} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:adversary} is the whole story. Against an adaptive Red a static
+blocklist collapses permanently (B: recall $\rightarrow 0.00$ after one escape)
+and an adaptive blocklist only \emph{oscillates} (D: $1\,0\,1\,0$, Red one unseen
+tool ahead of what forensics taught Blue last round), while bloating into
+false positives as it learns shared LOLBin names (precision $0.25$ then $0.50$).
+The invariant holds $1.00/1.00$ in \emph{every} round of \emph{every}
+condition and learns nothing: a tool swap does not change the
+EID10 VM\_READ$\rightarrow$\texttt{lsass} surface, so there is nothing to evade.
+Adaptation is not what wins---being bound to the technique's \emph{surface}
+rather than its tool is. Red's only escape from the invariant is to leave that
+surface, i.e.\ change the technique---which is exactly the ladder move of
+rungs~2--3, and exactly where the invariant also fails. Cheap adaptation (mutate
+the tool within a surface) is the arms race; expensive adaptation (change the
+technique across a surface) is the ladder: one axis from two ends. The blocklist
+hardened by the entire arms race, tested across the boundary on NTDS, scores
+$0.00$---within-surface hardening transfers nothing down a rung.
+
 \section{Discussion}
 \label{sec:discussion}
 Read across the ladder, no detector family is general; each fails in a
@@ -485,9 +540,14 @@ at \emph{short} distance but only slides along the frontier at the far rungs, so
 a true frontier or tool-calling model would test whether that pattern holds or
 finally breaks the far-rung wall. Denser
 chain labeling, beyond the three techniques we can derive today, would sharpen
-the coverage measurement. And the released co-evolution engine closes the loop:
-an adaptive Red that mutates its tool and access against a learning Blue, scored
-not by who wins but by where the surviving detector lands on the ladder.
+the coverage measurement. And the adaptive-adversary rung
+(\S\ref{sec:adversary}) already closes the engine loop on this slice---an
+arms race Red cannot win against a surface-bound invariant; a learned Red that
+synthesizes novel tooling, rather than selecting from a finite real pool, is the
+natural next adversary. The thread tying all of it together is a single axis:
+mutating within a telemetry surface is the arms race, crossing one is the
+ladder, and detection generalizes exactly as far as a detector reads intent
+rather than tool.
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}

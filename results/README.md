@@ -633,6 +633,101 @@ back at short distance:**
 2. Multi-step chains (OTRF `apt29`, `Log4Shell`) — a new-*chain* rung: does
    detecting individual techniques transfer to a full attack sequence?
 3. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
-4. Add the adaptive adversary: a Red that mutates the tool/access to evade a
-   signature Blue that keeps learning names — the co-evolution arms race on real
-   telemetry (ties the engine back to the measured ladder).
+4. ~~Adaptive adversary: a Red that mutates the tool to evade a signature Blue
+   that keeps learning names — the co-evolution arms race on real telemetry,
+   tied back to the ladder.~~ **Done** (rung 5 below,
+   `experiments/coevolution_real.py`, `results/coevolution-real.json`).
+
+# Ladder rung 5 — adaptive adversary (the arms race, measured on real telemetry)
+
+The ladder rungs 1–4 hold the attacker *fixed* and move the test. This rung lets
+the attacker **move too**: a Red that mutates its tool to evade the defender,
+run over the real OTRF LSASS slice (7 campaigns = 7 real credential-dumping
+tools, 354k events). It ties the released co-evolution engine to the measured
+ladder and answers the obvious objection — *"your invariants only win because
+the attacker never adapts."*
+
+## Setup
+
+- **Data:** the same leakage-free LSASS slice (T1003.001, 7 tools, 13 attack
+  events). Red's mutation space is the set of real tools; no synthetic events.
+- **Red (tool swapper):** deploys one real tool per round. When **adaptive**, if
+  the defender's signature caught the current tool, Red *mints* — switches to a
+  real tool whose image the signature has **not** learned (a disjoint-image
+  dumper from the slice). Static Red holds one tool.
+- **Blue — two detectors side by side** (`experiments/coevolution_real.py`,
+  reusing `lsass_detectors.py`):
+  - **signature**: an IOC blocklist of malicious `SourceImage` basenames, seeded
+    with the one tool the SOC already blocks (`procdump`). When **adaptive**, it
+    learns the current tool's image at the end of each round (post-incident
+    forensics) — so it is always one round behind an escaping Red. Static holds
+    its seed.
+  - **behavioral invariant**: non-system process opening `lsass.exe` with a
+    memory-read mask. Tool-agnostic, **never adapts** — the arms-race-proof
+    control, reported in every condition.
+- **Conditions** (Red adaptive × signature-Blue adaptive): A static/static,
+  B adaptive/static, C static/adaptive, D adaptive/adaptive. 12 rounds.
+
+## Result — signature recall per round (invariant in parallel)
+
+| Cond | Red / sig-Blue | signature recall over rounds | invariant | Red tools minted |
+| --- | --- | --- | --- | --- |
+| A | static / static | 1.00 flat | **1.00 flat** | 0 |
+| B | adaptive / static | 1.00 → **0.00** (round 1 on, forever) | **1.00 flat** | 1 |
+| C | static / adaptive | 1.00 flat | **1.00 flat** | 0 |
+| D | adaptive / adaptive | **1 0 1 0 1 0 1 0** then pinned 1.00 | **1.00 flat** | 4 |
+
+Condition **D** round by round (seed tool `procdump`): procdump `1.00` (mint →
+mimikatz) · mimikatz `0.00` (learn `winx64_payload`) · mimikatz `1.00`/prec
+**0.25** (mint → sharpdump) · sharpdump `0.00` (learn) · sharpdump `1.00` (mint →
+outflank) · outflank `0.00` (learn) · outflank `1.00` (mint → nanodump) ·
+nanodump `0.00` (learn) · nanodump `1.00`/prec **0.50** — **pinned**: Red has no
+disjoint-image tool left, oscillation ends. The blocklist ratchets 2 → 6 images;
+the invariant is `1.00 / 1.00` every single round and learns nothing.
+
+**Ladder probe.** The arms-race-hardened blocklist (all 6 learned images) tested
+on NTDS (rung 2, T1003.003): recall **0.00** (TP 0, FP 0, FN 14) — it cannot
+even *express* an NTDS detection.
+
+## Findings
+
+18. **The signature faces a real arms race; the invariant does not.** Against an
+    adaptive Red, a static blocklist collapses permanently (B: recall → 0.00
+    after one escape, ASR 1.00) and an adaptive blocklist only oscillates (D:
+    recall `1 0 1 0`, mean ~0.5) — Red is always one unseen tool ahead of what
+    forensics taught Blue last round. The behavioral invariant holds **1.00 / 1.00
+    in every round of every condition**: a tool swap does not change the EID10
+    VM_READ→lsass surface, so there is nothing for Red to evade. Adaptation is
+    not what wins; **being bound to the technique's surface instead of its tool
+    is.**
+19. **Hardening has a precision tax and a finite — but artificially finite —
+    endgame.** The growing blocklist starts flagging benign look-alikes (prec
+    0.25 then 0.50 as it learns shared/LOLBin names like `winx64_payload`,
+    repeating the rung-1 `rundll32` false-positive). The arms race here
+    *terminates* only because these 7 real tools happen to share image names, so
+    Red runs out of disjoint-image escapes and gets pinned (D rounds 8–11). A
+    real attacker renames payloads freely, so outside this finite slice the
+    treadmill does not terminate — the invariant's flat 1.00 is the only stable
+    outcome.
+20. **The arms race and the ladder are the same axis.** Red's only escape from
+    the invariant is to leave its telemetry surface — i.e. change the technique
+    (climb to rung 2/3), which is exactly where the invariant also fails (and
+    needs a new surface-matched rule). So *cheap* adaptation (mutate the tool
+    within a surface) is the arms race, and *expensive* adaptation (change the
+    technique across a surface) is the ladder; they are one axis measured from
+    two ends. The ladder probe closes it: the blocklist hardened by the entire
+    LSASS arms race scores **0.00** on NTDS — within-surface hardening transfers
+    nothing across a ladder boundary, the same surface-lock the hand-built
+    invariants showed in rungs 2–3.
+
+## Honest caveats (rung 5)
+
+- 13 attack events across 7 tools, so per-round recall is coarse and binary;
+  the dynamics (escape, oscillation, pinning, flat invariant) are the result,
+  not the exact per-round rates.
+- Red's mutation space is the 7 real tools in the slice (a finite, image-sharing
+  set); it does not synthesize novel payload names, which is why the arms race
+  terminates here. The deterministic agents are parametric, not learned.
+- The invariant's 1.00 is partly by construction (it encodes the GT surface);
+  the weight is on the **signature collapse/oscillation** and the **0.00
+  cross-ladder transfer**, neither of which is by construction.

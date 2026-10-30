@@ -1,0 +1,1746 @@
+{
+  "loop_version": "coevolution-real-v1",
+  "technique": "T1003.001",
+  "source": "OTRF Security-Datasets (MIT); datasets/compound/LSASS_campaign_01..07",
+  "n_tools": 7,
+  "total_attack_events": 13,
+  "seed_campaign": "campaign_02",
+  "timestamp": "2026-10-30T17:22:46Z",
+  "conditions": {
+    "A": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "A",
+      "condition_meaning": {
+        "red_adaptive": false,
+        "signature_blue_adaptive": false
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe"
+      ],
+      "series": [
+        {
+          "round": 0,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 1,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 2,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 3,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 4,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 5,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 6,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 7,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 8,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 9,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 10,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 11,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        }
+      ]
+    },
+    "B": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "B",
+      "condition_meaning": {
+        "red_adaptive": true,
+        "signature_blue_adaptive": false
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe"
+      ],
+      "series": [
+        {
+          "round": 0,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 1,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 2,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 3,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 4,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 5,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 6,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 7,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 8,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 9,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 10,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 11,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        }
+      ]
+    },
+    "C": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "C",
+      "condition_meaning": {
+        "red_adaptive": false,
+        "signature_blue_adaptive": true
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "procdump.exe",
+        "procdump64.exe"
+      ],
+      "series": [
+        {
+          "round": 0,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 1,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 2,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 3,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 4,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 5,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 6,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 7,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 8,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 9,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 10,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        },
+        {
+          "round": 11,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_02",
+          "red_tools_minted": 0
+        }
+      ]
+    },
+    "D": {
+      "loop_version": "coevolution-real-v1",
+      "condition": "D",
+      "condition_meaning": {
+        "red_adaptive": true,
+        "signature_blue_adaptive": true
+      },
+      "rounds": 12,
+      "seed_campaign": "campaign_02",
+      "final_signature_images": [
+        "nanodump.x64.exe",
+        "outflank-dumpert.exe",
+        "procdump.exe",
+        "procdump64.exe",
+        "sharpdump.exe",
+        "winx64_payload.exe"
+      ],
+      "series": [
+        {
+          "round": 0,
+          "tool": "campaign_02",
+          "procedure": "procdump",
+          "tool_images": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 1,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe"
+          ],
+          "signature_learned_this_round": [
+            "winx64_payload.exe"
+          ],
+          "red_minted": false,
+          "red_next_tool": "campaign_01",
+          "red_tools_minted": 1
+        },
+        {
+          "round": 2,
+          "tool": "campaign_01",
+          "procedure": "mimikatz_logonpasswords",
+          "tool_images": [
+            "winx64_payload.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 0.25,
+            "false_positive_rate": 5.6e-05,
+            "tp": 1,
+            "fp": 3,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next_tool": "campaign_05",
+          "red_tools_minted": 2
+        },
+        {
+          "round": 3,
+          "tool": "campaign_05",
+          "procedure": "sharpdump",
+          "tool_images": [
+            "sharpdump.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [
+            "sharpdump.exe"
+          ],
+          "red_minted": false,
+          "red_next_tool": "campaign_05",
+          "red_tools_minted": 2
+        },
+        {
+          "round": 4,
+          "tool": "campaign_05",
+          "procedure": "sharpdump",
+          "tool_images": [
+            "sharpdump.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next_tool": "campaign_06",
+          "red_tools_minted": 3
+        },
+        {
+          "round": 5,
+          "tool": "campaign_06",
+          "procedure": "outflank-dumpert",
+          "tool_images": [
+            "outflank-dumpert.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 2
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [
+            "outflank-dumpert.exe"
+          ],
+          "red_minted": false,
+          "red_next_tool": "campaign_06",
+          "red_tools_minted": 3
+        },
+        {
+          "round": 6,
+          "tool": "campaign_06",
+          "procedure": "outflank-dumpert",
+          "tool_images": [
+            "outflank-dumpert.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": true,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        },
+        {
+          "round": 7,
+          "tool": "campaign_07",
+          "procedure": "nanodump",
+          "tool_images": [
+            "nanodump.x64.exe"
+          ],
+          "signature": {
+            "recall": 0.0,
+            "precision": null,
+            "false_positive_rate": 0.0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": false,
+          "signature_known_before": [
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [
+            "nanodump.x64.exe"
+          ],
+          "red_minted": false,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        },
+        {
+          "round": 8,
+          "tool": "campaign_07",
+          "procedure": "nanodump",
+          "tool_images": [
+            "nanodump.x64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 0.5,
+            "false_positive_rate": 1.7e-05,
+            "tp": 1,
+            "fp": 1,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "nanodump.x64.exe",
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        },
+        {
+          "round": 9,
+          "tool": "campaign_07",
+          "procedure": "nanodump",
+          "tool_images": [
+            "nanodump.x64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 0.5,
+            "false_positive_rate": 1.7e-05,
+            "tp": 1,
+            "fp": 1,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "nanodump.x64.exe",
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        },
+        {
+          "round": 10,
+          "tool": "campaign_07",
+          "procedure": "nanodump",
+          "tool_images": [
+            "nanodump.x64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 0.5,
+            "false_positive_rate": 1.7e-05,
+            "tp": 1,
+            "fp": 1,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "nanodump.x64.exe",
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        },
+        {
+          "round": 11,
+          "tool": "campaign_07",
+          "procedure": "nanodump",
+          "tool_images": [
+            "nanodump.x64.exe"
+          ],
+          "signature": {
+            "recall": 1.0,
+            "precision": 0.5,
+            "false_positive_rate": 1.7e-05,
+            "tp": 1,
+            "fp": 1,
+            "fn": 0
+          },
+          "invariant": {
+            "recall": 1.0,
+            "precision": 1.0,
+            "false_positive_rate": 0.0,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0
+          },
+          "signature_caught": true,
+          "signature_known_before": [
+            "nanodump.x64.exe",
+            "outflank-dumpert.exe",
+            "procdump.exe",
+            "procdump64.exe",
+            "sharpdump.exe",
+            "winx64_payload.exe"
+          ],
+          "signature_learned_this_round": [],
+          "red_minted": false,
+          "red_next_tool": "campaign_07",
+          "red_tools_minted": 4
+        }
+      ]
+    }
+  },
+  "ladder_probe": {
+    "surface": "NTDS T1003.003 (ladder rung 2)",
+    "hardened_images": [
+      "nanodump.x64.exe",
+      "outflank-dumpert.exe",
+      "procdump.exe",
+      "procdump64.exe",
+      "sharpdump.exe",
+      "winx64_payload.exe"
+    ],
+    "campaigns": [
+      "campaign_01",
+      "campaign_02",
+      "campaign_03"
+    ],
+    "recall": 0.0,
+    "precision": null,
+    "tp": 0,
+    "fp": 0,
+    "fn": 14
+  }
+}
