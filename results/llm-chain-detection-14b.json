@@ -1,0 +1,463 @@
+{
+  "model": "qwen2.5:14b",
+  "rung": "new_chain",
+  "dataset": "APT29 Day 1 (MITRE ATT&CK Evals)",
+  "prompt": "general malicious-activity (any ATT&CK technique)",
+  "surface": "ProcessAccess(10) + CreateRemoteThread(8)",
+  "judged": 55,
+  "attack_events": 5,
+  "benign_subsample": 50,
+  "flag_rate_on_judged": 0.0545,
+  "overall": {
+    "tp": 3,
+    "fp": 0,
+    "tn": 50,
+    "fn": 2,
+    "precision": 1.0,
+    "recall": 0.6,
+    "false_positive_rate": 0.0
+  },
+  "seconds": 391.1,
+  "verdicts": [
+    {
+      "truth": true,
+      "pred": true,
+      "eid": 10,
+      "src": "powershell.exe",
+      "tgt": "lsass.exe",
+      "ga": "0x1f3fff"
+    },
+    {
+      "truth": true,
+      "pred": false,
+      "eid": 8,
+      "src": "powershell.exe",
+      "tgt": "lsass.exe",
+      "ga": null
+    },
+    {
+      "truth": true,
+      "pred": true,
+      "eid": 10,
+      "src": "powershell.exe",
+      "tgt": "lsass.exe",
+      "ga": "0x1fffff"
+    },
+    {
+      "truth": true,
+      "pred": true,
+      "eid": 10,
+      "src": "wsmprovhost.exe",
+      "tgt": "lsass.exe",
+      "ga": "0x1f3fff"
+    },
+    {
+      "truth": true,
+      "pred": false,
+      "eid": 8,
+      "src": "dwm.exe",
+      "tgt": "csrss.exe",
+      "ga": null
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "securityhealthservice.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "services.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x3000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x40"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 8,
+      "src": "csrss.exe",
+      "tgt": "svchost.exe",
+      "ga": null
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "audiodg.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "explorer.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x3000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "explorer.exe",
+      "tgt": "conhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "antimalwareconfig.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1400"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "provtool.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "backgroundtransferhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "explorer.exe",
+      "ga": "0x40"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "windowsazuretelemetryservice.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1400"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "sihost.exe",
+      "tgt": "backgroundtransferhost.exe",
+      "ga": "0x101000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "explorer.exe",
+      "ga": "0x40"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "explorer.exe",
+      "tgt": "python.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "runtimebroker.exe",
+      "tgt": "explorer.exe",
+      "ga": "0x40"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "shellexperiencehost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "backgroundtaskhost.exe",
+      "ga": "0x1000"
+    },
+    {
+      "truth": false,
+      "pred": false,
+      "eid": 10,
+      "src": "svchost.exe",
+      "tgt": "svchost.exe",
+      "ga": "0x1000"
+    }
+  ]
+}

@@ -42,7 +42,10 @@ technique reasoning. Scaling to 8B overturns the collapse---recall rises to
 $1.00/1.00/0.67$ and the model recognizes the injection primitive the 3B model
 did not---but at a \emph{precision} cost that deepens with ladder distance
 ($1.00\!\rightarrow\!0.67\!\rightarrow\!0.13$), and off-target in-context
-examples actively hurt. On a full APT29 intrusion ($196$k events) the invariants
+examples actively hurt. Scaling further to 14B recovers the lost precision at
+short distance (new-subtechnique $0.67\!\rightarrow\!0.93$ at full recall) but
+only shifts its operating point toward precision at the far rungs---a frontier
+capacity moves along, not off. On a full APT29 intrusion ($196$k events) the invariants
 transfer with zero false positives yet cover only $\sim\!15\%$ of the chain's
 techniques, while a broad LLM recovers coverage at $0.15$ precision---the same
 trade at chain scale. Detection generalization is thus not a cliff but a
@@ -82,9 +85,10 @@ simulation.
   \item A head-to-head of three detector families---signature, behavioral
   invariant, and a local LLM (zero/few-shot)---across the ladder on credential
   dumping and two neighbouring techniques (\S\ref{sec:results}).
-  \item A scale ablation (3B vs.\ 8B) showing the small-model ``collapse'' is an
-  artifact: scale restores recall everywhere but trades it for a precision
-  collapse that grows with ladder distance, and off-target few-shot harms
+  \item A scale ablation (3B, 8B, 14B) showing the small-model ``collapse'' is an
+  artifact: scale restores recall everywhere, then recovers precision at short
+  ladder distance but only trades recall for precision at the far rungs---a
+  frontier capacity moves along, not off---and off-target few-shot harms
   (\S\ref{sec:scale}).
   \item A new-chain rung on a full APT29 intrusion ($196$k events) exposing the
   coverage/precision trade at scale: surface-locked invariants transfer with
@@ -329,16 +333,17 @@ precision/recall frontier that shifts with scale, not a cliff.}
 \end{figure}
 
 \begin{table}[t]
-\caption{Scale: 3B vs.\ 8B (best of zero/few recall; precision at that point).}
+\caption{Scale across 3B, 8B, 14B (best-of zero/few recall; precision at that
+operating point).}
 \label{tab:scale}
 \small
 \begin{tabular}{@{}lrrr@{}}
 \toprule
-Rung & 3B recall & 8B recall & 8B precision \\
+Rung & 3B rec. & 8B rec. / prec. & 14B rec. / prec. \\
 \midrule
-1 new-instance     & 0.71 & \textbf{1.00} & 1.00 \\
-2 new-subtechnique & 0.07 & \textbf{1.00} & 0.67 \\
-3 new-technique    & 0.00 & \textbf{0.67} & 0.13 \\
+1 new-instance     & 0.71 & \textbf{1.00} / 1.00 & \textbf{1.00} / 1.00 \\
+2 new-subtechnique & 0.07 & \textbf{1.00} / 0.67 & \textbf{1.00} / \textbf{0.93} \\
+3 new-technique    & 0.00 & 0.67 / 0.13 & 0.33 / \textbf{0.50} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -352,8 +357,19 @@ trigger-happy detector that flags ordinary process-access handles
 Few-shot is \emph{directional}: same-family exemplars raise NTDS precision
 ($0.26\!\rightarrow\!0.67$) while holding recall, but off-target T1003 exemplars
 \emph{destroy} injection recall ($0.67\!\rightarrow\!0.00$) by anchoring the
-model to credential dumping. Figure~\ref{fig:ladder} summarizes the two trends:
-recall rising with scale, precision falling with ladder distance.
+model to credential dumping. Figure~\ref{fig:ladder} summarizes the 3B/8B
+trends: recall rising with scale, precision falling with ladder distance.
+
+Scaling again to 14B answers the question this trade raises---whether capacity
+\emph{recovers} the lost precision or merely moves along the frontier---and the
+answer depends on distance. At the near rungs it recovers it: 14B holds recall
+at $1.00$ while lifting new-subtechnique precision $0.67\!\rightarrow\!0.93$, a
+strict Pareto gain over 8B. At the far rung it does not: 14B's new-technique
+operating point trades recall for precision
+($0.67/0.13\!\rightarrow\!0.33/0.50$) rather than breaking through. Capacity
+thus shifts the trade toward precision and, at short distance, dissolves it, but
+the far-rung wall persists---it moves the model along the precision/recall
+frontier, one rung further out, not off it.
 
 \section{New-Chain Rung}
 \label{sec:chain}
@@ -375,6 +391,7 @@ Detector & Recall & Precision & Flagged \\
 \midrule
 invariant union (3 techniques)  & \textbf{1.00} & \textbf{1.00} & 5 / 196k \\
 LLM 8B (general, same surface)  & 0.80 & 0.15 & 27 / 55 \\
+LLM 14B (general, same surface) & 0.60 & \textbf{1.00} & 3 / 55 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -398,8 +415,13 @@ surface ($55$ events: the $5$ attacks plus a $50$-event seeded benign subsample)
 recovers broader intent---recall $0.80$---but flags $27/55$ events
 ($\sim\!49\%$) at precision $0.15$, drowning the $5$ real events in $23$ false
 alarms, overwhelmingly ordinary \texttt{svchost}$\rightarrow$\texttt{svchost}
-handles. At chain scale the axis is explicit: narrow rules buy precision and lose
-coverage; a broad LLM buys coverage and loses precision. Neither reads the chain.
+handles. Scaling that same general detector to 14B converts it from
+trigger-happy to precise---it flags only $3/55$ events, all three real, for
+precision $1.00$ at recall $0.60$---but buys that precision by surrendering the
+recall that defined 8B's breadth, missing two of the five chain steps. At chain
+scale the axis is explicit: narrow rules buy precision and lose coverage; a broad
+LLM buys coverage and loses precision, and scaling it slides along the same axis
+toward precision rather than off it. None reads the chain.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -414,10 +436,12 @@ false alarms across $196$k events. The LLM is the mirror image. At 3B it is
 lexical---it reads tool names and literal strings rather than behavior; at 8B it
 recovers behavioral recall but pays in precision that decays with ladder
 distance, transferring only by becoming trigger-happy. On the full chain that
-same breadth buries five real events under twenty-three false alarms. Scale thus
-moves the model along a precision/recall frontier rather than off a cliff, and
-in-context examples steer it \emph{directionally}: helpful when on-surface,
-actively harmful when off-surface.
+same breadth buries five real events under twenty-three false alarms. Scaling on
+to 14B converts that breadth back into precision at short distance (a Pareto gain
+over 8B) but, at the far rungs and on the chain, only trades recall for precision
+rather than winning both. Scale thus moves the model along a precision/recall
+frontier rather than off a cliff, and in-context examples steer it
+\emph{directionally}: helpful when on-surface, actively harmful when off-surface.
 
 For a defender the practical reading is that these are two ends of one trade, not
 two candidates for one slot. Narrow invariants give high-confidence, low-noise
@@ -440,7 +464,7 @@ chain) because real captures of a single isolated technique are sparse; recall i
 therefore coarse-grained, and we report it beside the raw TP/FN counts rather
 than as a smooth rate. LLM precision is measured on seeded benign subsamples of
 the attack surface, not the full stream. \textbf{External validity.} The models
-are 3B/8B local models, not frontier or tool-calling systems, and the telemetry
+are 3B/8B/14B local models, not frontier or tool-calling systems, and the telemetry
 is Windows/Sysmon from a single dataset family. We therefore claim the
 \emph{shape} of the result---invariants surface-lock, small LLMs read lexically,
 and scale trades recall for precision with distance---rather than the exact
@@ -455,9 +479,11 @@ measured it on real host telemetry under a leakage-free protocol. Detection is
 bounded by the telemetry surface and the intent within it: hand-built invariants
 are surface-locked, and an LLM's transfer is a scale-dependent precision/recall
 frontier that turns into a coverage/precision trade once the target is a full
-intrusion rather than one technique. Three directions follow directly. A frontier
-or tool-calling model would test whether more capability recovers the precision
-8B loses with distance, or only slides further along the same frontier. Denser
+intrusion rather than one technique. Three directions follow directly. Our 14B
+ablation already shows the pattern: more capacity recovers the precision 8B loses
+at \emph{short} distance but only slides along the frontier at the far rungs, so
+a true frontier or tool-calling model would test whether that pattern holds or
+finally breaks the far-rung wall. Denser
 chain labeling, beyond the three techniques we can derive today, would sharpen
 the coverage measurement. And the released co-evolution engine closes the loop:
 an adaptive Red that mutates its tool and access against a learning Blue, scored

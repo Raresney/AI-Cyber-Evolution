@@ -474,12 +474,16 @@ per-technique benchmark cannot.
 | NTDS invariant (T1003.003, absent in day 1) | n/a | n/a | 0 |
 | **whole invariant set (union)** | **1.00** | **1.00** | **0** |
 | 8B LLM (general malice, judged subsample) | 0.80 | 0.15 | 23 |
+| 14B LLM (general malice, judged subsample) | 0.60 | **1.00** | **0** |
 
 The invariant set catches all 5 labeled attack events with **zero false
 positives across all 196,081 events**, but its three rules cover only
 **~15 % (3 of ~20)** of the techniques the APT29 Day 1 chain exercises. The 8B
 LLM, run on the 5 attacks plus a 50-event benign subsample, flags **27 of 55
 judged events** malicious (flag rate ~49 %): recall 0.80 but precision 0.15.
+Scaling that same general LLM to **14B** flips the trade: it flags only **3 of
+55**, all three real — precision **1.00** at recall **0.60** with **0 FP** —
+trading two missed chain steps for the elimination of every false alarm.
 
 ## Findings
 
@@ -504,6 +508,10 @@ judged events** malicious (flag rate ~49 %): recall 0.80 but precision 0.15.
     and precision are in direct tension, and the detector family chooses which
     to sacrifice** — the narrow invariant gives precision without coverage, the
     LLM coverage without precision. Neither is deployable alone on a real chain.
+    Scaling the LLM to 14B does not escape the tension: it moves to the *precise*
+    end (precision 1.00, recall 0.60, 0 FP), the mirror of 8B's
+    coverage-without-precision. Which end a model lands on is an operating point
+    capacity selects, not a wall only small models hit.
 
 ## Honest caveats (rung 4)
 
@@ -518,12 +526,12 @@ judged events** malicious (flag rate ~49 %): recall 0.80 but precision 0.15.
 
 ## The generalization ladder (summary)
 
-| Rung | Changes | Surface invariant | Signature | LLM 3B (best recall) | LLM 8B (best recall / its precision) |
-| --- | --- | ---: | ---: | ---: | ---: |
-| 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (by *name*) | **1.00 / 1.00** |
-| 2 new-subtechnique | LSASS → NTDS | 0.00 / 1.00¹ | 0.00 | 0.07 (lexical) | **1.00 / 0.67** |
-| 3 new-technique | T1003 → T1055 injection | 0.00 / 1.00¹ | 0.00 | 0.00 (no concept) | **0.67 / 0.13** |
-| 4 new-chain | isolated → APT29 full intrusion | **1.00 / 1.00**² | — | — | 0.80 / **0.15** |
+| Rung | Changes | Surface invariant | Signature | LLM 3B (best recall) | LLM 8B (best recall / prec.) | LLM 14B (best recall / prec.) |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| 1 new-instance | tool, same sub-technique | **1.00** | 0.29 | 0.71 (by *name*) | **1.00 / 1.00** | **1.00 / 1.00** |
+| 2 new-subtechnique | LSASS → NTDS | 0.00 / 1.00¹ | 0.00 | 0.07 (lexical) | **1.00 / 0.67** | **1.00 / 0.93** |
+| 3 new-technique | T1003 → T1055 injection | 0.00 / 1.00¹ | 0.00 | 0.00 (no concept) | **0.67** / 0.13 | 0.33 / **0.50** |
+| 4 new-chain | isolated → APT29 full intrusion | **1.00 / 1.00**² | — | — | 0.80 / 0.15 | 0.60 / **1.00** |
 
 ¹ *the LSASS invariant transfers 0.00 across the rung; a separate surface-matched
 invariant scores 1.00 — a different rule each time. Nothing hand-coded transfers
@@ -536,25 +544,26 @@ axis.*
 ## Scale ablation — does a bigger model change the ladder?
 
 The rung 1–3 LLM results above use llama3.2 **3B**. Re-running every rung with
-llama3.1 **8B** (same local Ollama, identical prompts, seeds, and benign
-subsamples — scale is the only variable) overturns the "LLMs collapse down the
-ladder" reading, and replaces it with something sharper.
+llama3.1 **8B**, then qwen2.5 **14B** (same local Ollama, identical prompts,
+seeds, and benign subsamples — scale is the only variable) overturns the "LLMs
+collapse down the ladder" reading, and replaces it with something sharper.
 
-**Recall (transfer) — 3B → 8B:**
+**Recall (transfer) — 3B → 8B → 14B:**
 
-| Rung | 3B zero / few | 8B zero / few |
+| Rung | 3B zero / few | 8B zero / few | 14B zero / few |
+| --- | ---: | ---: | ---: |
+| 1 LSASS new-instance | 0.57 / 0.71 | **1.00 / 1.00** | **1.00 / 1.00** |
+| 2 NTDS new-subtechnique | 0.07 / 0.07 | **1.00 / 1.00** | **1.00 / 1.00** |
+| 3 injection new-technique | 0.00 / 0.00 | **0.67** / 0.00 | 0.33 / 0.33 |
+
+**Precision (false-alarm cost) — 8B degrades with ladder distance, 14B claws it
+back at short distance:**
+
+| Rung | 8B prec. (zero / few) | 14B prec. (zero / few) |
 | --- | ---: | ---: |
-| 1 LSASS new-instance | 0.57 / 0.71 | **1.00 / 1.00** |
-| 2 NTDS new-subtechnique | 0.07 / 0.07 | **1.00 / 1.00** |
-| 3 injection new-technique | 0.00 / 0.00 | **0.67** / 0.00 |
-
-**Precision (false-alarm cost) for 8B — degrades with ladder distance:**
-
-| Rung | 8B precision (zero / few) | FP count |
-| --- | ---: | --- |
-| 1 LSASS | 1.00 / 1.00 | 0 FP |
-| 2 NTDS | 0.26 / 0.67 | 39 → 7 FP |
-| 3 injection | 0.13 / 0.00 | 13 FP (2 TP) |
+| 1 LSASS | 1.00 / 1.00 | 0.88 / 1.00 |
+| 2 NTDS | 0.26 / 0.67 | **0.78 / 0.93** |
+| 3 injection | 0.13 / 0.00 | **0.50** / 0.33 |
 
 ## Findings (scale)
 
@@ -583,27 +592,44 @@ ladder" reading, and replaces it with something sharper.
     anchor the model to "credential dumping" so it rejects the injection events
     it otherwise caught. Priming an LLM with the wrong technique's examples is
     worse than priming it with none.
+15b. **14B — capacity recovers precision at short distance only.** Scaling once
+    more to qwen2.5 **14B** answers the question finding 13 raised (does more
+    capacity recover the precision 8B loses, or only slide along the frontier?),
+    and the answer depends on distance. At the **near** rungs it recovers it
+    while holding recall: new-subtechnique precision climbs 0.67 → **0.93**
+    (few-shot) and 0.26 → **0.78** (zero-shot) at recall 1.00 — a strict Pareto
+    gain over 8B, not a trade. At the **far** rung it does not: new-technique 14B
+    sits at recall 0.33 / precision 0.50, trading away the recall 8B had (0.67)
+    for precision rather than winning both; on the full chain it flags 3/55
+    all-real (precision 1.00, recall 0.60, 0 FP). Capacity thus moves the model
+    *along* the precision/recall frontier — dissolving the trade at short
+    distance and pushing the wall one rung further out — but the far-rung wall
+    persists. 8B's precision collapse is largely a capacity limit near the
+    trained surface and a genuine frontier far from it.
 
 ## Honest caveats
 
-- 8B is still a small model on a 6 GB-VRAM laptop; a frontier / tool-calling
-  model is the next scale point (would it keep recall high *and* recover
-  precision, or stay trigger-happy?).
+- 14B is still a local model on a 6 GB-VRAM laptop (CPU-offloaded); a frontier /
+  tool-calling model is the remaining scale point — would it break the far-rung
+  wall 14B only pushes outward, or slide along the same frontier?
 - Attack-event counts are small per rung (7 / 14 / 3), so recall is coarse; the
   LLM precision figures are on benign subsamples. The surface-matched invariants'
   1.00 values remain by construction — the weight is on the *transfer* numbers.
-- Results are for llama3.2 3B and llama3.1 8B specifically; the *shape* (recall
-  rises with scale, precision falls with ladder distance) is the claim, not the
-  exact values.
+- Results are for llama3.2 3B, llama3.1 8B and qwen2.5 14B specifically; the
+  *shape* (recall rises with scale, precision recovers with scale at short
+  distance but only trades against recall far from the trained surface) is the
+  claim, not the exact values.
 
 ## Next
 
-1. ~~Larger LLM — does scale fix the blind spots?~~ **Done** (findings 12–14):
-   8B restores recall at every rung but pays a precision collapse that grows
-   with ladder distance; off-target few-shot hurts.
-   `experiments/llm_detector.py` etc. with `--model llama3.1:8b`, outputs
-   `results/*-8b.json`. Next scale point: a frontier / tool-calling model — does
-   it recover precision too, or stay trigger-happy?
+1. ~~Larger LLM — does scale fix the blind spots?~~ **Done** (findings 12–14,
+   15b): 8B restores recall at every rung but pays a precision collapse that
+   grows with ladder distance; **14B** recovers that precision at short distance
+   (Pareto over 8B) but only trades recall for precision at the far rungs.
+   `experiments/llm_detector.py` etc. with `--model llama3.1:8b` / `qwen2.5:14b`,
+   outputs `results/*-8b.json` / `results/*-14b.json`. Next scale point: a
+   frontier / tool-calling model — does it break the far-rung wall, or slide
+   along the same frontier?
 2. Multi-step chains (OTRF `apt29`, `Log4Shell`) — a new-*chain* rung: does
    detecting individual techniques transfer to a full attack sequence?
 3. Cross-dataset test on Windows-APT 2025 (CC BY) — real unseen environment.
