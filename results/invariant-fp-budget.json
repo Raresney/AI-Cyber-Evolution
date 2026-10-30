@@ -1,0 +1,120 @@
+{
+  "experiment": "invariant-false-alarm-budget",
+  "note": "each invariant over the FULL stream of each dataset; recall where its technique is the labeled one, FP by that dataset's labels (an invariant firing off its own technique's dataset counts as a false positive).",
+  "dataset_totals": {
+    "lsass": {
+      "events": 354229,
+      "attacks": 13
+    },
+    "ntds": {
+      "events": 41996,
+      "attacks": 14
+    },
+    "injection": {
+      "events": 14218,
+      "attacks": 3
+    },
+    "apt29": {
+      "events": 196081,
+      "attacks": 5
+    }
+  },
+  "grand_total_events": 606524,
+  "cells": {
+    "lsass (T1003.001)": {
+      "lsass": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1.0,
+        "fp_rate": 0.0
+      },
+      "ntds": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      },
+      "injection": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      },
+      "apt29": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 2,
+        "recall": 0.6,
+        "fp_rate": 0.0
+      }
+    },
+    "ntds (T1003.003)": {
+      "lsass": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 13,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      },
+      "ntds": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1.0,
+        "fp_rate": 0.0
+      },
+      "injection": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      },
+      "apt29": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      }
+    },
+    "injection (T1055)": {
+      "lsass": {
+        "tp": 0,
+        "fp": 3,
+        "fn": 13,
+        "recall": 0.0,
+        "fp_rate": 8.47e-06
+      },
+      "ntds": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "recall": 0.0,
+        "fp_rate": 0.0
+      },
+      "injection": {
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "recall": 1.0,
+        "fp_rate": 0.0
+      },
+      "apt29": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 3,
+        "recall": 0.4,
+        "fp_rate": 0.0
+      }
+    }
+  },
+  "grand_total_fp": {
+    "lsass (T1003.001)": 0,
+    "ntds (T1003.003)": 0,
+    "injection (T1055)": 3
+  }
+}

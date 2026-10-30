@@ -830,3 +830,44 @@ the coverage ceiling of running both.*
   coverage gap is the unlabeled techniques, which this subsample does not measure.
 - Uses the best-recall 14B config per rung (few-shot rungs 1–2, zero-shot rung 3);
   a different LLM or config shifts the triage-tier numbers, not the structure.
+
+# False-alarm budget at full scale (across environments)
+
+Rung 4 showed the invariant set fires with zero false positives over the 196k
+APT29 events. `experiments/invariant_fp_budget.py` makes that systematic: each of
+the three behavioral invariants is run over the **full** event stream of **every**
+processed dataset — **606,524 real Windows/Sysmon events from four different
+capture environments** (lsass 354k, ntds 42k, injection 14k, apt29 196k) — and
+we count, per invariant per dataset, recall on its own technique and false
+positives on everything else.
+
+| invariant | lsass | ntds | injection | apt29 | total FP / 606,524 |
+| --- | --- | --- | --- | --- | ---: |
+| **LSASS** (T1003.001) | 1.00 / 0 FP | 0.00 / 0 FP | 0.00 / 0 FP | 0.60 / 0 FP | **0** |
+| **NTDS** (T1003.003) | 0.00 / 0 FP | 1.00 / 0 FP | 0.00 / 0 FP | 0.00 / 0 FP | **0** |
+| **injection** (T1055) | 0.00 / **3 FP** | 0.00 / 0 FP | 1.00 / 0 FP | 0.40 / 0 FP | **3** |
+
+*recall is over all labeled attacks of the dataset, so on apt29 the LSASS
+invariant (0.60 = its 3 of 5) and the injection invariant (0.40 = its 2 of 5)
+sum to the union's 1.00. "FP" counts any fire on a non-attack event by that
+dataset's labels, including firing on a dataset whose labeled technique is not
+the invariant's — an honest cross-environment false alarm.*
+
+## Findings
+
+24. **Three false positives in 606,524 events, across four environments.** The
+    whole invariant set raises a combined **3 false alarms** over six hundred
+    thousand real events (FP rate ≈ 5×10⁻⁶) — the LSASS and NTDS invariants
+    literally zero, the injection invariant three (benign `CreateRemoteThread`
+    events in the LSASS captures: real remote-thread creation by non-system
+    processes, the one honest cross-environment false alarm). Surface-locked
+    detection is not merely precise on its tuning set; it stays quiet at scale on
+    environments it was never tuned on.
+25. **The invariants do not interfere — cross-boundary silence holds at scale.**
+    Every off-diagonal recall is 0.00 with near-zero FP: each invariant is blind
+    to the other techniques and almost never fires on their data. This is the
+    full-stream form of the rung-2/3 result (transfer is surface- and
+    intent-local) and it is exactly what makes the invariants safe to *stack* —
+    the layering block tier (above) inherits this zero-interference property, so
+    a defender can add surface rules without each new rule inflating the others'
+    false-alarm rate.

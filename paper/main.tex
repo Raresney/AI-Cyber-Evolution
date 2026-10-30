@@ -416,7 +416,14 @@ with \emph{zero} false positives over the full stream (LSASS $3/3$, injection
 $2/2$; NTDS does not occur in Day~1), for a union recall of $1.00$ at precision
 $1.00$ and $0$ FP in $196{,}076$ benign events (Table~\ref{tab:chain}).
 Surface-locked detection transfers across environments intact---the atomic
-slices could not measure this false-alarm rate at scale, and it holds.
+slices could not measure this false-alarm rate at scale, and it holds. Run over
+every processed dataset at once---$606{,}524$ real events from four capture
+environments---the three invariants raise a combined \emph{three} false
+positives (rate $\approx 5\times10^{-6}$): the LSASS and NTDS rules exactly zero,
+the injection rule three benign \texttt{CreateRemoteThread}s in the LSASS
+captures. Every off-diagonal is silent (recall $0.00$, near-zero FP), so the
+rules do not interfere---which is what makes them safe to stack
+(\S\ref{sec:layering}).
 
 \paragraph{Coverage versus precision.}
 But the detector set has rules for only three of the $\sim\!20$ techniques Day~1
@@ -572,7 +579,9 @@ validity.} Attack-event counts per rung are small ($7/14/3$ atomic, $5$ on the
 chain) because real captures of a single isolated technique are sparse; recall is
 therefore coarse-grained, and we report it beside the raw TP/FN counts rather
 than as a smooth rate. LLM precision is measured on seeded benign subsamples of
-the attack surface, not the full stream. \textbf{External validity.} The models
+the attack surface, not the full stream; the invariants' false-alarm rate, by
+contrast, is measured on the full $606{,}524$-event stream across all four
+environments (\S\ref{sec:chain}). \textbf{External validity.} The models
 are 3B/8B/14B local models, not frontier or tool-calling systems, and the telemetry
 is Windows/Sysmon from a single dataset family. We therefore claim the
 \emph{shape} of the result---invariants surface-lock, small LLMs read lexically,
