@@ -913,3 +913,61 @@ variant on the full 354k-event stream, new-instance split.
     meanwhile, barely matters once VM_READ is required (0 → 5 FP) but removes 323
     FP without it — the generalizing predicate already excludes almost all benign
     access on its own.
+
+# External validity — a different dataset family (Splunk attack_data)
+
+Every rung above is OTRF (Mordor/Security-Datasets). The sharpest threat is that
+the shape is an OTRF artefact. `experiments/cross_dataset.py` runs the unchanged
+LSASS detectors on an **independent capture**: Splunk `attack_data`
+(atomic_red_team, attack_range environment, 2022 — different authors, host, and
+collection pipeline), one Sysmon stream for T1003.001 that contains several
+credential-dumping tools at once, **including a renamed `notprocdump.exe` and a
+GUID-named direct-syscall payload built to defeat name signatures**, alongside
+real benign LSASS access (`svchost` at mask `0x1400`, no VM_READ bit).
+
+Ground truth is **tool identity** (the documented dumping tools), deliberately
+independent of the invariant's access-mask rule, so the invariant's recall here
+is *not* by construction.
+
+| detector | recall | precision | TP | FP | FN |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| behavioral invariant (VM_READ) | **1.00** | 0.89\* | 49 | 6\* | 0 |
+| OTRF-trained signature (names) | **0.16** | 0.80 | 8 | 2 | 41 |
+
+*7,960 Sysmon events, 163 EID10→lsass accesses, 49 tool-GT dump events.*
+\*the invariant's 6 "false positives" are `rundll32` (comsvcs), `powershell`
+(pypykatz) and `taskmgr` (manual dump) — real credential-dumping methods the
+conservative tool-only GT does not label, so true precision on actual dumps is
+≈1.00 (the GT undercounts, as everywhere else in this work).
+
+## Findings
+
+28. **The rung-1 result reproduces on a foreign dataset.** On a capture from a
+    different team, host, year and pipeline, the behavioral invariant holds
+    **1.00** recall — it fires on every dumper, including the GUID-named
+    direct-syscall payload (38 events) and the renamed `notprocdump.exe`/`
+    notprocdump64.exe` — because they all open `lsass.exe` with a memory-read
+    mask. The OTRF-trained signature collapses to **0.16**: it catches only the
+    tools whose names happen to overlap OTRF (`procdump`, `procdump64`,
+    `outflank-dumpert`) and misses the renamed and novel-named ones entirely.
+    This is the paper's spine confirmed off-distribution, and the dataset
+    supplies a real-world instance of the exact evasion the argument predicts —
+    an attacker who simply renamed `procdump` to `notprocdump`.
+29. **The invariant stays quiet on a foreign benign stream.** The dominant benign
+    accessor here is `svchost` with mask `0x1400` (98 events) — no `PROCESS_VM_READ`
+    bit — so the invariant correctly ignores it, exactly as the access-mask
+    ablation (findings 26–27) predicts. The quiet property, like the recall, is
+    not OTRF-specific: the VM_READ predicate separates dump from benign access on
+    an environment it was never tuned on.
+
+## Honest caveats (external validity)
+
+- One foreign capture, one technique (T1003.001); it establishes that the *shape*
+  transfers off OTRF, not a second full ladder. The other rungs remain
+  OTRF-only.
+- Ground truth is documented tool identity (conservative), so the invariant's
+  precision is reported low where it in fact catches additional real dumps
+  (LOLBin/manual) the GT omits — the bias is downward, never upward.
+- The source log is a public LFS artifact fetched into `data/raw/` (git-ignored,
+  untrusted, parsed read-only); the parsed leakage-free slice is written to
+  `data/processed/xdataset_lsass/`.

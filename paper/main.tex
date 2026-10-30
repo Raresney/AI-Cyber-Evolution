@@ -592,13 +592,22 @@ than as a smooth rate. LLM precision is measured on seeded benign subsamples of
 the attack surface, not the full stream; the invariants' false-alarm rate, by
 contrast, is measured on the full $606{,}524$-event stream across all four
 environments (\S\ref{sec:chain}). \textbf{External validity.} The models
-are 3B/8B/14B local models, not frontier or tool-calling systems, and the telemetry
-is Windows/Sysmon from a single dataset family. We therefore claim the
-\emph{shape} of the result---invariants surface-lock, small LLMs read lexically,
-and scale trades recall for precision with distance---rather than the exact
-numerical values, which another model or dataset would shift. The leakage-free
-protocol and the released slices exist precisely so that this shape can be
-retested elsewhere.
+are 3B/8B/14B local models, not frontier or tool-calling systems, and the ladder
+is built on a single dataset family (OTRF). We therefore claim the \emph{shape}
+of the result---invariants surface-lock, small LLMs read lexically, and scale
+trades recall for precision with distance---rather than the exact numerical
+values. We test that shape directly on an independent dataset family: Splunk
+\texttt{attack\_data} (atomic Red Team, a different host, year, and collection
+pipeline), a T1003.001 capture with several dumpers in one stream, including a
+renamed \texttt{notprocdump.exe} and a GUID-named direct-syscall payload. With
+ground truth taken from tool identity---independent of the access-mask rule---the
+behavioral invariant holds recall $1.00$ (every dumper, including the renamed and
+novel-named ones) while the OTRF-trained signature collapses to $0.16$, catching
+only the name-overlapping tools; the invariant stays quiet on the foreign benign
+stream (\texttt{svchost} at mask \texttt{0x1400}, no VM\_READ). The rung-1 result
+thus reproduces off OTRF, with the dataset supplying a real-world instance of the
+very name evasion the argument predicts. The leakage-free protocol and released
+slices exist so the rest of the ladder can be retested the same way.
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
