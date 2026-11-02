@@ -12,6 +12,11 @@
 \usepackage{xcolor}
 \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 
+%% Let TeX stretch a little more before resorting to an overfull box; keeps the
+%% long hyphenated ATT&CK compounds (new-subtechnique, ...) from poking into the
+%% margin in two-column justified text.
+\setlength{\emergencystretch}{2.5em}
+
 \begin{document}
 
 \title{Does Detection Generalize? A Technique-Generalization Ladder for
