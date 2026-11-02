@@ -1,6 +1,8 @@
-\documentclass[sigconf,anonymous,review]{acmart}
-%% AISec @ CCS submission draft.
-%% Build: see paper/README.md. Toggle `anonymous`/`review` off for camera-ready.
+\documentclass[sigconf,nonacm]{acmart}
+%% Public preprint build (arXiv / portfolio). For a double-blind venue
+%% submission, use `\documentclass[sigconf,anonymous,review]{acmart}` instead
+%% (acmart then auto-hides the author block) and replace the repository URL in
+%% the contributions list with an anonymized link.
 %% Numbers in the results tables are the real measured values from results/*.json
 %% (see \S\ref{sec:setup} for provenance).
 
@@ -22,8 +24,11 @@
 \title{Does Detection Generalize? A Technique-Generalization Ladder for
 Red--Blue Co-Evolution on Real Host Telemetry}
 
-\author{Anonymous}
-\affiliation{\institution{Anonymous}\country{}}
+\author{Bighiu Rareș}
+\email{bighiurares05@gmail.com}
+\affiliation{%
+  \institution{Independent Researcher}
+  \country{Romania}}
 
 \begin{abstract}
 Learned and co-evolved intrusion detectors are usually scored on held-out
@@ -113,7 +118,8 @@ simulation.
   never beats the frontier, and ladder distance decides which tier you get
   (\S\ref{sec:layering}).
   \item A reproducible release: leakage-free slices, all detectors, and a
-  stdlib red--blue co-evolution engine. \todo{repo URL at camera-ready.}
+  stdlib red--blue co-evolution engine, at
+  \url{https://github.com/Raresney/AI-Cyber-Evolution}.
 \end{itemize}
 
 \section{Background and Related Work}
