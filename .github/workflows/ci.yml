@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      # The engine, detectors and co-evolution loop are pure standard library,
+      # so there is nothing to install for the test + offline-reproduction run.
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Reproduce headline results (offline, CI-safe)
+        run: python reproduce.py

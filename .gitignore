@@ -26,3 +26,5 @@ Thumbs.db
 # Research data (large; re-pull/re-generate via environment/otrf_loader.py)
 data/raw/
 data/processed/
+# Local scratch
+scratchpad/

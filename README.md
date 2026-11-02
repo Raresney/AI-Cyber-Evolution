@@ -2,6 +2,8 @@
 
 **Adaptive Red–Blue Co-Evolution for AI Cybersecurity**
 
+[![ci](https://github.com/Raresney/AI-Cyber-Evolution/actions/workflows/ci.yml/badge.svg)](https://github.com/Raresney/AI-Cyber-Evolution/actions/workflows/ci.yml)
+
 CYBER-EVO is a research project investigating how autonomous AI Red Teams and Blue Teams adapt to each other during repeated cybersecurity operations.
 
 The project focuses on the interaction between:
@@ -12,6 +14,20 @@ The project focuses on the interaction between:
 * **Adversarial adaptation** — Red and Blue Teams continuously modify their strategies based on previous interactions.
 
 The primary objective is to study whether continuous Red–Blue interaction produces more robust cybersecurity systems than static, one-shot attack and defense evaluation.
+
+---
+
+## Reproducibility
+
+The detectors, invariants and co-evolution engine are pure standard library — nothing to install for the tests or the offline reproduction.
+
+```bash
+python -m unittest discover -s tests   # core-logic unit tests
+python reproduce.py                    # reproduce headline results (offline: no telemetry, no LLM)
+python reproduce.py --full             # also re-run the data-dependent pipeline (needs the slices)
+```
+
+`reproduce.py` (offline) reproduces the synthetic co-evolution dynamics and the layered-detection table from the committed artifacts, asserting each value against its published figure; **CI runs the tests and the offline reproduction on Python 3.10–3.13**. The real host-telemetry slices under `data/` are git-ignored and re-pulled via `environment/*_loader.py` (OTRF Security-Datasets); the LLM rungs additionally need a local [Ollama](https://ollama.com). The full measured write-up lives in [`results/README.md`](results/README.md); the paper is in [`paper/`](paper/).
 
 ---
 
