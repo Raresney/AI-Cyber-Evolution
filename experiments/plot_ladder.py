@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Figure for the paper: how recall and precision move down the ladder.
+"""Figure for the paper: how recall and precision move down the ladder with scale.
 
-Reads the measured results JSONs and plots, per rung:
-  * 3B recall (best of zero/few)   -- the small-model collapse,
-  * 8B recall (best of zero/few)   -- scale restores transfer,
-  * 8B precision at that operating point -- the cost, falling with distance.
+Two panels, rungs 1-3 (new-instance / new-subtechnique / new-technique):
+  * left  -- recall, 3B vs 8B vs 14B: the small-model collapse, and scale
+             restoring transfer at every rung.
+  * right -- precision at that operating point, 8B vs 14B: the cost that deepens
+             with ladder distance at 8B, and how 14B claws it back at short
+             distance but only slides along the frontier at the far rung.
 
-Output: paper/fig-ladder.pdf (+ .png for quick viewing). Requires matplotlib.
+Reads the measured results JSONs (3B = llama3.2, 8B = llama3.1:8b,
+14B = qwen2.5:14b). Output: paper/fig-ladder.pdf (+ .png). Requires matplotlib.
 """
 from __future__ import annotations
 
@@ -27,28 +30,16 @@ def load(name):
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 
-def rec(d, key):
-    if d is None:
-        return None
-    v = d[key]["recall"]
-    return v
-
-
-def prec(d, key):
-    if d is None:
-        return None
-    return d[key]["precision"]
-
-
 def best_recall(zero, few, key):
-    """Return (recall, precision) of the mode with the higher recall; ties -> higher precision."""
+    """(recall, precision) of the higher-recall mode; ties -> higher precision."""
     cands = []
     for d in (zero, few):
         if d is None:
             continue
-        r = rec(d, key)
-        p = prec(d, key)
-        cands.append((r if r is not None else -1.0, p if p is not None else 0.0))
+        m = d[key]
+        r = m["recall"] if m["recall"] is not None else -1.0
+        p = m["precision"] if m["precision"] is not None else 0.0
+        cands.append((r, p))
     if not cands:
         return (0.0, 0.0)
     cands.sort(key=lambda t: (t[0], t[1]), reverse=True)
@@ -56,47 +47,63 @@ def best_recall(zero, few, key):
     return (max(r, 0.0), p)
 
 
-# Rung 1 (LSASS, holdout), Rung 2 (NTDS, overall), Rung 3 (injection, overall)
-r1_3b = best_recall(load("llm-detection.json"), load("llm-fewshot-detection.json"), "holdout")
-r1_8b = best_recall(load("llm-detection-8b.json"), load("llm-fewshot-detection-8b.json"), "holdout")
-r2_3b = best_recall(load("llm-subtechnique-zeroshot.json"), load("llm-subtechnique-fewshot.json"), "overall")
-r2_8b = best_recall(load("llm-subtechnique-zeroshot-8b.json"), load("llm-subtechnique-fewshot-8b.json"), "overall")
-r3_3b = best_recall(load("llm-technique-zeroshot.json"), load("llm-technique-fewshot.json"), "overall")
-r3_8b = best_recall(load("llm-technique-zeroshot-8b.json"), load("llm-technique-fewshot-8b.json"), "overall")
+def series(suffix, key, z, f):
+    return best_recall(load(z.format(s=suffix)), load(f.format(s=suffix)), key)
+
+
+# per rung, per model: (recall, precision) at the best-recall operating point
+Z1, F1 = "llm-detection{s}.json", "llm-fewshot-detection{s}.json"
+Z2, F2 = "llm-subtechnique-zeroshot{s}.json", "llm-subtechnique-fewshot{s}.json"
+Z3, F3 = "llm-technique-zeroshot{s}.json", "llm-technique-fewshot{s}.json"
+
+rows = {
+    "3B":  [series("", "holdout", Z1, F1), series("", "overall", Z2, F2), series("", "overall", Z3, F3)],
+    "8B":  [series("-8b", "holdout", Z1, F1), series("-8b", "overall", Z2, F2), series("-8b", "overall", Z3, F3)],
+    "14B": [series("-14b", "holdout", Z1, F1), series("-14b", "overall", Z2, F2), series("-14b", "overall", Z3, F3)],
+}
+recall = {k: [t[0] for t in v] for k, v in rows.items()}
+prec = {k: [t[1] for t in v] for k, v in rows.items()}
+for k in rows:
+    print(f"{k}: recall={recall[k]} prec={prec[k]}")
 
 x = [1, 2, 3]
-recall_3b = [r1_3b[0], r2_3b[0], r3_3b[0]]
-recall_8b = [r1_8b[0], r2_8b[0], r3_8b[0]]
-prec_8b = [r1_8b[1], r2_8b[1], r3_8b[1]]
+xlab = ["Rung 1\nnew-instance", "Rung 2\nnew-subtech", "Rung 3\nnew-technique"]
+C = {"3B": "#7a7a7a", "8B": "#1b6ca8", "14B": "#116530"}
 
-print("3B recall:", recall_3b)
-print("8B recall:", recall_8b)
-print("8B prec  :", prec_8b)
+fig, (axr, axp) = plt.subplots(1, 2, figsize=(8.2, 3.5), sharey=True)
 
-fig, ax = plt.subplots(figsize=(6.4, 3.6))
-ax.plot(x, recall_8b, "-o", color="#1b6ca8", lw=2.2, ms=7, label="llama3.1 8B — recall")
-ax.plot(x, prec_8b, "-s", color="#d1495b", lw=2.2, ms=7, label="llama3.1 8B — precision")
-ax.plot(x, recall_3b, "--^", color="#7a7a7a", lw=1.8, ms=7, label="llama3.2 3B — recall")
 
-# annotate values
-for xi, yi in zip(x, recall_8b):
-    ax.annotate(f"{yi:.2f}", (xi, yi), textcoords="offset points", xytext=(0, 9),
-                ha="center", color="#1b6ca8", fontsize=9)
-for xi, yi in zip(x, prec_8b):
-    ax.annotate(f"{yi:.2f}", (xi, yi), textcoords="offset points", xytext=(0, -15),
-                ha="center", color="#d1495b", fontsize=9)
-for xi, yi in zip(x, recall_3b):
-    ax.annotate(f"{yi:.2f}", (xi, yi), textcoords="offset points", xytext=(10, -2),
-                ha="left", color="#7a7a7a", fontsize=8)
+def annot(ax, xs, ys, color, dy):
+    for xi, yi in zip(xs, ys):
+        ax.annotate(f"{yi:.2f}", (xi, yi), textcoords="offset points",
+                    xytext=(0, dy), ha="center", color=color, fontsize=8)
 
-ax.set_xticks(x)
-ax.set_xticklabels(["Rung 1\nnew-instance", "Rung 2\nnew-subtechnique", "Rung 3\nnew-technique"])
-ax.set_ylim(-0.05, 1.12)
-ax.set_ylabel("score")
-ax.set_title("Down the ladder: scale restores recall, precision pays the cost")
-ax.grid(True, axis="y", ls=":", alpha=0.5)
-ax.legend(loc="upper right", fontsize=9, framealpha=0.9)
-fig.tight_layout()
+
+# left: recall for all three models
+for m, style in (("3B", "--^"), ("8B", "-o"), ("14B", "-D")):
+    axr.plot(x, recall[m], style, color=C[m], lw=2.0, ms=6, label=f"{m} recall")
+annot(axr, x, recall["14B"], C["14B"], 9)
+annot(axr, x, recall["3B"], C["3B"], -15)
+axr.set_title("Recall: scale restores transfer")
+axr.set_ylabel("score")
+
+# right: precision at that operating point, 8B vs 14B
+for m, style in (("8B", "-o"), ("14B", "-D")):
+    axp.plot(x, prec[m], style, color=C[m], lw=2.0, ms=6, label=f"{m} precision")
+annot(axp, x, prec["8B"], C["8B"], -15)
+annot(axp, x, prec["14B"], C["14B"], 9)
+axp.set_title("Precision: 14B recovers it near, not far")
+
+for ax in (axr, axp):
+    ax.set_xticks(x)
+    ax.set_xticklabels(xlab, fontsize=8)
+    ax.set_ylim(-0.05, 1.12)
+    ax.grid(True, axis="y", ls=":", alpha=0.5)
+    ax.legend(loc="lower left", fontsize=8, framealpha=0.9)
+
+fig.suptitle("Down the ladder (3B $\\to$ 8B $\\to$ 14B): recall rises with scale, precision pays with distance",
+             fontsize=10)
+fig.tight_layout(rect=(0, 0, 1, 0.96))
 
 OUT.mkdir(parents=True, exist_ok=True)
 fig.savefig(OUT / "fig-ladder.pdf")

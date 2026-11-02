@@ -473,7 +473,18 @@ D adaptive / adaptive & $1\,0\,1\,0\ldots$ (osc.)  & \textbf{$1.00$ flat} \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:adversary} is the whole story. Against an adaptive Red a static
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig-arms-race}
+\caption{Condition D on the real LSASS slice: the adaptive signature's recall
+oscillates ($1\,0\,1\,0$) as Red mints a fresh unseen tool each time it is caught
+(dotted lines), until the finite real tool pool is exhausted and it is pinned;
+the behavioral invariant holds $1.00$ every round---a tool swap does not change
+its surface.}
+\label{fig:arms-race}
+\end{figure}
+
+Table~\ref{tab:adversary} and Figure~\ref{fig:arms-race} are the whole story. Against an adaptive Red a static
 blocklist collapses permanently (B: recall $\rightarrow 0.00$ after one escape)
 and an adaptive blocklist only \emph{oscillates} (D: $1\,0\,1\,0$, Red one unseen
 tool ahead of what forensics taught Blue last round), while bloating into
@@ -603,8 +614,9 @@ renamed \texttt{notprocdump.exe} and a GUID-named direct-syscall payload. With
 ground truth taken from tool identity---independent of the access-mask rule---the
 behavioral invariant holds recall $1.00$ (every dumper, including the renamed and
 novel-named ones) while the OTRF-trained signature collapses to $0.16$, catching
-only the name-overlapping tools; the invariant stays quiet on the foreign benign
-stream (\texttt{svchost} at mask \texttt{0x1400}, no VM\_READ). The rung-1 result
+only the name-overlapping tools (Figure~\ref{fig:cross-dataset}); the invariant
+stays quiet on the foreign benign stream (\texttt{svchost} at mask
+\texttt{0x1400}, no VM\_READ). The rung-1 result
 thus reproduces off OTRF, with the dataset supplying a real-world instance of the
 very name evasion the argument predicts. Two further foreign captures extend the
 ladder: on a Cobalt Strike T1055 capture the injection invariant catches the
@@ -619,6 +631,17 @@ surface-lock is per-\emph{procedure}, not merely per-technique, and a new
 procedure for the same sub-technique can present a new surface. The leakage-free
 protocol and released
 slices exist so the rest of the ladder can be retested the same way.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig-cross-dataset}
+\caption{External validity on Splunk \texttt{attack\_data} (a different capture
+family). The behavioral invariant transfers---recall $1.00$ on both the LSASS and
+injection captures---while the OTRF-trained name signature collapses to $0.16$
+on LSASS (it misses the renamed and GUID-named dumpers). The NTDS capture dumps
+via command line, so the file/object surface the invariant keys on is absent.}
+\label{fig:cross-dataset}
+\end{figure}
 
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
