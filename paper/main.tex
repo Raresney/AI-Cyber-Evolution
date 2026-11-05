@@ -117,6 +117,11 @@ simulation.
   already built, collapsing to LLM-only triage at a new technique---the stack
   never beats the frontier, and ladder distance decides which tier you get
   (\S\ref{sec:layering}).
+  \item A degraded-telemetry stress test (condition~E) showing the behavioral
+  invariant does not buy robustness for free: it relocates brittleness from an
+  attacker-controlled field (the image name) to a sensor-controlled one (the
+  access mask), while whole-event loss is a floor neither single-event detector
+  beats (\S\ref{sec:degraded}).
   \item A reproducible release: leakage-free slices, all detectors, and a
   stdlib red--blue co-evolution engine, at
   \url{https://github.com/Raresney/AI-Cyber-Evolution}.
@@ -560,6 +565,56 @@ The union never exceeds the better of its members at any rung---stacking does
 not beat the frontier. Its entire value is the free, auto-actionable block tier,
 and that tier's reach is exactly the defender's accumulated surface rules:
 ladder distance decides whether you get a $0$-FP block tier or noisy LLM triage.
+
+\section{Degraded Telemetry}
+\label{sec:degraded}
+The research question asks about detection under \emph{incomplete and noisy}
+telemetry, yet every experiment so far assumes a perfect sensor. We close that
+gap on the held-out LSASS stream ($216{,}095$ events, $7$ attack events),
+degrading it at increasing severity and re-scoring both detectors, mean over
+$20$ seeds. Both fire on a \emph{single} Sysmon EID~$10$ event---the signature on
+\texttt{SourceImage}, the invariant on \texttt{GrantedAccess}---so neither has
+multi-event redundancy, which isolates their failure modes. We model two losses a
+real pipeline suffers: whole-event \emph{drop} (an EDR gap), and \emph{field
+dropout} (the record arrives but a field is blank, from truncation or redaction).
+
+\begin{table}[t]
+\caption{Recall under degraded telemetry, mean over $20$ seeds, as the degraded
+fraction grows. ``field'' blanks one field on surviving events.}
+\label{tab:degraded}
+\small
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+degradation & detector & $0.10$ & $0.25$ & $0.50$ & $0.90$ \\
+\midrule
+drop            & signature & $0.26$ & $0.22$ & $0.14$ & $0.04$ \\
+                & invariant & $0.91$ & $0.72$ & $0.46$ & $0.11$ \\
+field:\,image   & signature & $0.26$ & $0.22$ & $0.14$ & $0.04$ \\
+                & invariant & $1.00$ & $1.00$ & $1.00$ & $1.00$ \\
+field:\,mask    & signature & $0.29$ & $0.29$ & $0.29$ & $0.29$ \\
+                & invariant & $0.91$ & $0.72$ & $0.46$ & $0.11$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:degraded} reads as a symmetry. Whole-event drop decays both
+detectors in proportion to the surviving fraction (invariant $1.00\!\rightarrow\!
+0.11$, signature off its lower $0.29$ baseline): a one-event decision cannot
+recover an event the sensor never delivered, so missing telemetry is
+detector-agnostic and the only lever against it is the multi-event redundancy of
+the chain rung. Field dropout, in contrast, separates them cleanly and
+disjointly. Blanking the image path collapses the signature on \emph{exactly} its
+drop curve while the invariant stays flat at $1.00$---it ignores the field the
+attacker already mutates cheaply. Blanking the access mask inverts the roles: the
+signature is untouched at $0.29$, the invariant decays like event loss. Losing a
+detector's load-bearing field degrades it precisely as losing the whole event
+would; losing the other field is free. The behavioral invariant's immunity to the
+attacker's cheap evasion is therefore paid for by a new dependence on sensor
+fidelity for the one field the attacker cannot forge but a degraded EDR can still
+drop. Robustness under degradation is not a property of a detector in isolation
+but of the match between its load-bearing field and what a given deployment
+actually loses. (With only seven positives the shape, not the second decimal, is
+the result.)
 
 \section{Discussion}
 \label{sec:discussion}

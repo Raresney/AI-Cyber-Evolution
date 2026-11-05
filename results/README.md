@@ -1010,3 +1010,53 @@ invariants, one tool.
     same sub-technique can present a new surface. It is the same lesson as the
     rungs, one level finer — and exactly why the ladder, not a single detector,
     is the contribution.
+
+## Degraded telemetry (condition E / hypothesis 4)
+
+`experiments/telemetry_degradation.py` fills the one piece the research question
+promises but the rest of the lab never tests: detection under *incomplete and
+noisy* telemetry. Every other experiment assumes a perfect sensor. Here the
+holdout LSASS stream (216,095 events, 7 attack events) is degraded at increasing
+severity and both single-event detectors are re-evaluated, mean over 20 seeds.
+Both fire on a *single* Sysmon EID 10 event — the signature on `SourceImage`, the
+invariant on `GrantedAccess` — so neither has multi-event redundancy, which makes
+their failure modes clean to separate.
+
+Recall vs severity (fraction of events hit):
+
+| mode | detector | 0.00 | 0.10 | 0.25 | 0.50 | 0.75 | 0.90 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| **drop** (whole event lost) | signature | 0.29 | 0.26 | 0.22 | 0.14 | 0.07 | 0.04 |
+| | invariant | 1.00 | 0.91 | 0.72 | 0.46 | 0.24 | 0.11 |
+| **field:SourceImage** | signature | 0.29 | 0.26 | 0.22 | 0.14 | 0.07 | 0.04 |
+| | invariant | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 |
+| **field:GrantedAccess** | signature | 0.29 | 0.29 | 0.29 | 0.29 | 0.29 | 0.29 |
+| | invariant | 1.00 | 0.91 | 0.72 | 0.46 | 0.24 | 0.11 |
+
+The symmetry is the result: losing a detector's load-bearing field degrades it
+*exactly* as whole-event loss would (the `SourceImage`-blank curve equals the
+signature's drop curve; the `GrantedAccess`-blank curve equals the invariant's
+drop curve), while losing the *other* field costs nothing. Only 7 positives, so
+the shape — which field is load-bearing — is the finding, not the second decimal.
+
+## Findings
+
+32. **Whole-event loss is a shared floor neither single-event detector beats.**
+    Under random event drop both recalls scale with the surviving fraction
+    ($\approx(1-p)$ times the clean baseline): the invariant 1.00→0.11, the
+    signature 0.29→0.04. A detector that decides on one event cannot recover an
+    event the sensor never delivered, so missing telemetry is detector-agnostic —
+    the only lever against it is multi-event / chain redundancy (the chain rung),
+    not a better single-event rule.
+33. **The invariant does not buy robustness for free — it relocates brittleness
+    from an attacker-controlled field to a sensor-controlled one.** Field dropout
+    separates the two cleanly and disjointly. Blank the image path and the
+    signature collapses on the same curve as whole-event loss (0.29→0.04) while
+    the invariant is flat at 1.00 — it ignores the field the attacker already
+    controls cheaply (the arms race). Blank the access mask and the roles invert:
+    the signature is flat at 0.29, the invariant decays like event loss
+    (0.91→0.11). So the behavioral invariant's resilience to the attacker's cheap
+    mutation is paid for by a new dependence on sensor fidelity for the one field
+    the attacker cannot forge but a degraded EDR can still drop. Robustness under
+    degradation is not a property of a detector but of the *match between its
+    load-bearing field and what the deployment actually loses.*

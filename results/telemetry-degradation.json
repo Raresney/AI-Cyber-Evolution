@@ -1,0 +1,257 @@
+{
+  "schema": "otrf-lsass-v1",
+  "technique": "T1003.001",
+  "holdout_campaigns": [
+    "campaign_04",
+    "campaign_05",
+    "campaign_06",
+    "campaign_07"
+  ],
+  "holdout_events": 216095,
+  "holdout_attacks": 7,
+  "seeds": 20,
+  "severities": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9
+  ],
+  "modes": {
+    "drop": {
+      "signature(tool-identity)": [
+        {
+          "severity": 0.0,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 0.2571,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 0.2214,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 0.1429,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 0.0714,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 0.0357,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ],
+      "behavioral(access-pattern)": [
+        {
+          "severity": 0.0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 0.9143,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 0.7214,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 0.4572,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 0.2429,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 0.1143,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ]
+    },
+    "field:SourceImage": {
+      "signature(tool-identity)": [
+        {
+          "severity": 0.0,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 0.2571,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 0.2214,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 0.1429,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 0.0714,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 0.0357,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ],
+      "behavioral(access-pattern)": [
+        {
+          "severity": 0.0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ]
+    },
+    "field:GrantedAccess": {
+      "signature(tool-identity)": [
+        {
+          "severity": 0.0,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 0.2857,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ],
+      "behavioral(access-pattern)": [
+        {
+          "severity": 0.0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.1,
+          "recall": 0.9143,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.25,
+          "recall": 0.7214,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.5,
+          "recall": 0.4572,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.75,
+          "recall": 0.2429,
+          "precision": 1.0,
+          "fp": 0.0
+        },
+        {
+          "severity": 0.9,
+          "recall": 0.1143,
+          "precision": 1.0,
+          "fp": 0.0
+        }
+      ]
+    }
+  }
+}
